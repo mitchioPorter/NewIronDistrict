@@ -127,7 +127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &77327124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,6 +855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1567047690}
   - component: {fileID: 1567047689}
+  - component: {fileID: 1567047691}
   m_Layer: 0
   m_Name: workshopBG
   m_TagString: Untagged
@@ -917,6 +918,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1567047691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1567047688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c17b60acea609724d9b0343405515c7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1612792390
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +961,7 @@ MonoBehaviour:
   name: 
   pose: {fileID: 0}
   position: 
-  typeSpeed: 0.05
+  typeSpeed: 0.03
   click: {fileID: 8300000, guid: b93e0b63ab55b6b4ba931d2ddc19f3e4, type: 3}
   source: {fileID: 0}
   customStyle:
@@ -997,17 +1009,17 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
+      m_Left: 20
+      m_Right: 20
+      m_Top: 10
+      m_Bottom: 10
     m_Overflow:
       m_Left: 30
       m_Right: 30
       m_Top: 15
       m_Bottom: 15
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 28
+    m_Font: {fileID: 12800000, guid: 0c96bb98158c54b4ab8c59bef143a403, type: 3}
+    m_FontSize: 35
     m_FontStyle: 0
     m_Alignment: 0
     m_WordWrap: 1
@@ -1073,8 +1085,8 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_Font: {fileID: 12800000, guid: 0c96bb98158c54b4ab8c59bef143a403, type: 3}
+    m_FontSize: 38
     m_FontStyle: 1
     m_Alignment: 4
     m_WordWrap: 1

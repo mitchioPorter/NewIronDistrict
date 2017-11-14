@@ -457,7 +457,7 @@ MonoBehaviour:
   name: 
   pose: {fileID: 0}
   position: 
-  typeSpeed: 0
+  typeSpeed: 0.03
   click: {fileID: 8300000, guid: b93e0b63ab55b6b4ba931d2ddc19f3e4, type: 3}
   source: {fileID: 0}
   customStyle:
@@ -505,10 +505,10 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Padding:
-      m_Left: 30
-      m_Right: 30
-      m_Top: 20
-      m_Bottom: 20
+      m_Left: 35
+      m_Right: 35
+      m_Top: 25
+      m_Bottom: 25
     m_Overflow:
       m_Left: 0
       m_Right: 0
@@ -572,9 +572,9 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Padding:
-      m_Left: 0
+      m_Left: 7
       m_Right: 0
-      m_Top: 0
+      m_Top: 3
       m_Bottom: 0
     m_Overflow:
       m_Left: 0

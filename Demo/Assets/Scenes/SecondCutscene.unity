@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326156e95c7f671469fab10e8199aa0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoToPlay: {fileID: 32900000, guid: 0fd1a92c468067c4c961f9ea8cf49edc, type: 3}
+  videoToPlay: {fileID: 32900000, guid: d5bc0a86184bedb498a0f9366b2c9353, type: 3}
 --- !u!81 &767403637
 AudioListener:
   m_ObjectHideFlags: 0

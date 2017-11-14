@@ -77,11 +77,11 @@
      <Compile Include="Assets\Resources\Scripts\Matching\Tile.cs" />
      <Compile Include="Assets\Resources\Scripts\SceneManagement.cs" />
      <Compile Include="Assets\Resources\Scripts\Video.cs" />
-     <None Include="Assets\StreamingAssets\Dialogue10.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue11.txt" />
      <None Include="Assets\StreamingAssets\Dialogue4.txt" />
      <None Include="Assets\StreamingAssets\Dialogue7.txt" />
      <None Include="Assets\StreamingAssets\Dialogue2.txt" />
-     <None Include="Assets\StreamingAssets\Dialogue8.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue9.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

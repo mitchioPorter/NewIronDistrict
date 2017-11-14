@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 	Animator animator;
 	private int state;
 	public int wantGear;
+	private int lastSlide;
 
 	public int maxLeftX;
 	public int maxRightX;

@@ -20,6 +20,7 @@ public class FallingGearGame : MonoBehaviour {
 	public GameObject ground;
 	public GameObject progress;
 	private bool endGame;
+	private bool gameStart;
 
 	public int sceneIdx;
 	public bool gameStarted;
@@ -43,9 +44,9 @@ public class FallingGearGame : MonoBehaviour {
 		ground = (GameObject)Instantiate (ground);
 		health = player.health;
 		maxHealth = player.health;
-
-		Instantiate (backgrounds);
 		nextSpawnTime = Time.time;
+		Instantiate (backgrounds);
+
 		player.canMove = true;
 
 
@@ -73,8 +74,10 @@ public class FallingGearGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Return)) {
+		if (Input.GetKeyDown (KeyCode.Return) && !gameStart) {
+			gameStart = true;
 			Destroy (instructionsClone);
+			nextSpawnTime = Time.time;
 		}
 		if (endGame) {
 			if (Input.GetKeyDown(KeyCode.Return)) {
@@ -105,7 +108,7 @@ public class FallingGearGame : MonoBehaviour {
 		healthBar.transform.localScale = new Vector3 ((float) 8 *health / maxHealth,.5f, 1f);
 
 	
-		if (Time.time >= nextSpawnTime && !endGame) {
+		if (Time.time >= nextSpawnTime && !endGame && gameStart) {
 			Instantiate (falling);
 			nextSpawnTime += Random.Range (.8f, 1.5f);
 		}

@@ -10,6 +10,8 @@ public class Player : MonoBehaviour {
 	Animator animator;
 	private int state;
 	public int wantGear;
+	private float lastSlide = 0;
+	private bool sliding;
 
 	public int maxLeftX;
 	public int maxRightX;
@@ -60,55 +62,77 @@ public class Player : MonoBehaviour {
 		}
 
 		if(canMove){
-			if (Input.GetKey(KeyCode.RightArrow) && transform.position.x  <= maxRightX) {
-				transform.Translate(velocity );
-				sprtRndr.flipX = false;
+			if (!sliding) {
+				if (Input.GetKey (KeyCode.RightArrow) && transform.position.x <= maxRightX) {
+					transform.Translate (velocity);
+					sprtRndr.flipX = false;
 
-			}
-			if (Input.GetKey (KeyCode.LeftArrow) && transform.position.x >= maxLeftX) {
-				transform.Translate (-1*velocity);
-				sprtRndr.flipX = true;
-			}
-			if (! Input.GetKey (KeyCode.RightArrow) && ! Input.GetKey (KeyCode.LeftArrow)){
-				transform.Translate (0f, 0f, 0f);
+				}
+				if (Input.GetKey (KeyCode.LeftArrow) && transform.position.x >= maxLeftX) {
+					transform.Translate (-1 * velocity);
+					sprtRndr.flipX = true;
+				}
+				if (!Input.GetKey (KeyCode.RightArrow) && !Input.GetKey (KeyCode.LeftArrow)) {
+					transform.Translate (0f, 0f, 0f);
 
+				}
+				if (Input.GetKey (KeyCode.UpArrow) && onGround) {
+					rb.AddForce (new Vector2 (0, 300));
+					onGround = false;
+					animator.SetInteger ("State", 2);
+				}
+				if (Input.GetKey (KeyCode.Space) && Time.time > lastSlide + 2f) {
+					animator.SetInteger ("State", 1);
+					lastSlide = Time.time;
+					sliding = true;
+
+				}
+			} 
+			if (sliding && Time.time > lastSlide + .5f) {
+				animator.SetInteger ("State", 0);
+				sliding = false;
 			}
-			if (Input.GetKey (KeyCode.UpArrow) && onGround) {
-				rb.AddForce (new Vector2 (0, 300));
-				onGround = false;
-				animator.SetInteger ("State", 2);
+
+
+			//when breya is sliding
+			if (sliding) {
+				if (sprtRndr.flipX == true && transform.position.x >= maxLeftX) {
+					transform.Translate (new Vector3 (-.2f, .1f, 0f));
+				} else if(sprtRndr.flipX == false && transform.position.x <= maxRightX){
+					transform.Translate (new Vector3 (.2f, .1f, 0f));
+				}
 			}
-			if (Input.GetKey (KeyCode.Space)) {
-				animator.SetInteger ("State", 1);
-			}
+
 		}
 	
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.GetComponent<Gear> () != null) {
-			int a = coll.gameObject.GetComponent <Gear> ().type;
-			if (a == wantGear && canMove) {
-				wantGear = Random.Range (1, 4);
-				Score += 1;
-				source.PlayOneShot (goodGear);
-				Destroy (coll.gameObject);
+		if (!sliding) {
+			if (coll.gameObject.GetComponent<Gear> () != null) {
+				int a = coll.gameObject.GetComponent <Gear> ().type;
+				if (a == wantGear && canMove) {
+					wantGear = Random.Range (1, 4);
+					Score += 1;
+					source.PlayOneShot (goodGear);
+					Destroy (coll.gameObject);
 
-			} else if (a == 0 && canMove) {
-				source.PlayOneShot (badGear);
-				health -= 20;
-				Destroy (coll.gameObject);
+				} else if (a == 0 && canMove) {
+					source.PlayOneShot (badGear);
+					health -= 20;
+					Destroy (coll.gameObject);
 
-			} else if (canMove) {
-				source.PlayOneShot (badGear);
-				health -= 10;
-				Destroy (coll.gameObject);
+				} else if (canMove) {
+					source.PlayOneShot (badGear);
+					health -= 10;
+					Destroy (coll.gameObject);
+				}
 			}
-		}
-		if(coll.transform.tag == "Ground")
-		{
-			animator.SetInteger ("State", 0);
-			onGround = true;
+
+			if (coll.transform.tag == "Ground") {
+				animator.SetInteger ("State", 0);
+				onGround = true;
+			}
 		}
 	}
 

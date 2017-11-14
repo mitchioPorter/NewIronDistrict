@@ -25,12 +25,6 @@ public class Video : MonoBehaviour {
 		StartCoroutine(playVideo());
 	}
 
-	void Update() {
-		if (Input.GetKeyDown(KeyCode.Return)) {
-			SceneManager.LoadScene(sceneIdx+1);
-		}
-	}
-
 	IEnumerator playVideo()
 	{
 		//Add VideoPlayer to the GameObject

@@ -87,7 +87,7 @@ public class Player : MonoBehaviour {
 					sliding = true;
 
 				}
-			}
+			} 
 			if (sliding && Time.time > lastSlide + .5f) {
 				animator.SetInteger ("State", 0);
 				sliding = false;

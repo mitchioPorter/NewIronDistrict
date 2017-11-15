@@ -185,6 +185,12 @@ Prefab:
       value: 
       objectReference: {fileID: 114197773299660276, guid: 8f7aa6bc146e049cd94d1c68b72b9578,
         type: 2}
+    - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
+        type: 2}
+      propertyPath: PGB
+      value: 
+      objectReference: {fileID: 1066783190960678, guid: 4e897f2b6693a49b0af51b31f1f3028c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80cbe1d2233c14d8d8f249a6246c0fa7, type: 2}
   m_IsPrefabParent: 0

@@ -44,9 +44,8 @@ public class ArrowGame : MonoBehaviour {
 	public GameObject Defeat;
 
 	//these are the popups
-	public GameObject Perfect;
-	public GameObject Good;
-	public GameObject Bad;
+	//state 0 = blank, state 1 = perfect, state 2 = good, state 3 = perfect.
+	public GameObject PGB;
 
 
 	public Player player;

@@ -17,7 +17,7 @@ public class ArrowGame : MonoBehaviour {
 
 	private int totalCards;					//This is the stuff that track the cards 
 	private int correctCards;				//spawnded per round and how many you got right
-
+	bool animatedOnce =true;
 
 	public int enemyHealth;
 	private int enemyMaxHealth;
@@ -30,7 +30,8 @@ public class ArrowGame : MonoBehaviour {
 										//Set enemy damage,health
 	public int enemyDamage;
 										//your "attack" damage
-	public int attackDamage;
+	public int attackDamage = 13;
+
 
 										//create the health bar
 	public GameObject healthBar;		//stores the health bar prefab
@@ -42,24 +43,22 @@ public class ArrowGame : MonoBehaviour {
 	public GameObject Victory;
 	public GameObject Defeat;
 
+	//these are the popups
+	public GameObject Perfect;
+	public GameObject Good;
+	public GameObject Bad;
+
 
 	public Player player;
 	public Enemy enemy;
 
 	private GameObject healthGauge;		//health bar obj
-	private GameObject attackGauge;		// attack bar obj
 	private GameObject enemyGauge;
 	private GameObject instructions;
 
 	//checks if you are in game
 	private bool inGame;
 	private bool gameEnd;
-
-
-
-	//tracks how many hits in a row and how much your gauge has charged
-	public int consecutiveHits;
-	public int attackPoints;
 
 
 	// sound effects
@@ -73,7 +72,6 @@ public class ArrowGame : MonoBehaviour {
 		
 		sceneIdx = SceneManager.GetActiveScene ().buildIndex;
 
-		attackPoints = 0;
 		totalCards = 0;
 		correctCards = 0;
 		//this sets how long befor the game stops instantiating arrows
@@ -92,7 +90,6 @@ public class ArrowGame : MonoBehaviour {
 		player = (Player)Instantiate (player);
 		//create the bars for your and enemy health
 		healthGauge = (GameObject)Instantiate (healthBar);
-		attackGauge = (GameObject)Instantiate (attackBar);
 		enemyGauge = (GameObject)Instantiate (enemyBar);
 		instructions = (GameObject)Instantiate(instructionAccess);
 		player.canMove = false;
@@ -122,7 +119,7 @@ public class ArrowGame : MonoBehaviour {
 //
 
 		//when the attack bar is full you attack the enemy and it resets the bar
-		if (attackPoints >= 50) {
+		/*if (attackPoints >= 50) {
 			attackPoints = 0;
 			enemyHealth -= attackDamage;
 			consecutiveHits = 1;
@@ -130,32 +127,28 @@ public class ArrowGame : MonoBehaviour {
 			//set breya animation to attack
 			player.changeState (1);
 		} 
+		*/
 
-		attackGauge.transform.localScale = new Vector3 (  (float)attackPoints / 6f, .5f , 1f);
 
 
-		//if you are still alive
+//if you are still alive
 		if (health > 0) {
 			healthGauge.transform.localScale = new Vector3 ((float)7.5 * health / maxHealth, .5f, 1f);
 		} else {
 			if (!gameEnd) {
-			//GAME OVER DEATH
-			//stops arrow spawns
+	//GAME OVER DEATH
+	//stops arrow spawns
+				healthGauge.transform.localScale = new Vector3 ((float)7.5 * health / maxHealth, .5f, 1f);
 				timeEnd = Time.time - 2f;
 				player.changeState (66);
 
-			//create death display
+	//create death display
 
 				Instantiate (Defeat);
 				gameEnd = true;
 
 
-
-			//readjust the health bar
-				healthGauge.transform.localScale = new Vector3 ((float)7.5 * health / maxHealth, .5f, 1f);
-
-
-			//removes all the extra arrow cards
+	//removes all the extra arrow cards
 			while (arrows.Count > 0) {
 				Destroy (arrows [0].gameObject);
 				arrows.RemoveAt (0);
@@ -171,6 +164,8 @@ public class ArrowGame : MonoBehaviour {
 		} else {
 			if (!gameEnd) {
 				gameEnd = true;
+
+
 				//Victory
 				Instantiate (Victory);
 
@@ -193,7 +188,7 @@ public class ArrowGame : MonoBehaviour {
 		}
 			
 
-		//THIIS IS EWHERE WE CREATE CARDS
+//THIIS IS EWHERE WE CREATE CARDS
 
 		if (Time.time <= timeEnd && Time.time >= nextSpawnTime) {		//every round within the time limit it will spawn a arrow card
 			inGame = true;
@@ -201,10 +196,13 @@ public class ArrowGame : MonoBehaviour {
 			arrows.Add ((ArrowCard)Instantiate (aCard));			//instantiates the arrow card prefan
 			nextSpawnTime += (.4f);									// sets the next interval that it spawns
 			totalCards += 1;
+			animatedOnce = false;
 		
 		} else {
-			if (Time.time > timeEnd + 3) {
+			if (Time.time > timeEnd + 2) {
+				//after the end of the sequence
 				inGame = false;
+				animateTheStats ();
 			}
 		}
 
@@ -290,20 +288,24 @@ public class ArrowGame : MonoBehaviour {
 					arrows.RemoveAt (0);
 					y++;
 				}
-				consecutiveHits = 0;
-				attackPoints = 0;
-
+		
 			}
 		}
 	}
 
+
+
+
 											//what happens if you get it right
 	void correctInput(){
+
+		//plays good sound
 		source.PlayOneShot (arrowSound);
+		//destroys object
 		Destroy (arrows [0].gameObject);
+		//removes it from the array
 		arrows.RemoveAt (0);
-		consecutiveHits += 1;
-		attackPoints += consecutiveHits;
+
 		correctCards += 1;
 
 	}
@@ -312,9 +314,37 @@ public class ArrowGame : MonoBehaviour {
 	void badInput(){
 		source.PlayOneShot (badArrow);
 		Destroy (arrows [0].gameObject);
-		arrows.RemoveAt (0);
-		health -= enemyDamage;
-		consecutiveHits = 0;
-		enemy.changeState (1);
+		arrows.RemoveAt (0);;
+
+
+	}
+
+
+	void animateTheStats(){
+		//checks if attack has been played
+
+		if (!animatedOnce) {
+			animatedOnce = true;
+			if (totalCards == correctCards) {
+				enemyHealth -= attackDamage;
+
+				//set breya animation to attack
+				player.changeState (1);
+				//PErFECT!!!
+
+			} else if ( totalCards < 1/2 * correctCards) {
+				enemyHealth -= attackDamage / 2;
+				//set breya animation to attack
+				player.changeState (1);
+				enemy.changeState (1);
+				//good
+			} else {
+				//bad
+				enemy.changeState (1);
+
+			}
+		}
+
+
 	}
 }

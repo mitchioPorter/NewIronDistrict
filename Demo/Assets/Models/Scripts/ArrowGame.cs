@@ -45,7 +45,7 @@ public class ArrowGame : MonoBehaviour {
 
 	//these are the popups
 	//state 0 = blank, state 1 = perfect, state 2 = good, state 3 = perfect.
-	public GameObject PGB;
+	public PGB PGB_;
 
 
 	public Player player;
@@ -91,6 +91,7 @@ public class ArrowGame : MonoBehaviour {
 		healthGauge = (GameObject)Instantiate (healthBar);
 		enemyGauge = (GameObject)Instantiate (enemyBar);
 		instructions = (GameObject)Instantiate(instructionAccess);
+		PGB_ = (PGB)Instantiate(PGB_);
 		player.canMove = false;
 
 		source = GetComponent<AudioSource> ();
@@ -196,9 +197,9 @@ public class ArrowGame : MonoBehaviour {
 			nextSpawnTime += (.4f);									// sets the next interval that it spawns
 			totalCards += 1;
 			animatedOnce = false;
-		
+		//htis is post all cards created
 		} else {
-			if (Time.time > timeEnd + 2) {
+			if (Time.time > timeEnd + 3) {
 				//after the end of the sequence
 				inGame = false;
 				animateTheStats ();
@@ -206,7 +207,7 @@ public class ArrowGame : MonoBehaviour {
 		}
 
 		//display instructions after a round
-		if (Time.time > timeEnd + 3 && health > 0 && enemyHealth > 0) {
+		if (Time.time > timeEnd + 3  && Time.time > PGB_.shown + 2.5f && health > 0 && enemyHealth > 0) {
 			instructions.SetActive (true);
 			instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
 			//instructions.transform.position = new Vector3 (instructions.transform.position.x, instructions.transform.position.y, -8);
@@ -329,17 +330,20 @@ public class ArrowGame : MonoBehaviour {
 
 				//set breya animation to attack
 				player.changeState (1);
+				PGB_.changeState(1);
 				//PErFECT!!!
 
-			} else if ( totalCards < 1/2 * correctCards) {
+			} else if ( totalCards / 2 <  correctCards) {
 				enemyHealth -= attackDamage / 2;
 				//set breya animation to attack
 				player.changeState (1);
 				enemy.changeState (1);
+				PGB_.changeState(2);
 				//good
 			} else {
 				//bad
 				enemy.changeState (1);
+				PGB_.changeState(3);
 
 			}
 		}

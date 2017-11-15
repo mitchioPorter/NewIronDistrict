@@ -25,3 +25,7 @@
 /Users/mitchio/Documents/GitHub/NewIronDistrict/Demo/Temp/bin/Debug/Assembly-CSharp.dll.mdb
 /Users/mitchio/Documents/GitHub/NewIronDistrict/Demo/Temp/bin/Debug/Assembly-CSharp.dll
 /Users/mitchio/Documents/GitHub/NewIronDistrict/Demo/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/mitchio/Documents/GitHub/NewIronDistrict/Demo/Temp/bin/Debug/Antlr4.Runtime.Standard.dll
+/Users/mitchio/Documents/GitHub/NewIronDistrict/Demo/Temp/bin/Debug/YarnSpinner.dll
+/Users/mitchio/Documents/GitHub/NewIronDistrict/Demo/Temp/bin/Debug/CsvHelper.dll
+/Users/mitchio/Documents/GitHub/NewIronDistrict/Demo/Temp/bin/Debug/Newtonsoft.Json.dll

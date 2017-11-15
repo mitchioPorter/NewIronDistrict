@@ -109,6 +109,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &610237318
 GameObject:
@@ -392,7 +394,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &1328594848
 Transform:
   m_ObjectHideFlags: 0
@@ -488,8 +489,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1422496838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 261, y: 163, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1867679643}
   m_Father: {fileID: 0}
@@ -639,19 +640,19 @@ Prefab:
         type: 2}
       propertyPath: defeat
       value: 
-      objectReference: {fileID: 1781392175988590, guid: 62bb7bf4c7487c14d9bb1ffcea0af93b,
+      objectReference: {fileID: 1967348575831214, guid: c2df77a03d91943998286ced78059895,
         type: 2}
     - target: {fileID: 114701972097420366, guid: b8e3d83499198406c955a68784199ab4,
         type: 2}
       propertyPath: victory
       value: 
-      objectReference: {fileID: 1296926854569438, guid: 9f6a7155e16301c4991cd5784b3304d3,
+      objectReference: {fileID: 1220827281374090, guid: dbfa95d620abe449bbffd4227573cb7d,
         type: 2}
     - target: {fileID: 114701972097420366, guid: b8e3d83499198406c955a68784199ab4,
         type: 2}
       propertyPath: instructions
       value: 
-      objectReference: {fileID: 1742991445758642, guid: 1512fc3c106aa3d41a7d460ebbac63f0,
+      objectReference: {fileID: 1229454939030034, guid: de9089d3fa9d141048cca11d96492419,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b8e3d83499198406c955a68784199ab4, type: 2}

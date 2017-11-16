@@ -30,7 +30,7 @@ public class ArrowGame : MonoBehaviour {
 										//Set enemy damage,health
 	public int enemyDamage;
 										//your "attack" damage
-	public int attackDamage = 13;
+	public int attackDamage = 34;
 
 
 										//create the health bar

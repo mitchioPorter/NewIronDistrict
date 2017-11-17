@@ -7,7 +7,7 @@ public class ArrowGame : MonoBehaviour {
 									//time things, like end time and next create time, and how long a round is
 	private float timeEnd;
 	private float nextSpawnTime;
-	public int time;
+	public int timeLength;
 
 
 									//player/enemy health and their max health
@@ -42,6 +42,7 @@ public class ArrowGame : MonoBehaviour {
 	public GameObject instructionAccess;
 	public GameObject Victory;
 	public GameObject Defeat;
+	public GameObject RotatingGear;
 
 	//these are the popups
 	//state 0 = blank, state 1 = perfect, state 2 = good, state 3 = perfect.
@@ -91,6 +92,7 @@ public class ArrowGame : MonoBehaviour {
 		healthGauge = (GameObject)Instantiate (healthBar);
 		enemyGauge = (GameObject)Instantiate (enemyBar);
 		instructions = (GameObject)Instantiate(instructionAccess);
+		RotatingGear = (GameObject)Instantiate (RotatingGear);
 		PGB_ = (PGB)Instantiate(PGB_);
 		player.canMove = false;
 
@@ -157,7 +159,7 @@ public class ArrowGame : MonoBehaviour {
 
 		}
 
-
+	//changes health gauge
 		if (enemyHealth > 0) {
 			enemyGauge.transform.localScale = new Vector3 (((float)12.4 * enemyHealth / enemyMaxHealth), .5f, 1f);
 		
@@ -194,7 +196,7 @@ public class ArrowGame : MonoBehaviour {
 			inGame = true;
 
 			arrows.Add ((ArrowCard)Instantiate (aCard));			//instantiates the arrow card prefan
-			nextSpawnTime += (.4f);									// sets the next interval that it spawns
+			nextSpawnTime += (.261f * Random.Range(1,4) );									// sets the next interval that it spawns
 			totalCards += 1;
 			animatedOnce = false;
 		//htis is post all cards created
@@ -220,8 +222,8 @@ public class ArrowGame : MonoBehaviour {
 		//after the round ends, press ENTER to start a new round
 
 		if (inGame == false && Input.GetKeyDown (KeyCode.Return) && health > 0 && enemyHealth > 0 ) {
-			timeEnd = Time.time + time;
-			nextSpawnTime =Time.time + (.3f);
+			timeEnd = Time.time + timeLength;
+			nextSpawnTime =Time.time + (.261f);
 			totalCards = 0;
 			correctCards = 0;
 			//instructions.SetActive (true);
@@ -242,56 +244,58 @@ public class ArrowGame : MonoBehaviour {
 								*/
 
 			if(Input.GetKeyDown(KeyCode.UpArrow)){						//checks the card and input
-				if (arrows.Count >= 1) {								//if the top of the queue matches input
-				if (arrows [0].type == 0) {								//success, else damages you
+				
+			if (arrows.Count >= 1) {								//if the top of the queue matches input
+
+				if (arrows [0].type == 0 && arrows[0].transform.position.x  > -1.8f && arrows[0].transform.position.x  <.2f ) {								//success, else damages you
+					//- 1.27f
 					correctInput();
-				} else {
+				} else if((arrows[0].transform.position.x ) < 1){
 					badInput ();
 				}
 				}
 			}
 			if(Input.GetKeyDown(KeyCode.DownArrow)){
 				if (arrows.Count >= 1) {
-					if (arrows [0].type == 1) {
+				if (arrows [0].type == 1 && arrows[0].transform.position.x  > -1.8f && arrows[0].transform.position.x  <.2f ) {
 					correctInput ();
-					} else {
+				} else  if(arrows[0].transform.position.x  < 1) {
 					badInput ();
 				}
 				}
 			}
 			if (Input.GetKeyDown (KeyCode.LeftArrow)) {
 				if (arrows.Count >= 1) {
-					if (arrows [0].type == 2) {
+				if (arrows [0].type == 2 && arrows[0].transform.position.x  > -1.8f && arrows[0].transform.position.x  <.2f ) {
 					correctInput ();
-					} else {
+				} else if(arrows[0].transform.position.x < 1) {
 					badInput ();
 				}
 				}
 			}
 			if (Input.GetKeyDown (KeyCode.RightArrow)) {
 				if (arrows.Count >= 1) {
-					if (arrows [0].type == 3) {
+				if (arrows [0].type == 3 && arrows[0].transform.position.x  > -1.8f && arrows[0].transform.position.x  <.2f ){
 					correctInput ();
-					} else {
+				} else if((arrows[0].transform.position.x ) < 1) {
 					badInput ();	
 						}
 				}
 			}
 
-
+			
 		if (arrows.Count >= 1) {
-			if (arrows [0].transform.position.x <= -3.5) {
-				badInput ();
-				int y = 0;
-				while (y < arrows.Count) {
-					Destroy (arrows [0].gameObject);
-					arrows.RemoveAt (0);
-					y++;
+			if (arrows [0].transform.position.x <= -1.8f) {
+					badInput ();
+					//Destroy (arrows [0].gameObject);
+					// arrows.RemoveAt (0);
+					
 				}
 		
 			}
 		}
-	}
+
+
 
 
 
@@ -305,7 +309,6 @@ public class ArrowGame : MonoBehaviour {
 		Destroy (arrows [0].gameObject);
 		//removes it from the array
 		arrows.RemoveAt (0);
-
 		correctCards += 1;
 
 	}
@@ -324,8 +327,10 @@ public class ArrowGame : MonoBehaviour {
 		//checks if attack has been played
 
 		if (!animatedOnce) {
+			Debug.Log("total: " + totalCards + "/ correct: " + correctCards);
 			animatedOnce = true;
 			if (totalCards == correctCards) {
+				Debug.Log ("Perfect");
 				enemyHealth -= attackDamage;
 
 				//set breya animation to attack
@@ -334,16 +339,20 @@ public class ArrowGame : MonoBehaviour {
 				//PErFECT!!!
 
 			} else if ( totalCards / 2 <  correctCards) {
+				Debug.Log ("Good");
 				enemyHealth -= attackDamage / 2;
 				//set breya animation to attack
 				player.changeState (1);
 				enemy.changeState (1);
 				PGB_.changeState(2);
+				health -= 10;
 				//good
 			} else {
 				//bad
+				Debug.Log ("Bad");
 				enemy.changeState (1);
 				PGB_.changeState(3);
+				health -= 20;
 
 			}
 		}

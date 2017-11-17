@@ -14,7 +14,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 c24a21b131bfa67be1162db2cba4b52b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 566a1efac3cef54c54b87583e0b0577a Assembly-CSharp.dll:.Player
 6c2c011f6c14e4bcfe997390be0f3eb5 Assembly-CSharp.dll:.SceneManagement
-79adc6fd3ce6084ba4e2333adf4f93eb Assembly-CSharp.dll:.DialogueBox
+496d9b71da7960e529b9c9813b89408e Assembly-CSharp.dll:.DialogueBox
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.StartButton
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -49,7 +49,6 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 e0480aeedfe197f7fa3ea479ff3499dc Assembly-CSharp.dll:.M3_Enemy
-b531674bce75223512192b9b1b78e558 Assembly-CSharp.dll:.NextLine
 d1c969f5fe860db074087ff2fcb5acc3 Assembly-CSharp.dll:.M3_GameManager
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -111,7 +110,6 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 3887053245ec54c98e1dd77cc39d539a Assembly-CSharp.dll:.BoardManager
-078877123c72f4240beb61fd8f677b1b Assembly-CSharp.dll:.PersistentObject
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
@@ -121,7 +119,7 @@ bf8136e0371721804da06ce1ec25fc11 Assembly-CSharp.dll:.Parallax
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.NextSceneButton
 7a75edc83a9f267c790ac1425865847a Assembly-CSharp.dll:.ArrowCard
 10854a06db1f118733e3e44f77ba0773 Assembly-CSharp.dll:.FallingGearGame
-4b3af978dfa4b7a88cbe71163a90fe4b Assembly-CSharp.dll:.Tile
+30eb0fbf8cb5cb905aade871797ef8e3 Assembly-CSharp.dll:.Tile
 cb0654b5279dcb65a015ded257b1d5f8 Assembly-CSharp.dll:.CombatTimer
 e1e0bf3e2ab70f3c55e4046b3ae2f1ae Assembly-CSharp.dll:.M3_Player
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DialogueParser
@@ -143,7 +141,6 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
-adb89eb893e7f67dfd7db004825b39b8 Assembly-CSharp.dll:.ChoiceButton
 5ce17fb10c04ffc49e63b3c939283c3a Assembly-CSharp.dll:.Video
 bfac6aee48dad8878e81f91bf7a4a78d Assembly-CSharp.dll:.Enemy
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
@@ -154,7 +151,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingRenderer
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.AnimateText
 7a75edc83a9f267c790ac1425865847a Assembly-CSharp.dll:.Gear
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ScaleImage
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ExitButton
 7a75edc83a9f267c790ac1425865847a Assembly-CSharp.dll:.thoughtBubble

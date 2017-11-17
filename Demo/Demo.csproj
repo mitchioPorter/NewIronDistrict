@@ -79,6 +79,24 @@
     <Reference Include="Mono.Cecil">
       <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr4.Runtime.Standard">
+      <HintPath>Assets\YarnSpinner\Code\Antlr4.Runtime.Standard.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper">
+      <HintPath>Assets\YarnSpinner\Code\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets\YarnSpinner\Code\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="YarnSpinner">
+      <HintPath>Assets\YarnSpinner\Code\YarnSpinner.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Models\Scripts\ArrowCard.cs" />
@@ -87,24 +105,48 @@
     <Compile Include="Assets\Models\Scripts\FallingGearGame.cs" />
     <Compile Include="Assets\Models\Scripts\GameManagement.cs" />
     <Compile Include="Assets\Models\Scripts\Gear.cs" />
+    <Compile Include="Assets\Models\Scripts\Guy_thoughts.cs" />
+    <Compile Include="Assets\Models\Scripts\MusicPlayer.cs" />
     <Compile Include="Assets\Models\Scripts\Parallax.cs" />
+    <Compile Include="Assets\Models\Scripts\PGB.cs" />
     <Compile Include="Assets\Models\Scripts\Player.cs" />
     <Compile Include="Assets\Models\Scripts\thoughtBubble.cs" />
-    <Compile Include="Assets\Scripts\Buttons\ExitButton.cs" />
-    <Compile Include="Assets\Scripts\Buttons\NextSceneButton.cs" />
-    <Compile Include="Assets\Scripts\Buttons\StartButton.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\Character.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueBox.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueParser.cs" />
-    <Compile Include="Assets\Scripts\Matching\BoardManager.cs" />
-    <Compile Include="Assets\Scripts\Matching\M3_Enemy.cs" />
-    <Compile Include="Assets\Scripts\Matching\M3_GameManager.cs" />
-    <Compile Include="Assets\Scripts\Matching\M3_Player.cs" />
-    <Compile Include="Assets\Scripts\Matching\Tile.cs" />
+    <Compile Include="Assets\Resources\Scripts\Buttons\EndButton.cs" />
+    <Compile Include="Assets\Resources\Scripts\Buttons\ExitButton.cs" />
+    <Compile Include="Assets\Resources\Scripts\Buttons\NextSceneButton.cs" />
+    <Compile Include="Assets\Resources\Scripts\Buttons\StartButton.cs" />
+    <Compile Include="Assets\Resources\Scripts\CombatTimer.cs" />
+    <Compile Include="Assets\Resources\Scripts\Dialogue\DialogueBox.cs" />
+    <Compile Include="Assets\Resources\Scripts\Dialogue\DialogueParser.cs" />
+    <Compile Include="Assets\Resources\Scripts\Dialogue\ScaleImage.cs" />
+    <Compile Include="Assets\Resources\Scripts\Matching\BoardManager.cs" />
+    <Compile Include="Assets\Resources\Scripts\Matching\M3_Enemy.cs" />
+    <Compile Include="Assets\Resources\Scripts\Matching\M3_GameManager.cs" />
+    <Compile Include="Assets\Resources\Scripts\Matching\M3_Player.cs" />
+    <Compile Include="Assets\Resources\Scripts\Matching\Tile.cs" />
+    <Compile Include="Assets\Resources\Scripts\SceneManagement.cs" />
+    <Compile Include="Assets\Resources\Scripts\Video.cs" />
+    <Compile Include="Assets\Resources\YarnStuff\DialogueStorage.cs" />
+    <Compile Include="Assets\Resources\YarnStuff\ExampleDialogueUI.cs" />
+    <Compile Include="Assets\YarnSpinner\Code\DialogueRunner.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\CameraFollow.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\ExampleVariableStorage.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\MobileOnly.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\NPC.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\PlayerCharacter.cs" />
+    <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\SpriteSwitcher.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Scripts\Dialogue1.txt" />
-    <None Include="Assets\Scripts\Dialogue3.txt" />
+    <None Include="Assets\Resources\YarnStuff\Script1.yarn.txt" />
+    <None Include="Assets\StreamingAssets\Dialogue11.txt" />
+    <None Include="Assets\StreamingAssets\Dialogue2.txt" />
+    <None Include="Assets\StreamingAssets\Dialogue4.txt" />
+    <None Include="Assets\StreamingAssets\Dialogue7.txt" />
+    <None Include="Assets\StreamingAssets\Dialogue9.txt" />
+    <None Include="Assets\YarnSpinner\Examples\DemoAssets\SimpleExampleScript.yarn.txt" />
+    <None Include="Assets\YarnSpinner\Examples\DemoAssets\Space\Sally.yarn.txt" />
+    <None Include="Assets\YarnSpinner\Examples\DemoAssets\Space\Ship.yarn.txt" />
+    <None Include="Assets\YarnSpinner\README.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

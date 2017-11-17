@@ -29,12 +29,11 @@ public class Gear : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//.
-		transform.Translate(new Vector3(0,0,0));
+
 		transform.Translate(velocity * Time.deltaTime);
 		if (transform.position.y <= -3) {
 			Destroy (gameObject);
 		}
-
 		
 	}
 

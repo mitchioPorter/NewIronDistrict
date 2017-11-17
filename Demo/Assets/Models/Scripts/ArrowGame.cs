@@ -30,19 +30,20 @@ public class ArrowGame : MonoBehaviour {
 										//Set enemy damage,health
 	public int enemyDamage;
 										//your "attack" damage
-	public int attackDamage = 34;
+	public int attackDamage = 50;
 
 
 										//create the health bar
 	public GameObject healthBar;		//stores the health bar prefab
-	public GameObject attackBar;		//store the attack bar prefab
+	public GameObject barBG;
+	GameObject barBG1,barBG2;		//store the attack bar prefab
 	public GameObject enemyBar;
 	public GameObject HUD;
 	public GameObject backgrounds;
 	public GameObject instructionAccess;
 	public GameObject Victory;
 	public GameObject Defeat;
-	public GameObject RotatingGear;
+	public RotatingRhythmGear RotatingGear;
 
 	//these are the popups
 	//state 0 = blank, state 1 = perfect, state 2 = good, state 3 = perfect.
@@ -92,7 +93,7 @@ public class ArrowGame : MonoBehaviour {
 		healthGauge = (GameObject)Instantiate (healthBar);
 		enemyGauge = (GameObject)Instantiate (enemyBar);
 		instructions = (GameObject)Instantiate(instructionAccess);
-		RotatingGear = (GameObject)Instantiate (RotatingGear);
+		RotatingGear = (RotatingRhythmGear)Instantiate (RotatingGear);
 		PGB_ = (PGB)Instantiate(PGB_);
 		player.canMove = false;
 
@@ -100,6 +101,12 @@ public class ArrowGame : MonoBehaviour {
 
 		instructions.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
 		instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		enemyGauge.transform.position = new Vector3 (enemy.transform.position.x, enemy.transform.position.y + 2, 1);
+		healthGauge.transform.position = new Vector3 (player.transform.position.x-3, player.transform.position.y + 2, 1);
+		barBG1 = (GameObject)Instantiate (barBG);
+		barBG2 = (GameObject)Instantiate (barBG);
+		barBG1.transform.position = new Vector3 (enemy.transform.position.x, enemy.transform.position.y + 2, 2);
+		barBG2.transform.position = new Vector3 (player.transform.position.x-3, player.transform.position.y + 2, 2);
 
 
 	}
@@ -135,12 +142,14 @@ public class ArrowGame : MonoBehaviour {
 
 //if you are still alive
 		if (health > 0) {
-			healthGauge.transform.localScale = new Vector3 ((float)7.5 * health / maxHealth, .5f, 1f);
+			healthGauge.transform.localScale = new Vector3 ((float)3 * health / maxHealth, .3f, 1f);
+			healthGauge.transform.position = new Vector3 (player.transform.position.x- 3 - (3 - 3 *health / maxHealth), player.transform.position.y + 2, 1);
+
 		} else {
 			if (!gameEnd) {
 	//GAME OVER DEATH
 	//stops arrow spawns
-				healthGauge.transform.localScale = new Vector3 ((float)7.5 * health / maxHealth, .5f, 1f);
+				healthGauge.transform.localScale = new Vector3 ((float)3 * health / maxHealth, .3f, 1f);
 				timeEnd = Time.time - 2f;
 				player.changeState (66);
 
@@ -161,8 +170,9 @@ public class ArrowGame : MonoBehaviour {
 
 	//changes health gauge
 		if (enemyHealth > 0) {
-			enemyGauge.transform.localScale = new Vector3 (((float)12.4 * enemyHealth / enemyMaxHealth), .5f, 1f);
-		
+			enemyGauge.transform.localScale = new Vector3 (((float)3 * enemyHealth / enemyMaxHealth), .3f, 1f);
+			enemyGauge.transform.position = new Vector3 (enemy.transform.position.x- (3 - 3*enemyHealth / enemyMaxHealth), enemy.transform.position.y + 2, 1);
+
 		} else {
 			if (!gameEnd) {
 				gameEnd = true;
@@ -310,6 +320,7 @@ public class ArrowGame : MonoBehaviour {
 		//removes it from the array
 		arrows.RemoveAt (0);
 		correctCards += 1;
+		RotatingGear.changeColor ("good");
 
 	}
 											//what happens when you get it wrong
@@ -317,7 +328,8 @@ public class ArrowGame : MonoBehaviour {
 	void badInput(){
 		source.PlayOneShot (badArrow);
 		Destroy (arrows [0].gameObject);
-		arrows.RemoveAt (0);;
+		arrows.RemoveAt (0);
+		RotatingGear.changeColor ("bad");
 
 
 	}
@@ -327,31 +339,30 @@ public class ArrowGame : MonoBehaviour {
 		//checks if attack has been played
 
 		if (!animatedOnce) {
-			Debug.Log("total: " + totalCards + "/ correct: " + correctCards);
+			RotatingGear.changeColor ("neutral");
+			PGB_.changeState(1);
 			animatedOnce = true;
 			if (totalCards == correctCards) {
-				Debug.Log ("Perfect");
 				enemyHealth -= attackDamage;
 
 				//set breya animation to attack
 				player.changeState (1);
-				PGB_.changeState(1);
+
 				//PErFECT!!!
 
 			} else if ( totalCards / 2 <  correctCards) {
-				Debug.Log ("Good");
+				PGB_.changeState(2);
 				enemyHealth -= attackDamage / 2;
 				//set breya animation to attack
 				player.changeState (1);
 				enemy.changeState (1);
-				PGB_.changeState(2);
 				health -= 10;
 				//good
 			} else {
 				//bad
-				Debug.Log ("Bad");
-				enemy.changeState (1);
 				PGB_.changeState(3);
+				enemy.changeState (1);
+
 				health -= 20;
 
 			}

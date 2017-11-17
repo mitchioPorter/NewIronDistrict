@@ -14,9 +14,9 @@ public class PGB : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (state != 0) {
+		if (state != 0 && Time.time > shown + .1) {
 			transform.position = new Vector3 (0, 1, -9);
-			if (Time.time > shown + 2) {
+			if (Time.time > shown + 2.5) {
 				changeState (0);
 			}
 		} else {

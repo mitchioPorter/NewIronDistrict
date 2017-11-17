@@ -1,11 +1,18 @@
 fileFormatVersion: 2
 guid: 95e92a270a0b64e91b934b27419206d1
+<<<<<<< HEAD
 timeCreated: 1510902036
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Good_0
     21300002: Good_1
+=======
+timeCreated: 1510763878
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName: {}
+>>>>>>> gmrBranch
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -42,7 +49,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
   spriteMode: 2
+=======
+  spriteMode: 1
+>>>>>>> gmrBranch
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -67,6 +78,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+<<<<<<< HEAD
   - buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -116,6 +128,11 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+=======
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+>>>>>>> gmrBranch
     outline: []
     physicsShape: []
   spritePackingTag: 

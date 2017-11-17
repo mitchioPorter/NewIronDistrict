@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 67a358b5a47bf4dde8c5a333e4ad5fb1
 timeCreated: 1510853329
+=======
+guid: bedbd7a1e4a9f46d2a07070a0db94b3e
+timeCreated: 1510763987
+>>>>>>> gmrBranch
 licenseType: Free
 NativeFormatImporter:
   externalObjects: {}

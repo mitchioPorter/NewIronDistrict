@@ -14,9 +14,15 @@ public class PGB : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+<<<<<<< HEAD
 		if (state != 0 && Time.time > shown + .1) {
 			transform.position = new Vector3 (0, 1, -9);
 			if (Time.time > shown + 2.5) {
+=======
+		if (state != 0) {
+			transform.position = new Vector3 (0, 1, -9);
+			if (Time.time > shown + 2) {
+>>>>>>> gmrBranch
 				changeState (0);
 			}
 		} else {

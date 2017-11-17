@@ -21,7 +21,7 @@ public class ArrowGame : MonoBehaviour {
 
 	public int enemyHealth;
 	private int enemyMaxHealth;
-
+	private float playerY, enemyY;
 
 	public ArrowCard aCard;
 										//queue for arrow cards
@@ -43,6 +43,7 @@ public class ArrowGame : MonoBehaviour {
 	public GameObject instructionAccess;
 	public GameObject Victory;
 	public GameObject Defeat;
+	public GameObject Popup;
 	public RotatingRhythmGear RotatingGear;
 
 	//these are the popups
@@ -89,11 +90,14 @@ public class ArrowGame : MonoBehaviour {
 		//Create the enemy and player
 		enemy = (Enemy)Instantiate (enemy);
 		player = (Player)Instantiate (player);
+		playerY = player.transform.position.y;
+		enemyY = enemy.transform.position.y;
 		//create the bars for your and enemy health
 		healthGauge = (GameObject)Instantiate (healthBar);
 		enemyGauge = (GameObject)Instantiate (enemyBar);
 		instructions = (GameObject)Instantiate(instructionAccess);
 		RotatingGear = (RotatingRhythmGear)Instantiate (RotatingGear);
+
 		PGB_ = (PGB)Instantiate(PGB_);
 		player.canMove = false;
 
@@ -108,7 +112,8 @@ public class ArrowGame : MonoBehaviour {
 		barBG1.transform.position = new Vector3 (enemy.transform.position.x, enemy.transform.position.y + 2, 2);
 		barBG2.transform.position = new Vector3 (player.transform.position.x-3, player.transform.position.y + 2, 2);
 
-
+		Popup = (GameObject)Instantiate (Popup);
+		Popup.transform.position = new Vector3(0,0,20);
 	}
 	
 	// Update is called once per frame
@@ -143,7 +148,7 @@ public class ArrowGame : MonoBehaviour {
 //if you are still alive
 		if (health > 0) {
 			healthGauge.transform.localScale = new Vector3 ((float)3 * health / maxHealth, .3f, 1f);
-			healthGauge.transform.position = new Vector3 (player.transform.position.x- 3 - (3 - 3 *health / maxHealth), player.transform.position.y + 2, 1);
+			healthGauge.transform.position = new Vector3 (player.transform.position.x- 3 - (3 - 3 *health / maxHealth)*.5f, player.transform.position.y + 2, 1);
 
 		} else {
 			if (!gameEnd) {
@@ -171,7 +176,7 @@ public class ArrowGame : MonoBehaviour {
 	//changes health gauge
 		if (enemyHealth > 0) {
 			enemyGauge.transform.localScale = new Vector3 (((float)3 * enemyHealth / enemyMaxHealth), .3f, 1f);
-			enemyGauge.transform.position = new Vector3 (enemy.transform.position.x- (3 - 3*enemyHealth / enemyMaxHealth), enemy.transform.position.y + 2, 1);
+			enemyGauge.transform.position = new Vector3 (enemy.transform.position.x- (3 - 3*enemyHealth / enemyMaxHealth)*.5f, enemy.transform.position.y + 2, 1);
 
 		} else {
 			if (!gameEnd) {
@@ -231,7 +236,7 @@ public class ArrowGame : MonoBehaviour {
 
 		//after the round ends, press ENTER to start a new round
 
-		if (inGame == false && Input.GetKeyDown (KeyCode.Return) && health > 0 && enemyHealth > 0 ) {
+		if (inGame == false && Input.GetKeyDown (KeyCode.Return) && health > 0 && enemyHealth > 0 && Time.time > PGB_.shown + 2.5f) {
 			timeEnd = Time.time + timeLength;
 			nextSpawnTime =Time.time + (.261f);
 			totalCards = 0;
@@ -338,7 +343,16 @@ public class ArrowGame : MonoBehaviour {
 	void animateTheStats(){
 		//checks if attack has been played
 
+		if (Time.time > PGB_.shown + 2.5) {
+			Popup.transform.position = new Vector3(0,0,20);
+			player.transform.position = new Vector3(player.transform.position.x, playerY,-1);
+			enemy.transform.position = new Vector3(enemy.transform.position.x, enemyY,-1);;
+		}
 		if (!animatedOnce) {
+			Popup.transform.position = new Vector3(0,0,0);
+			player.transform.position = new Vector3(player.transform.position.x, -1,-8);
+			enemy.transform.position = new Vector3(enemy.transform.position.x, -1,-8);;
+
 			RotatingGear.changeColor ("neutral");
 			PGB_.changeState(1);
 			animatedOnce = true;

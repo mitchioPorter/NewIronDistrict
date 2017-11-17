@@ -30,7 +30,7 @@ public class FallingGearGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		gameStart = false;
 		player = (Player)Instantiate (player);
 
 		healthBar = (GameObject)Instantiate (healthBar);

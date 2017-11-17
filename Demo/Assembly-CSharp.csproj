@@ -60,19 +60,18 @@
      <Compile Include="Assets\Models\Scripts\Guy_thoughts.cs" />
      <Compile Include="Assets\Models\Scripts\MusicPlayer.cs" />
      <Compile Include="Assets\Models\Scripts\Parallax.cs" />
+     <Compile Include="Assets\Models\Scripts\PGB.cs" />
      <Compile Include="Assets\Models\Scripts\Player.cs" />
+     <Compile Include="Assets\Models\Scripts\RotatingRhythmGear.cs" />
      <Compile Include="Assets\Models\Scripts\thoughtBubble.cs" />
-     <Compile Include="Assets\NextLine.cs" />
-     <Compile Include="Assets\Resources\Scripts\Buttons\ChoiceButton.cs" />
      <Compile Include="Assets\Resources\Scripts\Buttons\EndButton.cs" />
      <Compile Include="Assets\Resources\Scripts\Buttons\ExitButton.cs" />
      <Compile Include="Assets\Resources\Scripts\Buttons\NextSceneButton.cs" />
      <Compile Include="Assets\Resources\Scripts\Buttons\StartButton.cs" />
      <Compile Include="Assets\Resources\Scripts\CombatTimer.cs" />
-     <Compile Include="Assets\Resources\Scripts\Dialogue\AnimateText.cs" />
      <Compile Include="Assets\Resources\Scripts\Dialogue\DialogueBox.cs" />
      <Compile Include="Assets\Resources\Scripts\Dialogue\DialogueParser.cs" />
-     <Compile Include="Assets\Resources\Scripts\Dialogue\PersistentObject.cs" />
+     <Compile Include="Assets\Resources\Scripts\Dialogue\ScaleImage.cs" />
      <Compile Include="Assets\Resources\Scripts\Matching\BoardManager.cs" />
      <Compile Include="Assets\Resources\Scripts\Matching\M3_Enemy.cs" />
      <Compile Include="Assets\Resources\Scripts\Matching\M3_GameManager.cs" />
@@ -80,11 +79,25 @@
      <Compile Include="Assets\Resources\Scripts\Matching\Tile.cs" />
      <Compile Include="Assets\Resources\Scripts\SceneManagement.cs" />
      <Compile Include="Assets\Resources\Scripts\Video.cs" />
-     <None Include="Assets\StreamingAssets\Dialogue10.txt" />
+     <Compile Include="Assets\Resources\YarnStuff\DialogueStorage.cs" />
+     <Compile Include="Assets\Resources\YarnStuff\ExampleDialogueUI.cs" />
+     <Compile Include="Assets\YarnSpinner\Code\DialogueRunner.cs" />
+     <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\CameraFollow.cs" />
+     <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\ExampleVariableStorage.cs" />
+     <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\MobileOnly.cs" />
+     <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\NPC.cs" />
+     <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\PlayerCharacter.cs" />
+     <Compile Include="Assets\YarnSpinner\Examples\DemoScripts\SpriteSwitcher.cs" />
+     <None Include="Assets\YarnSpinner\Examples\DemoAssets\Space\Ship.yarn.txt" />
+     <None Include="Assets\YarnSpinner\Examples\DemoAssets\SimpleExampleScript.yarn.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue11.txt" />
      <None Include="Assets\StreamingAssets\Dialogue4.txt" />
+     <None Include="Assets\Resources\YarnStuff\Script1.yarn.txt" />
+     <None Include="Assets\YarnSpinner\Examples\DemoAssets\Space\Sally.yarn.txt" />
      <None Include="Assets\StreamingAssets\Dialogue7.txt" />
      <None Include="Assets\StreamingAssets\Dialogue2.txt" />
-     <None Include="Assets\StreamingAssets\Dialogue8.txt" />
+     <None Include="Assets\YarnSpinner\README.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue9.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -111,6 +124,18 @@
  </Reference>
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+ </Reference>
+ <Reference Include="Antlr4.Runtime.Standard">
+ <HintPath>/Users/mitchio/Documents/GitHub/NewIronDistrict/Demo/Assets/YarnSpinner/Code/Antlr4.Runtime.Standard.dll</HintPath>
+ </Reference>
+ <Reference Include="CsvHelper">
+ <HintPath>/Users/mitchio/Documents/GitHub/NewIronDistrict/Demo/Assets/YarnSpinner/Code/CsvHelper.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>/Users/mitchio/Documents/GitHub/NewIronDistrict/Demo/Assets/YarnSpinner/Code/Newtonsoft.Json.dll</HintPath>
+ </Reference>
+ <Reference Include="YarnSpinner">
+ <HintPath>/Users/mitchio/Documents/GitHub/NewIronDistrict/Demo/Assets/YarnSpinner/Code/YarnSpinner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Users/mitchio/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll</HintPath>

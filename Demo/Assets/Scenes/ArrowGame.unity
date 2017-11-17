@@ -109,6 +109,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1001 &163578402
 Prefab:
@@ -183,6 +185,29 @@ Prefab:
       value: 
       objectReference: {fileID: 114197773299660276, guid: 8f7aa6bc146e049cd94d1c68b72b9578,
         type: 2}
+    - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
+        type: 2}
+      propertyPath: PGB
+      value: 
+      objectReference: {fileID: 1066783190960678, guid: 4e897f2b6693a49b0af51b31f1f3028c,
+        type: 2}
+    - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
+        type: 2}
+      propertyPath: timeLength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
+        type: 2}
+      propertyPath: RotatingGear
+      value: 
+      objectReference: {fileID: 114879550804916700, guid: 8834dcdc10d8a43a5afc8b41536b4ab2,
+        type: 2}
+    - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
+        type: 2}
+      propertyPath: barBG
+      value: 
+      objectReference: {fileID: 1720293623189016, guid: 0aeb920ab5f7149bc9f7d72711466d71,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80cbe1d2233c14d8d8f249a6246c0fa7, type: 2}
   m_IsPrefabParent: 0
@@ -253,7 +278,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &367256796
 Transform:
   m_ObjectHideFlags: 0
@@ -434,8 +458,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1049229310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 302, y: 189, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1504397661}
   m_Father: {fileID: 0}

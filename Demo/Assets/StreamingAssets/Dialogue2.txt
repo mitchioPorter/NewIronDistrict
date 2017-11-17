@@ -11,7 +11,6 @@ Soren|"Now, I remember you wanted to tell me something earlier?"|0|R
 Breya|"Yeah, I need to leave work early today. Emilia and I planned to go scavenging in the woods tonight."|1|L
 Soren|"Hmph, right. You did put in extra work yesterday… Very well."|0|R
 Soren|"I wanted to get started repairing the old drill you found scavenging last week. How long until you leave?"|0|R
-Player|"I have about 2 hours." [Truth]@good|"About 45 minutes" [Lie]@bad
+Breya|"I have about two hours."|1|L
 Soren|“Alright then. Get me my tools.”|0|R
-Soren|“We’ll have to be fast then!”|0|R
-|"Press ENTER to Continue.."|0|L
+|"Press SPACE to Continue.."|0|L

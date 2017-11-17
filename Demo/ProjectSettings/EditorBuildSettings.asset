@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SecondCutscene.unity
     guid: b5f617130d76fa741b458afd9fe24fe6
   - enabled: 1
+    path: Assets/Scenes/DialogueScene3.unity
+    guid: 495238aed07ee3149a7fe3d88a789856
+  - enabled: 1
     path: Assets/Scenes/ThirdCutscene.unity
     guid: 211bfb503711aa541a5aa37a86c84c29
   - enabled: 1

@@ -379,7 +379,11 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
+<<<<<<< HEAD
+  m_AnchoredPosition: {x: 1.2435002, y: 0.77734745}
+=======
   m_AnchoredPosition: {x: 1.3815217, y: 0.77734745}
+>>>>>>> origin/MitchiEdit
   m_SizeDelta: {x: 867, y: 310}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224991191220002286

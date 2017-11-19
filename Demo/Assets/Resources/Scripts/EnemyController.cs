@@ -5,15 +5,21 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
 	Animator anim;
 	public GameObject missile;
+	public GameObject bomb;
 	public Transform launchPoint;
+	public Transform launchPoint2;
 	public AudioSource source;
 
 	public float speed;
 	public float playerRange;
 	public PlayerController player;
 
-	public float waitBetweenShots;
 	private float shotCounter;
+	public float waitBetweenShots;
+
+	private float bombCounter;
+	public float waitBetweenBombs;
+
 	public int attackDamage;  // regular attack outside of missiles
 
 	public GameObject enemyBar;
@@ -31,7 +37,6 @@ public class EnemyController : MonoBehaviour {
 		enemyCurrHealth = enemyMaxHealth;
 		attackDamage = 10;
 		onGround = true;
-
 		//InvokeRepeating("decreasingHealth", 1f, 1f);
 	}
 	
@@ -39,8 +44,11 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
 		Debug.Log ("ENEMY HEALTH: " + enemyCurrHealth);
 		ShootMissileAtPlayer ();
+		DropBomb ();
 		shotCounter -= Time.deltaTime;
-	
+		bombCounter -= Time.deltaTime;
+
+
 	}
 
 	public void setEnemyHealth(float damage) {
@@ -69,6 +77,17 @@ public class EnemyController : MonoBehaviour {
 			if (transform.localScale.x > 0 && player.transform.position.x < transform.position.x && player.transform.position.x > transform.position.x - playerRange && shotCounter < 0) {
 				Instantiate (missile, launchPoint.position, launchPoint.rotation);
 				shotCounter = waitBetweenShots; //reset counter
+			}
+		}
+	}
+
+	void DropBomb() {
+		Debug.Log ("DROPPING BOMB");
+		if (!dead) {
+			if (transform.localScale.x > 0 && player.transform.position.x < transform.position.x && player.transform.position.x > transform.position.x - playerRange && bombCounter < 0) {
+				Instantiate (bomb, launchPoint2.position, launchPoint2.rotation);
+				bombCounter = waitBetweenBombs; //reset counter
+				Debug.Log("DROPPED BOMB");
 			}
 		}
 	}

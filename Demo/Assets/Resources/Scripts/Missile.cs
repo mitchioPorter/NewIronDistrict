@@ -36,7 +36,6 @@ public class Missile : MonoBehaviour {
 			// player lose health
 			player.GetComponent<PlayerController>().setPlayerHealth(damage);
 		}
-
 		Destroy (gameObject);
 	}
 }

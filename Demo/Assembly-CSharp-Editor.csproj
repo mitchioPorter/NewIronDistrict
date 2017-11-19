@@ -55,14 +55,13 @@
      <Compile Include="Assets\YarnSpinner\Code\Editor\YarnSpinnerTests.cs" />
      <None Include="Assets\YarnSpinner\Examples\DemoAssets\Space\Ship.yarn.txt" />
      <None Include="Assets\YarnSpinner\Examples\DemoAssets\SimpleExampleScript.yarn.txt" />
-     <None Include="Assets\StreamingAssets\Dialogue11.txt" />
-     <None Include="Assets\StreamingAssets\Dialogue4.txt" />
-     <None Include="Assets\Resources\YarnStuff\Script1.yarn.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue10.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue3.txt" />
      <None Include="Assets\YarnSpinner\Examples\DemoAssets\Space\Sally.yarn.txt" />
-     <None Include="Assets\StreamingAssets\Dialogue7.txt" />
-     <None Include="Assets\StreamingAssets\Dialogue2.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue6.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue1.txt" />
      <None Include="Assets\YarnSpinner\README.txt" />
-     <None Include="Assets\StreamingAssets\Dialogue9.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue8.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

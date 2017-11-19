@@ -58,10 +58,20 @@ C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\nunit.fr
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\UnityEngine.Timeline.xml
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\UnityEngine.HoloLens.xml
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\obj\Debug\Assembly-CSharp.pdb
+<<<<<<< HEAD
+=======
+C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\Antlr4.Runtime.Standard.dll
+C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\CsvHelper.dll
+C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\Newtonsoft.Json.dll
+>>>>>>> MitchiEdit
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\UnityEngine.GoogleAudioSpatializer.dll
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\UnityEngine.Purchasing.dll
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\UnityEngine.SpatialTracking.dll
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\UnityEngine.UIAutomation.dll
+<<<<<<< HEAD
+=======
+C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\YarnSpinner.dll
+>>>>>>> MitchiEdit
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\Unity.Cecil.dll
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\Unity.Cecil.Pdb.dll
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\Unity.Cecil.Mdb.dll

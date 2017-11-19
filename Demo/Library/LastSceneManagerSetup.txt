@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/ArrowGame.unity
+=======
+- path: Assets/Scenes/NewMinigame.unity
+>>>>>>> MitchiEdit
   isLoaded: 1
   isActive: 1

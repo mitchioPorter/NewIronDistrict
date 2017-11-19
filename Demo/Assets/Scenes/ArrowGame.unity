@@ -165,13 +165,13 @@ Prefab:
         type: 2}
       propertyPath: Defeat
       value: 
-      objectReference: {fileID: 1781392175988590, guid: 62bb7bf4c7487c14d9bb1ffcea0af93b,
+      objectReference: {fileID: 1967348575831214, guid: c2df77a03d91943998286ced78059895,
         type: 2}
     - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
         type: 2}
       propertyPath: Victory
       value: 
-      objectReference: {fileID: 1296926854569438, guid: 9f6a7155e16301c4991cd5784b3304d3,
+      objectReference: {fileID: 1220827281374090, guid: dbfa95d620abe449bbffd4227573cb7d,
         type: 2}
     - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
         type: 2}
@@ -191,6 +191,32 @@ Prefab:
       value: 
       objectReference: {fileID: 1066783190960678, guid: 4e897f2b6693a49b0af51b31f1f3028c,
         type: 2}
+<<<<<<< HEAD
+=======
+    - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
+        type: 2}
+      propertyPath: timeLength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
+        type: 2}
+      propertyPath: RotatingGear
+      value: 
+      objectReference: {fileID: 114879550804916700, guid: 8834dcdc10d8a43a5afc8b41536b4ab2,
+        type: 2}
+    - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
+        type: 2}
+      propertyPath: barBG
+      value: 
+      objectReference: {fileID: 1720293623189016, guid: 0aeb920ab5f7149bc9f7d72711466d71,
+        type: 2}
+    - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
+        type: 2}
+      propertyPath: Popup
+      value: 
+      objectReference: {fileID: 1065093685795822, guid: 7dbfddfc576524771852c142c37df939,
+        type: 2}
+>>>>>>> MitchiEdit
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80cbe1d2233c14d8d8f249a6246c0fa7, type: 2}
   m_IsPrefabParent: 0
@@ -441,7 +467,11 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1049229310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 303.5, y: 189.5, z: 0}
+=======
+  m_LocalPosition: {x: 274.5, y: 171.5, z: 0}
+>>>>>>> MitchiEdit
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1504397661}

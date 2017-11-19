@@ -1,18 +1,35 @@
+<<<<<<< HEAD
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+>>>>>>> MitchiEdit
 
 public class PlayerController : MonoBehaviour {
 	Animator anim;
 	Rigidbody2D rigidBody;
+<<<<<<< HEAD
 	SpriteRenderer render;
+=======
+>>>>>>> MitchiEdit
 	public AudioSource source;
 	public EnemyController enemy;
 
 	private bool onGround;
 	private Vector3 velocity;
 
+<<<<<<< HEAD
+=======
+	private float dist;
+
+	private float leftBorder;
+	private float rightBorder;
+
+>>>>>>> MitchiEdit
 	// attack stuff
 	float totalAttackTime = 1.000f;
 	public int attackDamage;
@@ -26,6 +43,7 @@ public class PlayerController : MonoBehaviour {
 	public float playerMaxHealth = 100f;
 	public float playerCurrHealth = 0f;
 	public bool dead = false;
+<<<<<<< HEAD
 	public bool damaged;
 	public bool dying;
 
@@ -37,12 +55,15 @@ public class PlayerController : MonoBehaviour {
 	public Image flashImg;
 //	public float flashSpeed = 5f;
 	//public Color flashColor = new Color(1f, 0f, 0f, 0.5f);  // red
+=======
+>>>>>>> MitchiEdit
 
 	// Use this for initialization
 	void Start () {
 		source = GetComponent<AudioSource> ();
 		anim = GetComponent<Animator> ();
 		rigidBody = GetComponent<Rigidbody2D> ();
+<<<<<<< HEAD
 		render = GetComponent<SpriteRenderer> ();
 		origColor = render.color;
 
@@ -52,15 +73,34 @@ public class PlayerController : MonoBehaviour {
 		playerCurrHealth = playerMaxHealth;
 		attackDamage = 10;
 
+=======
+
+		onGround = true;
+		velocity = new Vector3 (.1f, 0f, 0f);
+
+		playerCurrHealth = playerMaxHealth;
+		attackDamage = 10;
+
+		// check of player is at screen edge
+		dist = (transform.position - Camera.main.transform.position).z;
+		leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0f,0f,dist)).x;
+		rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1f,0f,dist)).x;
+
+>>>>>>> MitchiEdit
 		//InvokeRepeating("decreasingHealth", 1f, 1f);
 	}
 
 	// Update is called once per frame
 	void Update () {
 		Debug.Log ("PLAYER'S HEALTH: " + playerCurrHealth);
+<<<<<<< HEAD
 
 		// jump
 		if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow)) {
+=======
+		// jump
+		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
+>>>>>>> MitchiEdit
 			Debug.Log ("pressed key to jump");
 			rigidBody.AddForce (new Vector2 (0, 75));
 			onGround = false;
@@ -72,7 +112,11 @@ public class PlayerController : MonoBehaviour {
 			source.PlayOneShot (attackSound);
 			anim.SetBool ("IsAttacking", true);
 			attacking = true;
+<<<<<<< HEAD
 			enemy.GetComponent<EnemyController> ().setEnemyHealth (2);
+=======
+			enemy.GetComponent<EnemyController>().setEnemyHealth(2);
+>>>>>>> MitchiEdit
 			attackTime = Time.time + totalAttackTime; // set to 1 sec -- doesn't have to be accurate need to be less than the actual animation time w/ exit time -- see into using triggers as well
 		}
 			
@@ -80,6 +124,7 @@ public class PlayerController : MonoBehaviour {
 		if (attacking && Time.time > attackTime) {
 			anim.SetBool ("IsAttacking", false);
 			attacking = false;
+<<<<<<< HEAD
 		}
 
 		// make player flash red when hit by changing RGB values of sprite
@@ -100,15 +145,21 @@ public class PlayerController : MonoBehaviour {
 		if (playerCurrHealth <= 50) {
 			InvokeRepeating ("FlashScreen", 1f, 1f);
 		}
+=======
+		}	
+>>>>>>> MitchiEdit
 	}
 
 	public void setPlayerHealth(float damage) {
 		Debug.Log ("Amount of Damage taken from player health: " + damage);
 		playerCurrHealth -= damage;
+<<<<<<< HEAD
 		flashActive = true;
 		flashCounter = flashLength;
 
 
+=======
+>>>>>>> MitchiEdit
 		//Debug.Log ("player current health: " + playerCurrHealth);
 		float newHealth = playerCurrHealth / playerMaxHealth;
 		//Debug.Log ("changing playerhealth bar by factor:" + newHealth);
@@ -120,7 +171,20 @@ public class PlayerController : MonoBehaviour {
 			dead = true;
 		}
 	}
+<<<<<<< HEAD
 		
+=======
+
+	// function to test health bar in game
+	void decreasingHealth() {
+		Debug.Log ("testing health bar");
+		playerCurrHealth -= 10f;
+		Debug.Log("player current health: " + playerCurrHealth);
+		float newHealth = playerCurrHealth / playerMaxHealth;
+		healthBar.transform.localScale = new Vector3 (newHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+	}
+
+>>>>>>> MitchiEdit
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.transform.tag == "Ground") {
 			anim.SetBool("Jumping", false);
@@ -136,6 +200,7 @@ public class PlayerController : MonoBehaviour {
 			enemy.GetComponent<EnemyController>().setEnemyHealth(attackDamage);
 		}
 	}
+<<<<<<< HEAD
 
 	void FlashScreen() {
 		Debug.Log ("making screen red");
@@ -151,4 +216,6 @@ public class PlayerController : MonoBehaviour {
 		float newHealth = playerCurrHealth / playerMaxHealth;
 		healthBar.transform.localScale = new Vector3 (newHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 	}
+=======
+>>>>>>> MitchiEdit
 }

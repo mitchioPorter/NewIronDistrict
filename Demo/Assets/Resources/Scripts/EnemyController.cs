@@ -5,21 +5,30 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
 	Animator anim;
 	public GameObject missile;
+<<<<<<< HEAD
 	public GameObject bomb;
 	public Transform launchPoint;
 	public Transform launchPoint2;
+=======
+	public Transform launchPoint;
+>>>>>>> MitchiEdit
 	public AudioSource source;
 
 	public float speed;
 	public float playerRange;
 	public PlayerController player;
 
+<<<<<<< HEAD
 	private float shotCounter;
 	public float waitBetweenShots;
 
 	private float bombCounter;
 	public float waitBetweenBombs;
 
+=======
+	public float waitBetweenShots;
+	private float shotCounter;
+>>>>>>> MitchiEdit
 	public int attackDamage;  // regular attack outside of missiles
 
 	public GameObject enemyBar;
@@ -37,6 +46,10 @@ public class EnemyController : MonoBehaviour {
 		enemyCurrHealth = enemyMaxHealth;
 		attackDamage = 10;
 		onGround = true;
+<<<<<<< HEAD
+=======
+
+>>>>>>> MitchiEdit
 		//InvokeRepeating("decreasingHealth", 1f, 1f);
 	}
 	
@@ -44,11 +57,16 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
 		Debug.Log ("ENEMY HEALTH: " + enemyCurrHealth);
 		ShootMissileAtPlayer ();
+<<<<<<< HEAD
 		DropBomb ();
 		shotCounter -= Time.deltaTime;
 		bombCounter -= Time.deltaTime;
 
 
+=======
+		shotCounter -= Time.deltaTime;
+	
+>>>>>>> MitchiEdit
 	}
 
 	public void setEnemyHealth(float damage) {
@@ -81,6 +99,7 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
+<<<<<<< HEAD
 	void DropBomb() {
 		Debug.Log ("DROPPING BOMB");
 		if (!dead) {
@@ -92,6 +111,8 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
+=======
+>>>>>>> MitchiEdit
 	// function to test health bar in game
 	void decreasingHealth() {
 		Debug.Log ("testing health bar");

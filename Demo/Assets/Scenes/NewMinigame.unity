@@ -188,7 +188,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 7
+=======
+  m_RootOrder: 5
+>>>>>>> MitchiEdit
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &66200292
 Animator:
@@ -226,10 +230,13 @@ MonoBehaviour:
   playerMaxHealth: 100
   playerCurrHealth: 0
   dead: 0
+<<<<<<< HEAD
   damaged: 0
   dying: 0
   flashLength: 0.5
   flashImg: {fileID: 137660830}
+=======
+>>>>>>> MitchiEdit
 --- !u!82 &66200294
 AudioSource:
   m_ObjectHideFlags: 0
@@ -342,7 +349,11 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
+<<<<<<< HEAD
   m_Offset: {x: -3.15, y: -0.1}
+=======
+  m_Offset: {x: -3.15, y: 0}
+>>>>>>> MitchiEdit
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -353,6 +364,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Size: {x: 1.92, y: 3.58}
   m_EdgeRadius: 0
 --- !u!1 &137660828
@@ -423,6 +435,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 137660828}
+=======
+  m_Size: {x: 1.66, y: 3.02}
+  m_EdgeRadius: 0
+>>>>>>> MitchiEdit
 --- !u!1001 &395055998
 Prefab:
   m_ObjectHideFlags: 0
@@ -723,7 +739,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 10
+=======
+  m_RootOrder: 9
+>>>>>>> MitchiEdit
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &621469790
 Prefab:
@@ -762,7 +782,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4111741135949694, guid: 5cf7a8c7e854b4c1f89b8d7ff548cc61, type: 2}
       propertyPath: m_RootOrder
+<<<<<<< HEAD
       value: 5
+=======
+      value: 8
+>>>>>>> MitchiEdit
       objectReference: {fileID: 0}
     - target: {fileID: 1290325355037590, guid: 5cf7a8c7e854b4c1f89b8d7ff548cc61, type: 2}
       propertyPath: m_Name
@@ -851,6 +875,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &651327886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,6 +1044,8 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5cf7a8c7e854b4c1f89b8d7ff548cc61, type: 2}
   m_IsPrefabParent: 0
+=======
+>>>>>>> MitchiEdit
 --- !u!1 &1135043955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,7 +1117,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 9
+=======
+  m_RootOrder: 7
+>>>>>>> MitchiEdit
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1200399919 stripped
 GameObject:
@@ -1474,15 +1505,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missile: {fileID: 1480978429326792, guid: d7fc822295fa49745990e8b4d9be2ea3, type: 2}
+<<<<<<< HEAD
   bomb: {fileID: 1543833940651210, guid: 83ec686094c8d5142bbd356e544966c6, type: 2}
   launchPoint: {fileID: 1877199358}
   launchPoint2: {fileID: 651327887}
+=======
+  launchPoint: {fileID: 1877199358}
+>>>>>>> MitchiEdit
   source: {fileID: 0}
   speed: 0
   playerRange: 10
   player: {fileID: 66200293}
   waitBetweenShots: 2
+<<<<<<< HEAD
   waitBetweenBombs: 1
+=======
+>>>>>>> MitchiEdit
   attackDamage: 0
   enemyBar: {fileID: 1200399919}
   enemyMaxHealth: 100
@@ -1522,7 +1560,11 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
+<<<<<<< HEAD
   m_SortingOrder: 2
+=======
+  m_SortingOrder: 0
+>>>>>>> MitchiEdit
   m_Sprite: {fileID: 21300000, guid: 7d327cc97b55e3742a961f748c7fdc0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1540,6 +1582,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2131920219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 3.51, y: -2.24, z: 0}
   m_LocalScale: {x: 0.2269027, y: 0.23393023, z: 1}
   m_Children:
@@ -1547,6 +1590,14 @@ Transform:
   - {fileID: 651327887}
   m_Father: {fileID: 0}
   m_RootOrder: 8
+=======
+  m_LocalPosition: {x: 3.51, y: -2.24, z: -2}
+  m_LocalScale: {x: 0.2269027, y: 0.23393023, z: 1}
+  m_Children:
+  - {fileID: 1877199358}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+>>>>>>> MitchiEdit
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2131920223
 BoxCollider2D:
@@ -1571,7 +1622,11 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Size: {x: 16.52, y: 21.94}
+=======
+  m_Size: {x: 18, y: 22}
+>>>>>>> MitchiEdit
   m_EdgeRadius: 0
 --- !u!50 &2131920224
 Rigidbody2D:

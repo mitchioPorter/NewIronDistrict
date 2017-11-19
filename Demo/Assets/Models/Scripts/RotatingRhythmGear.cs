@@ -28,9 +28,15 @@ public class RotatingRhythmGear : MonoBehaviour {
 
 	public void changeColor(string colorC){
 		if (colorC == "bad") {
+<<<<<<< HEAD
 			sprtrnd.color =  new Color(50, 0, 0);
 		} else if (colorC == "good") {
 			sprtrnd.color = new Color (0, 50, 0);
+=======
+			sprtrnd.color =  new Color(.5f, 0,0, .8f);
+		} else if (colorC == "good") {
+			sprtrnd.color = new Color (0, .5f,0, .8f);
+>>>>>>> MitchiEdit
 		} else if (colorC == "neutral") {
 			sprtrnd.color = Color.white;
 		}

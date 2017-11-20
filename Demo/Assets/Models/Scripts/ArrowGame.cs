@@ -30,11 +30,7 @@ public class ArrowGame : MonoBehaviour {
 										//Set enemy damage,health
 	public int enemyDamage;
 										//your "attack" damage
-<<<<<<< HEAD
-	public int attackDamage = 13;
-=======
 	public int attackDamage = 50;
->>>>>>> MitchiEdit
 
 
 										//create the health bar
@@ -49,10 +45,6 @@ public class ArrowGame : MonoBehaviour {
 	public GameObject Defeat;
 	public GameObject Popup;
 	public RotatingRhythmGear RotatingGear;
-
-	//these are the popups
-	//state 0 = blank, state 1 = perfect, state 2 = good, state 3 = perfect.
-	public PGB PGB_;
 
 	//these are the popups
 	//state 0 = blank, state 1 = perfect, state 2 = good, state 3 = perfect.
@@ -104,11 +96,8 @@ public class ArrowGame : MonoBehaviour {
 		healthGauge = (GameObject)Instantiate (healthBar);
 		enemyGauge = (GameObject)Instantiate (enemyBar);
 		instructions = (GameObject)Instantiate(instructionAccess);
-<<<<<<< HEAD
-=======
 		RotatingGear = (RotatingRhythmGear)Instantiate (RotatingGear);
 
->>>>>>> MitchiEdit
 		PGB_ = (PGB)Instantiate(PGB_);
 		player.canMove = false;
 
@@ -165,11 +154,7 @@ public class ArrowGame : MonoBehaviour {
 			if (!gameEnd) {
 	//GAME OVER DEATH
 	//stops arrow spawns
-<<<<<<< HEAD
-				healthGauge.transform.localScale = new Vector3 ((float)7.5 * health / maxHealth, .5f, 1f);
-=======
 				healthGauge.transform.localScale = new Vector3 ((float)3 * health / maxHealth, .3f, 1f);
->>>>>>> MitchiEdit
 				timeEnd = Time.time - 2f;
 				player.changeState (66);
 
@@ -330,9 +315,6 @@ public class ArrowGame : MonoBehaviour {
 
 
 
-
-
-
 											//what happens if you get it right
 	void correctInput(){
 
@@ -342,10 +324,6 @@ public class ArrowGame : MonoBehaviour {
 		Destroy (arrows [0].gameObject);
 		//removes it from the array
 		arrows.RemoveAt (0);
-<<<<<<< HEAD
-
-=======
->>>>>>> MitchiEdit
 		correctCards += 1;
 		RotatingGear.changeColor ("good");
 
@@ -355,12 +333,8 @@ public class ArrowGame : MonoBehaviour {
 	void badInput(){
 		source.PlayOneShot (badArrow);
 		Destroy (arrows [0].gameObject);
-<<<<<<< HEAD
-		arrows.RemoveAt (0);;
-=======
 		arrows.RemoveAt (0);
 		RotatingGear.changeColor ("bad");
->>>>>>> MitchiEdit
 
 
 	}
@@ -369,9 +343,6 @@ public class ArrowGame : MonoBehaviour {
 	void animateTheStats(){
 		//checks if attack has been played
 
-<<<<<<< HEAD
-		if (!animatedOnce) {
-=======
 		if (Time.time > PGB_.shown + 2.5) {
 			Popup.transform.position = new Vector3(0,0,20);
 			player.transform.position = new Vector3(player.transform.position.x, playerY,-1);
@@ -384,37 +355,21 @@ public class ArrowGame : MonoBehaviour {
 
 			RotatingGear.changeColor ("neutral");
 			PGB_.changeState(1);
->>>>>>> MitchiEdit
 			animatedOnce = true;
 			if (totalCards == correctCards) {
 				enemyHealth -= attackDamage;
 
 				//set breya animation to attack
 				player.changeState (1);
-<<<<<<< HEAD
-				PGB_.changeState(1);
-				//PErFECT!!!
-
-			} else if ( totalCards / 2 <  correctCards) {
-=======
 
 				//PErFECT!!!
 
 			} else if ( totalCards / 2 <  correctCards) {
 				PGB_.changeState(2);
->>>>>>> MitchiEdit
 				enemyHealth -= attackDamage / 2;
 				//set breya animation to attack
 				player.changeState (1);
 				enemy.changeState (1);
-<<<<<<< HEAD
-				PGB_.changeState(2);
-				//good
-			} else {
-				//bad
-				enemy.changeState (1);
-				PGB_.changeState(3);
-=======
 				health -= 10;
 				//good
 			} else {
@@ -423,7 +378,6 @@ public class ArrowGame : MonoBehaviour {
 				enemy.changeState (1);
 
 				health -= 20;
->>>>>>> MitchiEdit
 
 			}
 		}

@@ -1,18 +1,11 @@
 fileFormatVersion: 2
 guid: 9bfb472ee1a874b2c84a218dfee93757
-<<<<<<< HEAD
-timeCreated: 1510763878
-licenseType: Free
-TextureImporter:
-  fileIDToRecycleName: {}
-=======
 timeCreated: 1510901988
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Perfect_0
     21300002: Perfect_1
->>>>>>> MitchiEdit
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -49,11 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-<<<<<<< HEAD
-  spriteMode: 1
-=======
   spriteMode: 2
->>>>>>> MitchiEdit
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -78,11 +67,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-<<<<<<< HEAD
-  spriteSheet:
-    serializedVersion: 2
-    sprites: []
-=======
   - buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -132,7 +116,6 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
->>>>>>> MitchiEdit
     outline: []
     physicsShape: []
   spritePackingTag: 

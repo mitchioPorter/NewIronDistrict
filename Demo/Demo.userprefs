@@ -1,13 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Scripts\Other\PlayerController.cs">
-    <Files>
-      <File FileName="Assets\Resources\Scripts\Other\EnemyController.cs" Line="83" Column="8" />
-      <File FileName="Assets\Resources\Scripts\Other\PlayerController.cs" Line="111" Column="3" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <RunToCursorBreakpoint file="C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Assets\Resources\Scripts\Matching\Tile.cs" line="225" column="15" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

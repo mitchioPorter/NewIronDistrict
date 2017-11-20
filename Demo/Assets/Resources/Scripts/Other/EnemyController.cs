@@ -55,51 +55,55 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("ENEMY HEALTH: " + enemyCurrHealth);
-		ShootMissileAtPlayer ();
-		DropBomb ();
-		shotCounter -= Time.deltaTime;
-		bombCounter -= Time.deltaTime;
+		if (!dead) {
+			Debug.Log ("ENEMY HEALTH: " + enemyCurrHealth);
+			ShootMissileAtPlayer ();
+			DropBomb ();
+			shotCounter -= Time.deltaTime;
+			bombCounter -= Time.deltaTime;
 
-		// make player flash red when hit by changing RGB values of sprite
-		if (flashActive) {
-			Debug.Log ("ENEMY SPRITE CHANGING");
-			if (flashCounter > flashLength * .66f) {
-				render.color = new Color(0.5f, 0.5f, 0.5f, render.color.a);
-			} else if (flashCounter > flashLength * .33f) {
-				render.color = origColor;
-			} else if (flashCounter > 0f) {
-				render.color = new Color(0.5f, 0.5f, 0.5f, render.color.a);
-			} else {
-				render.color = origColor; // back to normal
-				flashActive = false;
+			// make player flash red when hit by changing RGB values of sprite
+			if (flashActive) {
+				Debug.Log ("ENEMY SPRITE CHANGING");
+				if (flashCounter > flashLength * .66f) {
+					render.color = new Color (0.5f, 0.5f, 0.5f, render.color.a);
+				} else if (flashCounter > flashLength * .33f) {
+					render.color = origColor;
+				} else if (flashCounter > 0f) {
+					render.color = new Color (0.5f, 0.5f, 0.5f, render.color.a);
+				} else {
+					render.color = origColor; // back to normal
+					flashActive = false;
+				}
+				flashCounter -= Time.deltaTime;
 			}
-			flashCounter -= Time.deltaTime;
-		}
 
-		if (enemyCurrHealth <= 50) {
-			anim.speed = 1.5f;
-		} else if (enemyCurrHealth <= 25) {
-			anim.speed = 2.0f;
+			if (enemyCurrHealth <= 50) {
+				anim.speed = 1.5f;
+			} else if (enemyCurrHealth <= 25) {
+				anim.speed = 2.0f;
+			}
 		}
 
 
 	}
 
 	public void setEnemyHealth(float damage) {
-		Debug.Log ("Amount of Damage taken from enemy health: " + damage);
-		enemyCurrHealth -= damage;
-		flashActive = true;
-		flashCounter = flashLength;
-		//Debug.Log ("player current health: " + playerCurrHealth);
-		float newHealth = enemyCurrHealth / enemyMaxHealth;
-		//Debug.Log ("changing playerhealth bar by factor:" + newHealth);
-		if (newHealth > 0) {
-			enemyBar.transform.localScale = new Vector3 (newHealth, enemyBar.transform.localScale.y, enemyBar.transform.localScale.z);
-		} else {
-			enemyBar.transform.localScale = new Vector3 (0f, enemyBar.transform.localScale.y, enemyBar.transform.localScale.z);
-			anim.SetBool ("Dead", true);
-			dead = true;
+		if (!dead) {
+			Debug.Log ("Amount of Damage taken from enemy health: " + damage);
+			enemyCurrHealth -= damage;
+			flashActive = true;
+			flashCounter = flashLength;
+			//Debug.Log ("player current health: " + playerCurrHealth);
+			float newHealth = enemyCurrHealth / enemyMaxHealth;
+			//Debug.Log ("changing playerhealth bar by factor:" + newHealth);
+			if (newHealth > 0) {
+				enemyBar.transform.localScale = new Vector3 (newHealth, enemyBar.transform.localScale.y, enemyBar.transform.localScale.z);
+			} else {
+				enemyBar.transform.localScale = new Vector3 (0f, enemyBar.transform.localScale.y, enemyBar.transform.localScale.z);
+				anim.SetBool ("Dead", true);
+				dead = true;
+			}
 		}
 	}
 

@@ -68,7 +68,6 @@
      <Compile Include="Assets\Resources\Scripts\Buttons\ExitButton.cs" />
      <Compile Include="Assets\Resources\Scripts\Buttons\NextSceneButton.cs" />
      <Compile Include="Assets\Resources\Scripts\Buttons\StartButton.cs" />
-     <Compile Include="Assets\Resources\Scripts\CombatTimer.cs" />
      <Compile Include="Assets\Resources\Scripts\Dialogue\DialogueBox.cs" />
      <Compile Include="Assets\Resources\Scripts\Dialogue\DialogueParser.cs" />
      <Compile Include="Assets\Resources\Scripts\Dialogue\NextLine.cs" />
@@ -79,16 +78,18 @@
      <Compile Include="Assets\Resources\Scripts\Matching\M3_Player.cs" />
      <Compile Include="Assets\Resources\Scripts\Matching\Tile.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\Bomb.cs" />
+     <Compile Include="Assets\Resources\Scripts\Other\CombatTimer.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\EnemyController.cs" />
+     <Compile Include="Assets\Resources\Scripts\Other\Manager.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\Missile.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\PlayerController.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\SceneManagement.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\Video.cs" />
-     <None Include="Assets\StreamingAssets\Dialogue11.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue10.txt" />
      <None Include="Assets\StreamingAssets\Dialogue3.txt" />
      <None Include="Assets\StreamingAssets\Dialogue6.txt" />
      <None Include="Assets\StreamingAssets\Dialogue1.txt" />
-     <None Include="Assets\StreamingAssets\Dialogue9.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue8.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

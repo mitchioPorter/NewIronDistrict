@@ -11,21 +11,27 @@ public class Bomb : MonoBehaviour {
 	public float rotationSpeed;
 	public int damage;
 
+	public AudioClip fuse;
+	public AudioClip explode;
+	public AudioSource source;
 	// Use this for initialization
 	void Start () {
 		player = FindObjectOfType<PlayerController> ();
 		playerHealth = player.GetComponent<PlayerController> ().playerCurrHealth;
 		bombRB = GetComponent<Rigidbody2D> ();
+		source = GetComponent<AudioSource> ();
 
 		// to the left of missile
 		if (player.transform.position.x < transform.position.x) {
 			speed = -speed;
 			rotationSpeed = -rotationSpeed;
+			source.PlayOneShot (fuse);
 		}
 	}
 
 	// Update is called once per frame
 	void Update () {
+		
 		bombRB.velocity = new Vector2 (speed, bombRB.velocity.y);
 		bombRB.angularVelocity = rotationSpeed;
 		transform.Translate (Vector3.down * fallSpeed * Time.deltaTime, Space.Self);
@@ -38,6 +44,7 @@ public class Bomb : MonoBehaviour {
 			// player lose health
 			player.GetComponent<PlayerController>().setPlayerHealth(damage);
 		}
+		source.PlayOneShot (explode);
 		Destroy (gameObject);
 	}
 }

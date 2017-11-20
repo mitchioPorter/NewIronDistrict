@@ -10,4 +10,4 @@ Soren|"Give her this gear, she’ll help you. I’d go with you... but I’d onl
 Breya|"I know. Thank you so much Soren, for everything."|1|L
 Soren|"Also, take the drill, I finished it up while you were away."|0|R
 Soren|"It charges up a bit differently from your old one, but it still works fine."|0|R
-|"Press ENTER to Continue.."|0|L
+|"Press SPACE to Continue.."|0|L

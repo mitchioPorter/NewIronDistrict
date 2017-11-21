@@ -31,7 +31,11 @@ public class ArrowGame : MonoBehaviour {
 	public int enemyDamage;
 										//your "attack" damage
 	public int attackDamage = 50;
+<<<<<<< HEAD
 
+=======
+	int currentSong = 0;
+>>>>>>> master
 
 										//create the health bar
 	public GameObject healthBar;		//stores the health bar prefab

@@ -59,11 +59,17 @@ C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\UnityEng
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\UnityEngine.HoloLens.xml
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\obj\Debug\Assembly-CSharp.pdb
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\Antlr4.Runtime.Standard.dll
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\CsvHelper.dll
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\Newtonsoft.Json.dll
 >>>>>>> MitchiEdit
+=======
+C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\Antlr4.Runtime.Standard.dll
+C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\CsvHelper.dll
+C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\Newtonsoft.Json.dll
+>>>>>>> master
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\UnityEngine.GoogleAudioSpatializer.dll
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\UnityEngine.Purchasing.dll
 C:\Users\Gabrielle\Desktop\capstone\NewIronDistrict\Demo\Temp\bin\Debug\UnityEngine.SpatialTracking.dll

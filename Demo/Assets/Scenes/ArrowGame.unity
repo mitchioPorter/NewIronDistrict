@@ -193,12 +193,21 @@ Prefab:
         type: 2}
     - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
         type: 2}
+<<<<<<< HEAD
+=======
+      propertyPath: timeLength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
+        type: 2}
+>>>>>>> master
       propertyPath: RotatingGear
       value: 
       objectReference: {fileID: 114879550804916700, guid: 8834dcdc10d8a43a5afc8b41536b4ab2,
         type: 2}
     - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
         type: 2}
+<<<<<<< HEAD
       propertyPath: Popup
       value: 
       objectReference: {fileID: 1065093685795822, guid: 7dbfddfc576524771852c142c37df939,
@@ -208,6 +217,17 @@ Prefab:
       propertyPath: barBG
       value: 
       objectReference: {fileID: 1720293623189016, guid: 0aeb920ab5f7149bc9f7d72711466d71,
+=======
+      propertyPath: barBG
+      value: 
+      objectReference: {fileID: 1720293623189016, guid: 0aeb920ab5f7149bc9f7d72711466d71,
+        type: 2}
+    - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
+        type: 2}
+      propertyPath: Popup
+      value: 
+      objectReference: {fileID: 1065093685795822, guid: 7dbfddfc576524771852c142c37df939,
+>>>>>>> master
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80cbe1d2233c14d8d8f249a6246c0fa7, type: 2}
@@ -459,7 +479,11 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1049229310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 261, y: 163, z: 0}
+=======
+  m_LocalPosition: {x: 274.5, y: 171.5, z: 0}
+>>>>>>> master
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1504397661}

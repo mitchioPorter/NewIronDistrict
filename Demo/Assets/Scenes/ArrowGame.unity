@@ -201,7 +201,8 @@ Prefab:
         type: 2}
       propertyPath: Popup
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1065093685795822, guid: 7dbfddfc576524771852c142c37df939,
+        type: 2}
     - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
         type: 2}
       propertyPath: barBG
@@ -458,7 +459,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1049229310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 408, y: 163, z: 0}
+  m_LocalPosition: {x: 261, y: 163, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1504397661}

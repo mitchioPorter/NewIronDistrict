@@ -68,10 +68,7 @@ MonoBehaviour:
     type: 2}
   Victory: {fileID: 1220827281374090, guid: dbfa95d620abe449bbffd4227573cb7d, type: 2}
   Defeat: {fileID: 1967348575831214, guid: c2df77a03d91943998286ced78059895, type: 2}
-  PGB_: {fileID: 114459876585049772, guid: 4e897f2b6693a49b0af51b31f1f3028c, type: 2}
   player: {fileID: 114191248910356880, guid: e720110c4d741479cb7e35c60281ca07, type: 2}
   enemy: {fileID: 114197773299660276, guid: 8f7aa6bc146e049cd94d1c68b72b9578, type: 2}
-  source: {fileID: 0}
-  arrowSound: {fileID: 0}
-  badArrow: {fileID: 0}
-  sceneIdx: 0
+  consecutiveHits: 0
+  attackPoints: 0

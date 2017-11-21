@@ -36,7 +36,7 @@ public class Tile : MonoBehaviour {
 
 	public bool win;
 	public bool loss;
-	public bool gameEnd;
+	public bool gameEnd = false;
 
 	//GameObject timerObj;
 	//public float time;
@@ -56,7 +56,6 @@ public class Tile : MonoBehaviour {
 		enemyAttacking = false;
 		win = false;
 		loss = false;
-		gameEnd = false;
 		//timeExpired = false;
 		//multiplier = 0;
 		moveCounter = 0;
@@ -80,17 +79,22 @@ public class Tile : MonoBehaviour {
 		//Debug.Log (time);
 
 		if (enemyObj.GetComponent<M3_Enemy> ().dead) {
+			//win = true;
 			gameEnd = true;
 			// display win screen
 			Instantiate (winObj);
 
-		} else if (playerObj.GetComponent<M3_Player>().dead) {
+		} 
+
+		if (playerObj.GetComponent<M3_Player>().dead) {
+			//loss = true;
 			gameEnd = true;
 			Instantiate (lossObj);
 			// else display lose screen
 		} 
 
-		if (gameEnd == true && Input.GetKeyDown(KeyCode.Return)) {
+		if (Input.GetMouseButtonDown(0) && gameEnd) {
+			// return to start
 			SceneManager.LoadScene(sceneIdx + 1);
 		}
 

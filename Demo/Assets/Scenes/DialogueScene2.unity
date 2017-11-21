@@ -522,7 +522,7 @@ MonoBehaviour:
   name: 
   pose: {fileID: 0}
   position: 
-  typeSpeed: 0.03
+  typeSpeed: 0.05
   click: {fileID: 8300000, guid: b93e0b63ab55b6b4ba931d2ddc19f3e4, type: 3}
   source: {fileID: 0}
   customStyle:
@@ -570,17 +570,17 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Padding:
-      m_Left: 35
-      m_Right: 35
-      m_Top: 25
-      m_Bottom: 25
+      m_Left: 30
+      m_Right: 30
+      m_Top: 15
+      m_Bottom: 15
     m_Overflow:
       m_Left: 0
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: 0c96bb98158c54b4ab8c59bef143a403, type: 3}
-    m_FontSize: 35
+    m_Font: {fileID: 12800000, guid: fa8fd9f051b1de349ab56fb97b5336c2, type: 3}
+    m_FontSize: 30
     m_FontStyle: 0
     m_Alignment: 0
     m_WordWrap: 1
@@ -646,8 +646,8 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: 0c96bb98158c54b4ab8c59bef143a403, type: 3}
-    m_FontSize: 38
+    m_Font: {fileID: 12800000, guid: fa8fd9f051b1de349ab56fb97b5336c2, type: 3}
+    m_FontSize: 30
     m_FontStyle: 1
     m_Alignment: 4
     m_WordWrap: 0
@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 1108163094}
   - component: {fileID: 1108163093}
   m_Layer: 0
-  m_Name: Soldier
+  m_Name: Guard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,116 +3,119 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FallingGearGame : MonoBehaviour {
+public class FallingGearGame : MonoBehaviour
+{
 	public int time;
 	private double nextSpawnTime;
 	public Gear falling;
 	private int health;
 	private int maxHealth;
+	public int wantGear;
+	public int Score = 0;
 
-	public Guy_thoughts soren;
 	public thoughtBubble thought;
 	public GameObject victory;
 	public GameObject defeat;
-	public GameObject healthBar; 
-	public Player player;
+	public GameObject healthBar;
+	public GameObject player;
 	public GameObject backgrounds;
-	public GameObject ground;
 	public GameObject progress;
 	private bool endGame;
-	private bool gameStart;
 
-	public int sceneIdx;
-	public bool gameStarted;
+	private int sceneIdx;
 
-	public GameObject instructions;
-	public GameObject instructionsClone;
+	public AudioClip rightGear;
+	public AudioClip wrongGear;
+	private AudioSource source;
 
 	// Use this for initialization
-	void Start () {
-		gameStart = false;
-		player = (Player)Instantiate (player);
-
-		healthBar = (GameObject)Instantiate (healthBar);
-		healthBar.transform.Translate (new Vector3 (-9, 0, 0));
-		healthBar.transform.Rotate(new Vector3(0,0,90));
-
-		progress = (GameObject)Instantiate (progress);
-		progress.transform.Translate (new Vector3 (-8, 0, 0));
-		progress.transform.Rotate(new Vector3(0,0,90));
-
-		ground = (GameObject)Instantiate (ground);
-		health = player.health;
-		maxHealth = player.health;
-		nextSpawnTime = Time.time;
-		Instantiate (backgrounds);
-
-		player.canMove = true;
-
-
-		//SET THE MOVEMENT BOUNDS FOR THE PLAYER
-		player.maxLeftX = -7;
-		player.maxRightX = 9;
-
-		soren = (Guy_thoughts)Instantiate (soren);
-		thought = (thoughtBubble)Instantiate (thought);
-
-
+	void Start ()
+	{
 		sceneIdx = SceneManager.GetActiveScene ().buildIndex;
+		source = GetComponent<AudioSource> ();
 
-		instructions.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
-		instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
-
-		instructionsClone = Instantiate (instructions);
-
-		victory.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
-		victory.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
-
-		defeat.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
-		defeat.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		health = 10;
+		player = (GameObject)Instantiate (player);
+		healthBar = (GameObject)Instantiate (healthBar);
+		healthBar.transform.position -= new Vector3 (3, 0, 0);
+		maxHealth = health;
+		Instantiate (backgrounds);
+		nextSpawnTime = Time.time;
+		progress = (GameObject)Instantiate (progress);
+		endGame = false;
+		thought = (thoughtBubble)Instantiate (thought);
+		wantGear = Random.Range (1, 4);
+		
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown (KeyCode.Return) && !gameStart) {
-			gameStart = true;
-			Destroy (instructionsClone);
-			nextSpawnTime = Time.time;
-		}
-		if (endGame) {
-			if (Input.GetKeyDown(KeyCode.Return)) {
-				SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
-			}
+	void Update ()
+	{
+
+		if (Input.GetMouseButtonDown (0) && endGame == true) {
+			SceneManager.LoadScene (sceneIdx + 1);
 		}
 
-		progress.transform.localScale = new Vector3 ((float)player.Score / 1f, .5f, 1f);
+		progress.transform.localScale = new Vector3 ((float)Score / 2f, .5f, 1f);
 
-		if (player.Score == 10 && !endGame){
+		if (Score >= 10 && !endGame) {
 //VICTORY
 			endGame = true;
-			player.canMove = false;
 			Instantiate (victory);
+
+
 		}
-		if ((player.health <= 0) && !endGame) {
+
+		if ((health <= 0) && !endGame) {
 //DEATH
 			endGame = true;
-			player.canMove = false;
 			Instantiate (defeat);
 			Destroy (healthBar);
 
+//			if (Input.GetMouseButtonDown (0)) {
+//				SceneManager.LoadScene (sceneIdx + 1);
+//			}
 		}
-		thought.type = player.wantGear;
+
+
+		thought.type = wantGear;
 		thought.changeState (thought.type);
 
-		health = player.health;
-		healthBar.transform.localScale = new Vector3 ((float) 8 *health / maxHealth,.5f, 1f);
+		healthBar.transform.localScale = new Vector3 ((float)8 * health / maxHealth, .5f, 1f);
 
 	
-		if (Time.time >= nextSpawnTime && !endGame && gameStart) {
+		if (Time.time >= nextSpawnTime && !endGame) {
 			Instantiate (falling);
 			nextSpawnTime += Random.Range (.8f, 1.5f);
 		}
 	
-		
+		//this check for touch controls
+		if (Input.touchCount > 0) {
+			Vector3 worldPos = Camera.main.ScreenToWorldPoint (Input.GetTouch (0).position);
+			Vector2 touchPos = new Vector2 (worldPos.x, worldPos.y);
+
+
+			//on click it checks if overlaos with gear scripted object
+			var hit = Physics2D.OverlapPoint (touchPos);
+			if (hit && hit.gameObject.GetComponent<Gear> () != null) {
+				int a = hit.gameObject.GetComponent <Gear> ().type;
+				if (a == wantGear) {
+					wantGear = Random.Range (1, 4);
+					Score += 1;
+					Destroy (hit.gameObject);
+					source.PlayOneShot(rightGear);
+
+				} else if (a == 0 ) {
+					health -= 20;
+					Destroy (hit.gameObject);
+					source.PlayOneShot(wrongGear);
+				} else  {
+					health -= 10;
+					Destroy (hit.gameObject);
+					source.PlayOneShot (wrongGear);
+				}
+			}
+				
+		}
 	}
 }

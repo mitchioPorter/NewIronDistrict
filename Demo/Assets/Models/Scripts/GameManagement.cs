@@ -1,11 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManagement : MonoBehaviour {
-
-	int sceneIdx;
 
 
 	public GameObject[] gameModes;
@@ -15,14 +12,14 @@ public class GameManagement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		sceneIdx = SceneManager.GetActiveScene ().buildIndex;
+		
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.R)) {
-			SceneManager.LoadScene (sceneIdx);
+			Application.LoadLevel(Application.loadedLevel);
 		}
 
 

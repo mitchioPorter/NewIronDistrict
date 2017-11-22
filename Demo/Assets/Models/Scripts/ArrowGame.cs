@@ -132,10 +132,11 @@ public class ArrowGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Return)) {
-			instructions.SetActive(false);
-			instructions.transform.position = new Vector3 (instructions.transform.position.x, instructions.transform.position.y, 20);
+		if (Input.anyKeyDown) {
+			
 			if (!gameStarted) {
+				instructions.SetActive(false);
+				instructions.transform.position = new Vector3 (instructions.transform.position.x, instructions.transform.position.y, 20);
 				gameStarted = true;
 				timeLength = 24;
 				timeEnd = Time.time + timeLength;

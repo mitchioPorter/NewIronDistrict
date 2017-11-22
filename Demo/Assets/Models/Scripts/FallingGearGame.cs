@@ -74,7 +74,7 @@ public class FallingGearGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Return) && !gameStart) {
+		if (Input.anyKeyDown && !gameStart) {
 			gameStart = true;
 			Destroy (instructionsClone);
 			nextSpawnTime = Time.time;

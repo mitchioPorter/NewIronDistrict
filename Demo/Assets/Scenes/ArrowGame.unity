@@ -234,6 +234,11 @@ Prefab:
       propertyPath: source2
       value: 
       objectReference: {fileID: 828706240}
+    - target: {fileID: 114011945034571736, guid: 80cbe1d2233c14d8d8f249a6246c0fa7,
+        type: 2}
+      propertyPath: song3
+      value: 
+      objectReference: {fileID: 8300000, guid: 34a0d67d9d83848dc81a3d71dff8f8a1, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80cbe1d2233c14d8d8f249a6246c0fa7, type: 2}
   m_IsPrefabParent: 0
@@ -564,7 +569,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1049229310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 206, y: 129, z: 0}
+  m_LocalPosition: {x: 341, y: 207.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1504397661}

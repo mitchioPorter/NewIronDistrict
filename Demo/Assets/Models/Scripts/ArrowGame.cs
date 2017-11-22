@@ -137,7 +137,7 @@ public class ArrowGame : MonoBehaviour {
 			instructions.transform.position = new Vector3 (instructions.transform.position.x, instructions.transform.position.y, 20);
 			if (!gameStarted) {
 				gameStarted = true;
-				timeLength = 26;
+				timeLength = 24;
 				timeEnd = Time.time + timeLength;
 				nextSpawnTime =Time.time + (spawnTime);
 				totalCards = 0;
@@ -233,11 +233,11 @@ public class ArrowGame : MonoBehaviour {
 		}
 
 
-		//after the round ends, autostart after time
+//after the round ends, autostart after time
 
 		if (inGame == false && health > 0 && enemyHealth > 0 && Time.time > PGB_.shown + 2.5f && gameStarted == true) {
 			
-			currentSong = (currentSong + 1) % 2;
+			currentSong = (currentSong + 1) % 3;
 
 
 			if (currentSong == 0) {
@@ -251,7 +251,15 @@ public class ArrowGame : MonoBehaviour {
 				source2.clip = song2;
 				source2.Play ();
 				spawnTime = .261f;
-				timeLength = 20;
+				timeLength = 17;
+
+			}
+			if (currentSong == 2) {
+				source2.clip = song3;
+				source2.Play ();
+				//spawnTime = .22222f;
+				spawnTime = .333333f;
+				timeLength = 40;
 
 			}
 			inGame = true;
@@ -365,7 +373,7 @@ public class ArrowGame : MonoBehaviour {
 			PGB_.changeState(1);
 			animatedOnce = true;
 			if (totalCards == correctCards) {
-				enemyHealth -= attackDamage;
+				enemyHealth -= 49;
 
 				//set breya animation to attack
 				player.changeState (1);
@@ -378,14 +386,14 @@ public class ArrowGame : MonoBehaviour {
 				//set breya animation to attack
 				player.changeState (1);
 				enemy.changeState (1);
-				health -= 10;
+				health -= 34;
 				//good
 			} else {
 				//bad
 				PGB_.changeState(3);
 				enemy.changeState (1);
 
-				health -= 20;
+				health -= 25;
 
 			}
 		}

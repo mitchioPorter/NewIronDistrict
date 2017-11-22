@@ -7,6 +7,9 @@ public class MusicPlayer : MonoBehaviour {
 
 	public AudioClip fight_theme_p1;
 	public AudioClip fight_theme_p2;
+
+
+
 	public AudioSource audio;
 	// Use this for initialization
 	void Start () {

@@ -71,7 +71,7 @@ public class ArrowGame : MonoBehaviour {
 	public AudioClip badArrow;
 
 
-	public AudioClip song1, song2, song3;
+	public AudioClip song1, song2, song3, song4;
 	int currentSong = 0;
 	float spawnTime;
 
@@ -237,7 +237,7 @@ public class ArrowGame : MonoBehaviour {
 
 		if (inGame == false && health > 0 && enemyHealth > 0 && Time.time > PGB_.shown + 2.5f && gameStarted == true) {
 			
-			currentSong = (currentSong + 1) % 3;
+			currentSong = (currentSong + 1) % 4;
 
 
 			if (currentSong == 0) {
@@ -260,6 +260,14 @@ public class ArrowGame : MonoBehaviour {
 				//spawnTime = .22222f;
 				spawnTime = .333333f;
 				timeLength = 40;
+
+			}
+			if (currentSong == 3) {
+				source2.clip = song4;
+				source2.Play ();
+				//spawnTime = .22222f;
+				spawnTime = .272727f;
+				timeLength = 34;
 
 			}
 			inGame = true;
@@ -373,7 +381,7 @@ public class ArrowGame : MonoBehaviour {
 			PGB_.changeState(1);
 			animatedOnce = true;
 			if (totalCards == correctCards) {
-				enemyHealth -= 49;
+				enemyHealth -= 35;
 
 				//set breya animation to attack
 				player.changeState (1);
@@ -382,11 +390,11 @@ public class ArrowGame : MonoBehaviour {
 
 			} else if ( totalCards / 2 <  correctCards) {
 				PGB_.changeState(2);
-				enemyHealth -= attackDamage / 2;
+				enemyHealth -= 28;
 				//set breya animation to attack
 				player.changeState (1);
 				enemy.changeState (1);
-				health -= 34;
+				health -= 20;
 				//good
 			} else {
 				//bad

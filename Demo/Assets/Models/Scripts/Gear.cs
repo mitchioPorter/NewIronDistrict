@@ -10,6 +10,7 @@ public class Gear : MonoBehaviour {
 	Animator animator;
 	Vector3 velocity;
 	public int type;	
+	Rigidbody rb;
 
 
 									// Use this for initialization
@@ -36,6 +37,11 @@ public class Gear : MonoBehaviour {
 		}
 
 		
+	}
+	void OnCollisionEnter2D(Collision2D coll){
+		if (coll.gameObject.GetComponent<Gear> () != null) {
+			Physics2D.IgnoreCollision (coll.gameObject.GetComponent<Collider2D> (), GetComponent<Collider2D> ());
+		}
 	}
 
 

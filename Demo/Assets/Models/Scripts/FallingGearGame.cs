@@ -60,15 +60,15 @@ public class FallingGearGame : MonoBehaviour {
 
 		sceneIdx = SceneManager.GetActiveScene ().buildIndex;
 
-		instructions.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
+		instructions.transform.localScale = new Vector3 (.02f, .02f, .02f);
 		instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
 
 		instructionsClone = Instantiate (instructions);
 
-		victory.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
+		victory.transform.localScale = new Vector3 (1f, 1f, 1f);
 		victory.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
 
-		defeat.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
+		defeat.transform.localScale = new Vector3 (1f, 1f, 1f);
 		defeat.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
 	}
 	
@@ -80,7 +80,7 @@ public class FallingGearGame : MonoBehaviour {
 			nextSpawnTime = Time.time;
 		}
 		if (endGame) {
-			if (Input.GetKeyDown(KeyCode.Return)) {
+			if (Input.anyKeyDown) {
 				SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
 			}
 		}
@@ -105,12 +105,12 @@ public class FallingGearGame : MonoBehaviour {
 		thought.changeState (thought.type);
 
 		health = player.health;
-		healthBar.transform.localScale = new Vector3 ((float) 8 *health / maxHealth,.5f, 1f);
+		healthBar.transform.localScale = new Vector3 ((float) 8 * health / maxHealth, .5f, 1f);
 
 	
 		if (Time.time >= nextSpawnTime && !endGame && gameStart) {
 			Instantiate (falling);
-			nextSpawnTime += Random.Range (.8f, 1.5f);
+			nextSpawnTime += Random.Range (.3f, .8f);
 		}
 	
 		

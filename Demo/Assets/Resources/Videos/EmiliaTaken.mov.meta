@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: d5bc0a86184bedb498a0f9366b2c9353
-timeCreated: 1510641701
-licenseType: Free
 VideoClipImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -13,13 +11,8 @@ VideoClipImporter:
   frameRange: 0
   startFrame: -1
   endFrame: -1
-<<<<<<< HEAD:Demo/Assets/Resources/Videos/EmiliaTaken.mov.meta
   frameCount: 594
   frameRate: 23.95840835571289
-=======
-  frameCount: 576
-  frameRate: 24
->>>>>>> master:Demo/Assets/Resources/Videos/EmiliaTaken.mov.meta
   colorSpace: 0
   deinterlace: 0
   sourceFileSize: 17383843
@@ -34,7 +27,7 @@ VideoClipImporter:
   sourceAudioSampleRate: 80bb0000
   targetSettings: {}
   output:
-    format: 0
+    format: 1
     settings:
       enableTranscoding: 0
       codec: 0
@@ -47,11 +40,7 @@ VideoClipImporter:
     encodedWidth: 1920
     encodedHeight: 1080
     encodedStartFrame: 0
-<<<<<<< HEAD:Demo/Assets/Resources/Videos/EmiliaTaken.mov.meta
     encodedEndFrame: 594
-=======
-    encodedEndFrame: 576
->>>>>>> master:Demo/Assets/Resources/Videos/EmiliaTaken.mov.meta
     streamedResource:
       source: 
       offset: 0

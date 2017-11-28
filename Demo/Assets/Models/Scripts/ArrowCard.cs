@@ -13,7 +13,7 @@ public class ArrowCard : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 
 		transform.position = new Vector3(11,2,0);
-		transform.localScale = new Vector3 (0.75f, 0.75f, 0.75f);
+
 		velocity =  new Vector3(-4.5f, 0, 0);	
 		type = (int)Random.Range (0, 4);
 		animator.SetInteger("State",type);

@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour {
 	Animator animator;
 	private int state;
 	private Vector3 position;
+	float initiated;
+	bool go;
 
 
 	// Use this for initialization
@@ -19,15 +21,10 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (state == 100) {
-			changeState (0);
+		if (go && Time.time >  initiated+1) {
+			animator.SetTrigger ("Attack");
+			go = false;
 		}
-			else if (state == 1) {
-			state = 100;
-			
-		}
-			
-
 	
 	}
 		
@@ -37,8 +34,8 @@ public class Enemy : MonoBehaviour {
 		state = state_;
 
 		//remove this part once we fix the sprites(the current grave is too high)
-		if (state == 66) {
-			transform.position = position + new Vector3 (0, -1.5f, 0);
-		}
+		go = true;
+		initiated = Time.time;
+
 	}
 }

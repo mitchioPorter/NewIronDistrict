@@ -31,7 +31,7 @@ public class ArrowGame : MonoBehaviour {
 	public int enemyDamage;
 										//your "attack" damage
 	public int attackDamage = 50;
-
+	float delayB4Round;
 
 										//create the health bar
 	public GameObject healthBar;		//stores the health bar prefab
@@ -114,11 +114,11 @@ public class ArrowGame : MonoBehaviour {
 
 		instructions.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
 		instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
-		enemyGauge.transform.position = new Vector3 (enemy.transform.position.x, enemy.transform.position.y + 2, 1);
+		enemyGauge.transform.position = new Vector3 (enemy.transform.position.x+3, enemy.transform.position.y + 2, 1);
 		healthGauge.transform.position = new Vector3 (player.transform.position.x-3, player.transform.position.y + 2, 1);
 		barBG1 = (GameObject)Instantiate (barBG);
 		barBG2 = (GameObject)Instantiate (barBG);
-		barBG1.transform.position = new Vector3 (enemy.transform.position.x, enemy.transform.position.y + 2, 2);
+		barBG1.transform.position = new Vector3 (enemy.transform.position.x+3, enemy.transform.position.y + 2, 2);
 		barBG2.transform.position = new Vector3 (player.transform.position.x-3, player.transform.position.y + 2, 2);
 
 		Popup = (GameObject)Instantiate (Popup);
@@ -188,7 +188,7 @@ public class ArrowGame : MonoBehaviour {
 	//changes health gauge
 		if (enemyHealth > 0) {
 			enemyGauge.transform.localScale = new Vector3 (((float)3 * enemyHealth / enemyMaxHealth), .3f, 1f);
-			enemyGauge.transform.position = new Vector3 (enemy.transform.position.x- (3 - 3*enemyHealth / enemyMaxHealth)*.5f, enemy.transform.position.y + 2, 1);
+			enemyGauge.transform.position = new Vector3 (enemy.transform.position.x+3- (3 - 3*enemyHealth / enemyMaxHealth)*.5f, enemy.transform.position.y + 2, 1);
 
 		} else {
 			if (!gameEnd) {
@@ -236,7 +236,7 @@ public class ArrowGame : MonoBehaviour {
 
 //after the round ends, autostart after time
 
-		if (inGame == false && health > 0 && enemyHealth > 0 && Time.time > PGB_.shown + 2.5f && gameStarted == true) {
+		if (inGame == false && health > 0 && enemyHealth > 0 && Time.time > PGB_.shown + delayB4Round && gameStarted == true) {
 			
 			currentSong = (currentSong + 1) % 4;
 
@@ -366,9 +366,9 @@ public class ArrowGame : MonoBehaviour {
 
 
 	void animateTheStats(){
-		//checks if attack has been played
+//checks if attack has been played
 
-		if (Time.time > PGB_.shown + 2.5) {
+		if (Time.time > PGB_.shown + delayB4Round) {
 			Popup.transform.position = new Vector3(0,0,20);
 			player.transform.position = new Vector3(player.transform.position.x, playerY,-1);
 			enemy.transform.position = new Vector3(enemy.transform.position.x, enemyY,-1);;
@@ -386,7 +386,7 @@ public class ArrowGame : MonoBehaviour {
 
 				//set breya animation to attack
 				player.changeState (1);
-
+				delayB4Round = 2f;
 				//PErFECT!!!
 
 			} else if ( totalCards / 2 <  correctCards) {
@@ -396,13 +396,14 @@ public class ArrowGame : MonoBehaviour {
 				player.changeState (1);
 				enemy.changeState (1);
 				health -= 20;
+				delayB4Round = 2.5f;
 				//good
 			} else {
 				//bad
 				PGB_.changeState(3);
 				enemy.changeState (1);
-
 				health -= 25;
+				delayB4Round = 2.3f;
 
 			}
 		}

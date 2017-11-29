@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class FallingGearGame : MonoBehaviour {
@@ -27,6 +28,9 @@ public class FallingGearGame : MonoBehaviour {
 
 	public GameObject instructions;
 	//public GameObject instructionsClone;
+	public Button reloadButton1; //win
+	public Button reloadButton2; //lose
+	public Button moveOnButton; // win
 
 	// Use this for initialization
 	void Start () {
@@ -65,11 +69,13 @@ public class FallingGearGame : MonoBehaviour {
 
 		//instructionsClone = Instantiate (instructions);
 
-		victory.transform.localScale = new Vector3 (1f, 1f, 1f);
-		victory.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		//victory.transform.localScale = new Vector3 (1f, 1f, 1f);
+		//victory.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
 
-		defeat.transform.localScale = new Vector3 (1f, 1f, 1f);
-		defeat.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		//defeat.transform.localScale = new Vector3 (1f, 1f, 1f);
+		//defeat.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		victory.SetActive(false);
+		defeat.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -81,24 +87,30 @@ public class FallingGearGame : MonoBehaviour {
 			nextSpawnTime = Time.time;
 		}
 		if (endGame) {
-			if (Input.anyKeyDown) {
-				SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
-			}
+			Debug.Log ("***** GAME OVER ***");
+			//if (Input.anyKeyDown) {
+			//	SceneManager.LoadScene (sceneIdx + 1);
+			//}
+			reloadButton1.onClick.AddListener(ReloadLevel);
+			reloadButton2.onClick.AddListener(ReloadLevel);
+			moveOnButton.onClick.AddListener(NextScene);
 		}
 
 		progress.transform.localScale = new Vector3 ((float)player.Score / 1f, .5f, 1f);
 
+		//VICTORY
 		if (player.Score == 10 && !endGame){
-//VICTORY
+			victory.SetActive (true);
 			endGame = true;
 			player.canMove = false;
-			Instantiate (victory);
+			//Instantiate (victory);
 		}
+		//DEATH
 		if ((player.health <= 0) && !endGame) {
-//DEATH
+			defeat.SetActive (true);
 			endGame = true;
 			player.canMove = false;
-			Instantiate (defeat);
+			//Instantiate (defeat);
 			Destroy (healthBar);
 
 		}
@@ -115,5 +127,13 @@ public class FallingGearGame : MonoBehaviour {
 		}
 	
 		
+	}
+
+	void ReloadLevel() {
+		SceneManager.LoadScene (sceneIdx);
+	}
+
+	void NextScene() {
+		SceneManager.LoadScene (sceneIdx + 1);
 	}
 }

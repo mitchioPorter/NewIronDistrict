@@ -66,7 +66,7 @@ public class M3_Player : MonoBehaviour {
 			attacking = false;
 		}
 
-	//	particles.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z);
+	//	particles.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
 	}
 
 	public void setPlayerHealth(float damage) {
@@ -83,31 +83,13 @@ public class M3_Player : MonoBehaviour {
 			anim.SetBool ("Dead", true);
 			dead = true;
 		}
-	}
 
-	public void setPowerBar(float newAmount) {
-		//Debug.Log ("** adding power up bar: " + newAmount);
-		barAmount += newAmount;
-		//Debug.Log ("plaer bar amount: " + barAmount);
-		float calcAmount = barAmount / totalAmount;
-		//Debug.Log ("** adding power up bar by factor: " + calcAmount);
-
-		if (barAmount < totalAmount) {
-			powerUpBar.transform.localScale = new Vector3 (calcAmount, powerUpBar.transform.localScale.y, powerUpBar.transform.localScale.z);
-		} 
-		if (barAmount >= totalAmount && calcAmount  == 1) {
-			transform.localPosition = startPos;
-			anim.SetBool("IsAttacking", true);
-			//source.PlayOneShot (playerAttackSound);
-			attacking = true;
-			enemyObj.GetComponent<M3_Enemy> ().setEnemyHealth (weakAtk);
-			attackTime = Time.time + totalAttackTime; // set to 1 sec -- doesn't have to be accurate need to be less than the actual animation time w/ exit time -- see into using triggers as well
-			// reset power bar
-			//powerUpBar.transform.localScale = new Vector3 (0, powerUpBar.transform.localScale.y, powerUpBar.transform.localScale.z);
-			barAmount = 0;
+		if (playerCurrHealth <= 40) {
+			particles.Play ();
+			weakAtk = specialAtk;
 		}
 	}
-
+		
 	public void SetPowerUp(float newAmount) {
 		if (barAmount < 50) {
 			source.volume = 0.25f;
@@ -116,7 +98,7 @@ public class M3_Player : MonoBehaviour {
 			enemyObj.GetComponent<M3_Enemy> ().setEnemyHealth (weakAtk);
 			float calcAmount = barAmount / totalAmount;
 		} else if (barAmount >= 50) {   // get 5 matches
-			source.volume = 5f;
+			//source.volume = 5f;
 			particles.Play ();
 			source.PlayOneShot (completeFill);
 		}
@@ -141,10 +123,10 @@ public class M3_Player : MonoBehaviour {
 	}
 
 	// function to test power up bar
-	void increaseBar() {
-		Debug.Log ("testing player power bar");
-		barAmount += 10f;
-		Debug.Log ("current player bar amount: " + barAmount);
-		powerUpBar.transform.localScale = new Vector3 (barAmount, powerUpBar.transform.localScale.y, powerUpBar.transform.localScale.z);
-	}
+//	void increaseBar() {
+//		Debug.Log ("testing player power bar");
+//		barAmount += 10f;
+//		Debug.Log ("current player bar amount: " + barAmount);
+//		powerUpBar.transform.localScale = new Vector3 (barAmount, powerUpBar.transform.localScale.y, powerUpBar.transform.localScale.z);
+//	}
 }

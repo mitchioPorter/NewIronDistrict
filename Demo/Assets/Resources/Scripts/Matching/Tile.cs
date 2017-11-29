@@ -20,24 +20,18 @@ public class Tile : MonoBehaviour {
 	public AudioClip swapSound;
 	public AudioClip selectSound;
 	public AudioClip clearSound;
-
-	// UI
-//	public GameObject winObj;
-//	public GameObject lossObj;
 	//*********************************************************************\\
 	GameObject playerObj;
 	GameObject enemyObj;
-	public M3_GameManager manager;
 
-	public int moveCounter;  		// after # of moves, enemy power bar gets added to
 	public int multiplier;   			// After getting matches back to back, player can get a multiplier value added to attackDamage
-	public int numSwaps;    			// After 3 swaps and no matches, enemy attacks -> penalty for player
 	public bool canAttack;
 	public bool enemyAttacking;
 
 	public bool win;
 	public bool loss;
 	public bool gameEnd;
+	public bool gameStarted;
 
 	//GameObject timerObj;
 	//public float time;
@@ -47,67 +41,65 @@ public class Tile : MonoBehaviour {
 	void Awake() {
 		render = GetComponent<SpriteRenderer>();
 		source = GetComponent<AudioSource> ();
-    }
+	}
 
 	void Start () {
 		instance = GetComponent<Tile> ();
 		sceneIdx = SceneManager.GetActiveScene ().buildIndex;
-	
+
 		canAttack = false;
 		enemyAttacking = false;
 		win = false;
 		loss = false;
 		gameEnd = false;
-		//timeExpired = false;
-		//multiplier = 0;
-		moveCounter = 0;
+		gameStarted = false;
 
 		playerObj = GameObject.FindGameObjectWithTag ("Player");
 		enemyObj = GameObject.FindGameObjectWithTag("Enemy");
-		manager = GetComponent<M3_GameManager> ();
 		//Debug.Log (playerObj);
 		//Debug.Log (enemyObj);
 
-//		winObj.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
-//		winObj.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
-//
-//		lossObj.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
-//		lossObj.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+//		instructions = GameObject.FindGameObjectWithTag ("Instructions");
+//		winObj = GameObject.FindGameObjectWithTag ("winObj");
+//		lossObj = GameObject.FindGameObjectWithTag ("lossObj");
 
-		//InvokeRepeating ("TimeAttack", 1f, 1f);
+
+
+		//reloadButton1 = GameObject.FindGameObjectWithTag ("reloadButton1").GetComponent<Button>();
+		//reloadButton2 = GameObject.FindGameObjectWithTag ("reloadButton2").GetComponent<Button>();
+		//moveOnButton = GameObject.FindGameObjectWithTag ("moveOnButton").GetComponent<Button> ();
 	}
 
 	void Update () {
-		//time -= Time.deltaTime;
-		//Debug.Log (time);
-
+//		if (!gameStarted) {
+//			if (Input.anyKey) {
+//				instructions.SetActive (false);
+//				gameStarted = true;
+//			}
+//		}
+//
 //		if (enemyObj.GetComponent<M3_Enemy> ().dead) {
 //			gameEnd = true;
 //			// display win screen
-//			Instantiate (winObj);
+//			winObj.SetActive(true);
 //
 //		} else if (playerObj.GetComponent<M3_Player>().dead) {
 //			gameEnd = true;
-//			Instantiate (lossObj);
 //			// else display lose screen
+//			lossObj.SetActive(true);
 //		} 
 //
-//		if (gameEnd == true && Input.GetKeyDown(KeyCode.Return)) {
-//			SceneManager.LoadScene(sceneIdx + 1);
+//		if (gameEnd) {
+//			moveOnButton.onClick.AddListener (LoadNextScene);
+//			reloadButton1.onClick.AddListener (ReloadLevel);
+//			reloadButton2.onClick.AddListener (ReloadLevel);
 //		}
-
-		if (moveCounter == 2) {
-			Debug.Log ("Player made two moves, filling enemy power bar");
-			enemyObj.GetComponent<M3_Enemy>().setPowerBar(10f);
-			moveCounter = 0;
-			Debug.Log ("move Counter: " + moveCounter);
-		}
 	}
 
 	private void Select() {
 		isSelected = true;
 		render.color = selectedColor;
-		previousSelected = gameObject.GetComponent<Tile>();
+		previousSelected = gameObject.GetComponent<Tile> ();
 		source.PlayOneShot (selectSound);
 		Debug.Log ("Selected tile: " + previousSelected.render);
 	}
@@ -121,10 +113,10 @@ public class Tile : MonoBehaviour {
 	// "Queries Start in Colliders" must be uncheck.
 	// Edit -> Project Settings -> Physics 2D -> UNCHECK Queries Start in Colliders
 	void OnMouseDown() {
-		// not selectable conditions
-		if (render.sprite == null || BoardManager.instance.IsShifting) {
-			return;
-		}
+			// not selectable conditions
+			if (render.sprite == null || BoardManager.instance.IsShifting) {
+				return;
+			}
 
 		if (isSelected) {
 			Deselect ();
@@ -136,7 +128,6 @@ public class Tile : MonoBehaviour {
 				//Debug.Log ("Checking Adjacents: " + GetAllAdjacentTiles ().Contains (previousSelected.gameObject));
 				if (GetAllAdjacentTiles ().Contains (previousSelected.gameObject)) {
 					SwapSprite (previousSelected.render);
-					moveCounter++;
 					previousSelected.ClearAllMatches ();
 					previousSelected.Deselect ();
 					ClearAllMatches ();
@@ -146,8 +137,9 @@ public class Tile : MonoBehaviour {
 				}
 			}
 		}
+
 	}
-		
+
 	public void SwapSprite(SpriteRenderer render2) {
 		//Debug.Log (" ** IN SWAPSPRITE **");
 		if (render.sprite == render2.sprite) {
@@ -158,11 +150,9 @@ public class Tile : MonoBehaviour {
 		render.sprite = tempSprite;
 		//Debug.Log("** NEW SPRITE: " + render.sprite);
 		source.PlayOneShot (swapSound);
-		numSwaps += 1;
-		Debug.Log ("Num Swaps: " + numSwaps);
-		if (numSwaps >= 2) {
-			//enemyObj.GetComponent<M3_Enemy>().setPowerBar(10f);
-			numSwaps = 0;		// reset
+
+		if (!matchFound) {
+			enemyObj.GetComponent<M3_Enemy> ().AttackPlayer ();
 		}
 	}
 
@@ -187,7 +177,7 @@ public class Tile : MonoBehaviour {
 		//Debug.Log ("Adjacent tiles: " + adjacentTiles);
 		return adjacentTiles;
 	}
-		
+
 	private List<GameObject> FindMatch(Vector2 castDir) {
 		List<GameObject> matchingTiles = new List<GameObject>();
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, castDir);
@@ -210,16 +200,13 @@ public class Tile : MonoBehaviour {
 			matchFound = true;
 		}
 		if (matchFound == true) {
-			//playerObj.GetComponent<M3_Player>().SetPowerUp(10f);
 			playerObj.GetComponent<M3_Player> ().Attack ();
-
 		}
 	}
 
 	public void ClearAllMatches() {
 		if (render.sprite == null)
 			return;
-
 		ClearMatch(new Vector2[2] { Vector2.left, Vector2.right });
 		ClearMatch(new Vector2[2] { Vector2.up, Vector2.down });
 		if (matchFound) {
@@ -228,7 +215,6 @@ public class Tile : MonoBehaviour {
 			StopCoroutine(BoardManager.instance.FindNullTiles());
 			StartCoroutine(BoardManager.instance.FindNullTiles());
 			source.PlayOneShot (clearSound);
-			moveCounter++;
 		}
 	}
 }

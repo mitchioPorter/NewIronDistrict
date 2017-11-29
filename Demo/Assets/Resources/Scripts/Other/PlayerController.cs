@@ -7,8 +7,7 @@ public class PlayerController : MonoBehaviour {
 	Animator anim;
 	Rigidbody2D rigidBody;
 	SpriteRenderer render;
-	public EnemyController enemy;
-
+	public SentinelScript senPrefab;
 
 	private bool onGround;
 	private Vector3 velocity;
@@ -23,7 +22,6 @@ public class PlayerController : MonoBehaviour {
 	public int chargeAmount;
 
 	public AudioSource source;
-	public AudioSource source2;
 	public AudioClip lowHealth;
 	public AudioClip attackSound;
 
@@ -44,7 +42,6 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		source = GetComponent<AudioSource> ();
-		source2 = GetComponent<AudioSource> ();
 		anim = GetComponent<Animator> ();
 		rigidBody = GetComponent<Rigidbody2D> ();
 		render = GetComponent<SpriteRenderer> ();
@@ -57,6 +54,8 @@ public class PlayerController : MonoBehaviour {
 
 		playerCurrHealth = playerMaxHealth;
 		attackDamage = 10;
+
+		senPrefab = FindObjectOfType<SentinelScript> ();
 
 		//InvokeRepeating("decreasingHealth", 1f, 1f);
 	}
@@ -78,7 +77,7 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKey (KeyCode.Space)) {
 				source.PlayOneShot (attackSound);
 				attacking = true;
-				enemy.GetComponent<EnemyController> ().setEnemyHealth (2);
+				senPrefab.GetComponent<SentinelScript> ().setEnemyHealth (2);
 				anim.SetBool ("IsAttacking", true);
 				attackTime = Time.time + totalAttackTime; // set to 1 sec -- doesn't have to be accurate need to be less than the actual animation time w/ exit time -- see into using triggers as well
 			}
@@ -152,10 +151,6 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void Attacking() {
-
-
-	}
 
 	// function to test health bar in game
 	void decreasingHealth() {

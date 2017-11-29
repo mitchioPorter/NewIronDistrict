@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class FallingGearGame : MonoBehaviour {
@@ -26,7 +27,11 @@ public class FallingGearGame : MonoBehaviour {
 	public bool gameStarted;
 
 	public GameObject instructions;
-	public GameObject instructionsClone;
+	private bool win;
+	private bool lose;
+	public Button moveOnButton;
+	public Button reloadButton;
+	//public GameObject instructionsClone;
 
 	// Use this for initialization
 	void Start () {
@@ -60,29 +65,41 @@ public class FallingGearGame : MonoBehaviour {
 
 		sceneIdx = SceneManager.GetActiveScene ().buildIndex;
 
-		instructions.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
-		instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		//instructions.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
+		//instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
 
-		instructionsClone = Instantiate (instructions);
+		//Instantiate (instructions);
 
-		victory.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
-		victory.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		//victory.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
+		//victory.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
 
-		defeat.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
-		defeat.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		//defeat.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
+		//defeat.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+
+		victory.SetActive(false);
+		defeat.SetActive (false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Space) && !gameStart) {
+		if (Input.anyKeyDown && !gameStart) {
 			gameStart = true;
-			Destroy (instructionsClone);
+			//Destroy (instructionsClone);
+			instructions.SetActive(false);
 			nextSpawnTime = Time.time;
 		}
 		if (endGame) {
-			if (Input.GetKeyDown(KeyCode.Return)) {
-				SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
+			if (win) {
+				moveOnButton.onClick.AddListener (LoadNextScene);
+				reloadButton.onClick.AddListener (ReloadLevel);
 			}
+
+			if (lose) {
+				reloadButton.onClick.AddListener (ReloadLevel);
+			}
+//			if (Input.GetKeyDown(KeyCode.Return)) {
+//				SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
+//			}
 		}
 
 		progress.transform.localScale = new Vector3 ((float)player.Score / 1f, .5f, 1f);
@@ -91,28 +108,37 @@ public class FallingGearGame : MonoBehaviour {
 //VICTORY
 			endGame = true;
 			player.canMove = false;
-			Instantiate (victory);
+			//Instantiate (victory);
+			victory.SetActive(true);
 		}
 		if ((player.health <= 0) && !endGame) {
 //DEATH
 			endGame = true;
 			player.canMove = false;
-			Instantiate (defeat);
+			//Instantiate (defeat);
+			defeat.SetActive (true);
 			Destroy (healthBar);
 
-		}
-		thought.type = player.wantGear;
-		thought.changeState (thought.type);
+		} else {
+			thought.type = player.wantGear;
+			thought.changeState (thought.type);
 
-		health = player.health;
-		healthBar.transform.localScale = new Vector3 ((float) 8 *health / maxHealth,.5f, 1f);
+			health = player.health;
+			healthBar.transform.localScale = new Vector3 ((float)8 * health / maxHealth, .5f, 1f);
 
 	
-		if (Time.time >= nextSpawnTime && !endGame && gameStart) {
-			Instantiate (falling);
-			nextSpawnTime += Random.Range (.8f, 1.5f);
+			if (Time.time >= nextSpawnTime && !endGame && gameStart) {
+				Instantiate (falling);
+				nextSpawnTime += Random.Range (.8f, 1.5f);
+			}
 		}
-	
-		
+	}
+
+	void LoadNextScene() {
+		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
+	}
+
+	void ReloadLevel() {
+		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
 	}
 }

@@ -13,4 +13,4 @@ Soren|"Hmph, right. You did put in extra work yesterday… Very well."|0|R
 Soren|"I wanted to get started repairing the old drill you found scavenging last week. How long until you leave?"|0|R
 Breya|"I have about two hours."|1|L
 Soren|“Alright then. Get me my tools.”|0|R
-|"Press SPACE to Continue.."|0|L
+|"** PRESS ANY KEY TO CONTINUE **"|0|L

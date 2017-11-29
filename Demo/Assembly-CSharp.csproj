@@ -66,8 +66,8 @@
      <Compile Include="Assets\Models\Scripts\thoughtBubble.cs" />
      <Compile Include="Assets\Resources\Scripts\Buttons\EndButton.cs" />
      <Compile Include="Assets\Resources\Scripts\Buttons\ExitButton.cs" />
+     <Compile Include="Assets\Resources\Scripts\Buttons\MenuButtons.cs" />
      <Compile Include="Assets\Resources\Scripts\Buttons\NextSceneButton.cs" />
-     <Compile Include="Assets\Resources\Scripts\Buttons\StartButton.cs" />
      <Compile Include="Assets\Resources\Scripts\Dialogue\DialogueBox.cs" />
      <Compile Include="Assets\Resources\Scripts\Dialogue\DialogueParser.cs" />
      <Compile Include="Assets\Resources\Scripts\Dialogue\NextLine.cs" />
@@ -85,6 +85,7 @@
      <Compile Include="Assets\Resources\Scripts\Other\PlayerController.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\SceneManagement.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\Video.cs" />
+     <Compile Include="Assets\Sentinel\SentinelScript.cs" />
      <None Include="Assets\StreamingAssets\Dialogue10.txt" />
      <None Include="Assets\StreamingAssets\Dialogue3.txt" />
      <None Include="Assets\StreamingAssets\Dialogue6.txt" />

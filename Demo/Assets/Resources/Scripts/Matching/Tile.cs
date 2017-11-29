@@ -210,7 +210,7 @@ public class Tile : MonoBehaviour {
 			matchFound = true;
 		}
 		if (matchFound == true) {
-			playerObj.GetComponent<M3_Player>().SetPowerUp(10f);
+			//playerObj.GetComponent<M3_Player>().SetPowerUp(10f);
 			playerObj.GetComponent<M3_Player> ().Attack ();
 
 		}

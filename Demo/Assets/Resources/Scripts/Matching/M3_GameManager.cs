@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -19,6 +20,9 @@ public class M3_GameManager : MonoBehaviour {
 
 	public int sceneIdx;
 
+	public Button moveOnButton;
+	public Button reloadButton1;
+	public Button reloadButton2;
 
 	// Use this for initialization
 	void Start () {
@@ -27,54 +31,60 @@ public class M3_GameManager : MonoBehaviour {
 		gameOver = false;
 		gameStarted = false;
 
-		enemy = GetComponent<M3_Enemy> ();
-		player = GetComponent<M3_Player> ();
-
-
 		gameOver = tile.GetComponent<Tile> ().gameEnd;
 		sceneIdx = SceneManager.GetActiveScene ().buildIndex;
 
-		instructions.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
-		instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
-			
-		winObj.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
-		winObj.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		winObj.SetActive (false);
+		lossObj.SetActive (false);
 
-		lossObj.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
-		lossObj.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		//instructions.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
+		//instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+			
+		//winObj.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
+		//winObj.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+
+		//lossObj.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
+		//lossObj.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		Debug.Log ("** IN GAME MANAGER **");
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.anyKey) {
 			Debug.Log ("** pressing buttons in game manager ** ");
-			instructions.SetActive(false);
+			instructions.SetActive (false);
 			gameStarted = true;
 		}
 
-		if (gameOver) {
-			GameCheck ();
-		}
-
-	}
-
-	void GameCheck() {
 		if (enemy.GetComponent<M3_Enemy> ().dead) {
 			Debug.Log ("You Won!!");
 			// display win screen
-			Instantiate (winObj);
-
+			//Instantiate (winObj);
+			winObj.SetActive(true);
+			moveOnButton.onClick.AddListener (LoadNextScene);
+			reloadButton1.onClick.AddListener (ReloadLevel);
 		}
 
 		if (player.GetComponent<M3_Player>().dead) {
 			Debug.Log ("You Lost!!");
-			Instantiate (lossObj);
+			//Instantiate (lossObj);
 			// else display lose screen
+			lossObj.SetActive(true);
+			reloadButton2.onClick.AddListener (ReloadLevel);
 		} 
 
-		if (Input.GetKeyDown(KeyCode.Return)) {
-			SceneManager.LoadScene(sceneIdx + 1);
-		}
+//		if (Input.GetKeyDown(KeyCode.Return)) {
+//			SceneManager.LoadScene(sceneIdx + 1);
+//		}
+
+	}
+
+	void LoadNextScene() {
+		SceneManager.LoadScene(sceneIdx + 1);
+	}
+
+	void ReloadLevel() {
+		SceneManager.LoadScene (sceneIdx);
+
 	}
 }

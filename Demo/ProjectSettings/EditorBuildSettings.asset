@@ -45,8 +45,11 @@ EditorBuildSettings:
     path: Assets/Scenes/FifthCutscene.unity
     guid: cef01e41d77f08b4fa20b431177136f9
   - enabled: 1
-    path: Assets/Scenes/NewMinigame.unity
+    path: Assets/Scenes/MiniGame4.unity
     guid: 95afa052d11b7f542979820cb2a5687b
   - enabled: 1
     path: Assets/Scenes/End.unity
     guid: d66f5198cf28fec478b0f1c70b7bf901
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: d022752b4fedc19479fb3d611841617a

@@ -109,7 +109,9 @@ public class FallingGearGame : MonoBehaviour {
 		thought.changeState (thought.type);
 
 		health = player.health;
-		healthBar.transform.localScale = new Vector3 ((float) 8 * health / maxHealth, .5f, 1f);
+		healthBar.transform.localScale = new Vector3 (.2f,(float)3 * health / maxHealth,  1f);
+		healthBar.transform.position = new Vector3 (player.transform.position.x - (3 - 3 *health / maxHealth)*.5f, player.transform.position.y +2, 1);
+
 
 	
 		if (Time.time >= nextSpawnTime && !endGame && gameStart) {

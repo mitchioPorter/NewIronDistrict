@@ -78,23 +78,23 @@ public class Player : MonoBehaviour
         {
             if (!sliding)
             {
-                if (Input.GetKey(KeyCode.RightArrow) && transform.position.x <= maxRightX)
+				if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) && transform.position.x <= maxRightX)
                 {
                     transform.Translate(velocity);
                     sprtRndr.flipX = false;
 
                 }
-                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x >= maxLeftX)
+				if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) && transform.position.x >= maxLeftX)
                 {
                     transform.Translate(-1 * velocity);
                     sprtRndr.flipX = true;
                 }
-                if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
+				if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
                 {
                     transform.Translate(0f, 0f, 0f);
 
                 }
-                if (Input.GetKey(KeyCode.UpArrow) && onGround)
+				if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) && onGround)
                 {
                     rb.AddForce(new Vector2(0, 80));
                     onGround = false;

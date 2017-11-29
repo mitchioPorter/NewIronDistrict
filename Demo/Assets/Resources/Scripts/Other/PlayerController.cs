@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log ("PLAYER'S HEALTH: " + playerCurrHealth);
 
 			// jump
-			if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow)) {
+			if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow) && onGround) {
 				Debug.Log ("pressed key to jump");
 				rigidBody.AddForce (new Vector2 (0, 75));
 				onGround = false;

@@ -26,7 +26,7 @@ public class PGB : MonoBehaviour {
 				transform.Rotate(0, 0, Time.deltaTime*730);
 				sprtrndr.color = new Color(1,1,1,.2f*rotationFactor);
 			}
-			if (Time.time > shown + 2) {
+			if (Time.time > shown + 2.5) {
 				changeState (0);
 			}
 

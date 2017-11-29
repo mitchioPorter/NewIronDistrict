@@ -136,7 +136,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 45971569}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -147, y: -26, z: 0}
+  m_LocalPosition: {x: -147.5, y: -30.700005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1249948857}
@@ -144,8 +144,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -147, y: -26}
-  m_SizeDelta: {x: 376.5, y: 60.35}
+  m_AnchoredPosition: {x: -147.5, y: -30.7}
+  m_SizeDelta: {x: 375.5, y: 69.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &45971571
 MonoBehaviour:
@@ -179,7 +179,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2. Use W or Up arrow to jump
+  m_Text: 2. Use WAD or Arrows to Move and jump
 --- !u!222 &45971572
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1712,7 +1712,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3. Dodge Attacks
+  m_Text: '3. Dodge Attacks '
 --- !u!222 &1126381853
 CanvasRenderer:
   m_ObjectHideFlags: 0

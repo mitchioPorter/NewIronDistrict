@@ -194,8 +194,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 33437236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 261, y: 163, z: 0}
-  m_LocalScale: {x: 0.6525, y: 0.6525, z: 0.6525}
+  m_LocalPosition: {x: 302.5, y: 189, z: 0}
+  m_LocalScale: {x: 0.75625, y: 0.75625, z: 0.75625}
   m_Children:
   - {fileID: 1708147065}
   - {fileID: 379307601}
@@ -1153,8 +1153,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 761924941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 261, y: 163, z: 0}
-  m_LocalScale: {x: 0.6525, y: 0.6525, z: 0.6525}
+  m_LocalPosition: {x: 302.5, y: 189, z: 0}
+  m_LocalScale: {x: 0.75625, y: 0.75625, z: 0.75625}
   m_Children:
   - {fileID: 1902619774}
   - {fileID: 953253803}
@@ -1192,7 +1192,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 768444495}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 178.99998, y: -77, z: 0}
+  m_LocalPosition: {x: 187.91, y: -81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1981221021}
@@ -1200,8 +1200,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 178.99998, y: -77}
-  m_SizeDelta: {x: 376.5, y: 60.35}
+  m_AnchoredPosition: {x: 187.91, y: -81}
+  m_SizeDelta: {x: 324.17, y: 78.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &768444497
 MonoBehaviour:
@@ -1229,13 +1229,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 4. Dodge bad batteries
+  m_Text: 4. Dodge bad batteries and wrong tools
 --- !u!222 &768444498
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1266,7 +1266,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 854029781}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 179, y: 87, z: 0}
+  m_LocalPosition: {x: 205.45001, y: 69.07502, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1981221021}
@@ -1274,8 +1274,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 179, y: 87}
-  m_SizeDelta: {x: 376.5, y: 60.35}
+  m_AnchoredPosition: {x: 205.45001, y: 69.07502}
+  m_SizeDelta: {x: 376.5, y: 98.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &854029783
 MonoBehaviour:
@@ -1303,13 +1303,17 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2. Use SPACE to dash
+  m_Text: '2. Use SPACE to dash
+
+    You are invincible while dashing
+
+    but you can''t collect gears'
 --- !u!222 &854029784
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1341,7 +1345,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 916966727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 181, y: -145, z: 0}
+  m_LocalPosition: {x: 184.09998, y: -155.00002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1981221021}
@@ -1349,7 +1353,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 181, y: -145}
+  m_AnchoredPosition: {x: 184.09998, y: -155.00002}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &916966729
@@ -1701,7 +1705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9558824, g: 0.8190671, b: 0.60445505, a: 0.859}
+  m_Color: {r: 0.9558824, g: 0.8190671, b: 0.60445505, a: 0.91}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2026,7 +2030,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1422496838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 261, y: 163, z: 0}
+  m_LocalPosition: {x: 302.5, y: 189, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1867679643}
@@ -2476,8 +2480,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1981221017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 261, y: 163, z: 0}
-  m_LocalScale: {x: 0.6525, y: 0.6525, z: 0.6525}
+  m_LocalPosition: {x: 302.5, y: 189, z: 0}
+  m_LocalScale: {x: 0.75625, y: 0.75625, z: 0.75625}
   m_Children:
   - {fileID: 1127684201}
   - {fileID: 500128939}
@@ -2524,7 +2528,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1990226384}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -169, y: -79, z: 0}
+  m_LocalPosition: {x: -160.10002, y: -82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1981221021}
@@ -2532,8 +2536,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -169, y: -79}
-  m_SizeDelta: {x: 376.5, y: 60.35}
+  m_AnchoredPosition: {x: -160.1, y: -82}
+  m_SizeDelta: {x: 354.6, y: 63.899}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1990226386
 MonoBehaviour:
@@ -2561,13 +2565,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2. Collect parts as they fall
+  m_Text: 3. Collect the parts Soren thinks of
 --- !u!222 &1990226387
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2653,6 +2657,12 @@ Prefab:
       propertyPath: reloadButton2
       value: 
       objectReference: {fileID: 1040708415}
+    - target: {fileID: 114701972097420366, guid: b8e3d83499198406c955a68784199ab4,
+        type: 2}
+      propertyPath: backgrounds
+      value: 
+      objectReference: {fileID: 1381084161557248, guid: 6134ca186faba4a419c08def6f1674c1,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b8e3d83499198406c955a68784199ab4, type: 2}
   m_IsPrefabParent: 0

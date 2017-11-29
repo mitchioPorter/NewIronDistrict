@@ -26,7 +26,7 @@ public class FallingGearGame : MonoBehaviour {
 	public bool gameStarted;
 
 	public GameObject instructions;
-	public GameObject instructionsClone;
+	//public GameObject instructionsClone;
 
 	// Use this for initialization
 	void Start () {
@@ -60,10 +60,10 @@ public class FallingGearGame : MonoBehaviour {
 
 		sceneIdx = SceneManager.GetActiveScene ().buildIndex;
 
-		instructions.transform.localScale = new Vector3 (.02f, .02f, .02f);
-		instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		//instructions.transform.localScale = new Vector3 (.02f, .02f, .02f);
+		//instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
 
-		instructionsClone = Instantiate (instructions);
+		//instructionsClone = Instantiate (instructions);
 
 		victory.transform.localScale = new Vector3 (1f, 1f, 1f);
 		victory.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
@@ -76,7 +76,8 @@ public class FallingGearGame : MonoBehaviour {
 	void Update () {
 		if (Input.anyKeyDown && !gameStart) {
 			gameStart = true;
-			Destroy (instructionsClone);
+			//Destroy (instructionsClone);
+			instructions.SetActive(false);
 			nextSpawnTime = Time.time;
 		}
 		if (endGame) {

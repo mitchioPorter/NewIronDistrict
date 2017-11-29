@@ -49,6 +49,7 @@ public class ArrowGame : MonoBehaviour {
 	//these are the popups
 	//state 0 = blank, state 1 = perfect, state 2 = good, state 3 = perfect.
 	public PGB PGB_;
+	float  animationStart;
 
 
 	public Player player;
@@ -252,7 +253,7 @@ public class ArrowGame : MonoBehaviour {
 				source2.clip = song2;
 				source2.Play ();
 				spawnTime = .261f;
-				timeLength = 17;
+				timeLength = 16;
 
 			}
 			if (currentSong == 2) {
@@ -396,7 +397,7 @@ public class ArrowGame : MonoBehaviour {
 				player.changeState (1);
 				enemy.changeState (1);
 				health -= 20;
-				delayB4Round = 2.5f;
+				delayB4Round = 2.4f;
 				//good
 			} else {
 				//bad

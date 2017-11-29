@@ -98,17 +98,20 @@ public class PlayerController : MonoBehaviour {
 			if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && transform.position.x < 1.5f)
 			{
 				transform.Translate(velocity);
-				//render.flipX = false;
+				anim.SetBool ("Walking", true);
+				render.flipX = false;
 
 			}
 			if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && transform.position.x > -7)
 			{
 				transform.Translate(-1 * velocity);
-				//render.flipX = true;
+				anim.SetBool ("Walking", true);
+				render.flipX = true;
 			}
 			if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
 			{
 				transform.Translate(0f, 0f, 0f);
+				anim.SetBool ("Walking", false);
 
 			}
 

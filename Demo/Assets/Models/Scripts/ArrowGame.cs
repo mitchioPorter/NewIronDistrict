@@ -161,12 +161,6 @@ public class ArrowGame : MonoBehaviour {
 //		if (Input.GetKeyDown(KeyCode.Return) && gameEnd == true) {
 //			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
 //		}
-
-		if (gameEnd == true) {
-			reloadButton1.onClick.AddListener (ReloadLevel);
-			reloadButton2.onClick.AddListener (ReloadLevel);
-			moveOnButton.onClick.AddListener (NextScene);
-		}
 			
 
 //if you are still alive

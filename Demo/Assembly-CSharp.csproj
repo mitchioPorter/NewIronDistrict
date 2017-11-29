@@ -68,6 +68,7 @@
      <Compile Include="Assets\Resources\Scripts\Buttons\ExitButton.cs" />
      <Compile Include="Assets\Resources\Scripts\Buttons\MenuButtons.cs" />
      <Compile Include="Assets\Resources\Scripts\Buttons\NextSceneButton.cs" />
+     <Compile Include="Assets\Resources\Scripts\Buttons\ReloadButton.cs" />
      <Compile Include="Assets\Resources\Scripts\Buttons\StartButton.cs" />
      <Compile Include="Assets\Resources\Scripts\Dialogue\DialogueBox.cs" />
      <Compile Include="Assets\Resources\Scripts\Dialogue\DialogueParser.cs" />

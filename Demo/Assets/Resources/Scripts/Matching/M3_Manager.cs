@@ -43,21 +43,9 @@ public class M3_Manager : MonoBehaviour {
 		if (enemy.GetComponent<M3_Enemy> ().dead) {
 			// display win screen
 			winObj.SetActive (true);
-			moveOnButton.onClick.AddListener (LoadNextScene);
-			reloadButton1.onClick.AddListener (ReloadLevel);
-
 		} else if (player.GetComponent<M3_Player> ().dead) {
 			// else display lose screen
 			lossObj.SetActive (true);
-			reloadButton2.onClick.AddListener (ReloadLevel);
 		} 
-	}
-
-	void LoadNextScene() {
-		SceneManager.LoadScene(sceneIdx + 1);
-	}
-
-	void ReloadLevel() {
-		SceneManager.LoadScene (sceneIdx);
 	}
 }

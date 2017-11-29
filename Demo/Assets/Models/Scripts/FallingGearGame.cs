@@ -86,16 +86,7 @@ public class FallingGearGame : MonoBehaviour {
 			instructions.SetActive(false);
 			nextSpawnTime = Time.time;
 		}
-		if (endGame) {
-			Debug.Log ("***** GAME OVER ***");
-			//if (Input.anyKeyDown) {
-			//	SceneManager.LoadScene (sceneIdx + 1);
-			//}
-			reloadButton1.onClick.AddListener(ReloadLevel);
-			reloadButton2.onClick.AddListener(ReloadLevel);
-			moveOnButton.onClick.AddListener(NextScene);
-		}
-
+			
 		progress.transform.localScale = new Vector3 ((float)player.Score / 1f, .5f, 1f);
 
 		//VICTORY

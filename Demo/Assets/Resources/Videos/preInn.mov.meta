@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b310f785ff1f5724491ddfe2e3a1b178
-timeCreated: 1510641691
+timeCreated: 1511253435
 licenseType: Free
 VideoClipImporter:
   externalObjects: {}
@@ -13,8 +13,8 @@ VideoClipImporter:
   frameRange: 0
   startFrame: -1
   endFrame: -1
-  frameCount: 181
-  frameRate: 24
+  frameCount: 201
+  frameRate: 23.867431640625
   colorSpace: 0
   deinterlace: 0
   sourceFileSize: 3476967
@@ -29,7 +29,7 @@ VideoClipImporter:
   sourceAudioSampleRate: 80bb0000
   targetSettings: {}
   output:
-    format: 0
+    format: 1
     settings:
       enableTranscoding: 0
       codec: 0
@@ -42,7 +42,7 @@ VideoClipImporter:
     encodedWidth: 1920
     encodedHeight: 1080
     encodedStartFrame: 0
-    encodedEndFrame: 181
+    encodedEndFrame: 201
     streamedResource:
       source: 
       offset: 0

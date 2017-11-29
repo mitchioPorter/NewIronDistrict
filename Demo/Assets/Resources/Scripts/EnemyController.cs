@@ -3,17 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
-	Animator anim;
+	private Animator anim;
+	private SpriteRenderer render;
+
 	public GameObject missile;
+	public GameObject bomb;
 	public Transform launchPoint;
+	public Transform launchPoint2;
 	public AudioSource source;
 
 	public float speed;
 	public float playerRange;
 	public PlayerController player;
 
-	public float waitBetweenShots;
 	private float shotCounter;
+	public float waitBetweenShots;
+
+	private float bombCounter;
+	public float waitBetweenBombs;
+
 	public int attackDamage;  // regular attack outside of missiles
 
 	public GameObject enemyBar;
@@ -23,38 +31,79 @@ public class EnemyController : MonoBehaviour {
 	public bool dead = false;
 	public bool onGround;
 
+	private bool flashActive;
+	public float flashLength;
+	private float flashCounter;
+	private Color origColor;
 
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
+		render = GetComponent<SpriteRenderer> ();
+
+		flashLength = 0.5f;
+		origColor = render.color;
+
 		shotCounter = waitBetweenShots;
+		bombCounter = waitBetweenBombs;
+
 		enemyCurrHealth = enemyMaxHealth;
 		attackDamage = 10;
 		onGround = true;
-
 		//InvokeRepeating("decreasingHealth", 1f, 1f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("ENEMY HEALTH: " + enemyCurrHealth);
-		ShootMissileAtPlayer ();
-		shotCounter -= Time.deltaTime;
-	
+		if (!dead) {
+			Debug.Log ("ENEMY HEALTH: " + enemyCurrHealth);
+			ShootMissileAtPlayer ();
+			DropBomb ();
+			shotCounter -= Time.deltaTime;
+			bombCounter -= Time.deltaTime;
+
+			// make player flash red when hit by changing RGB values of sprite
+			if (flashActive) {
+				Debug.Log ("ENEMY SPRITE CHANGING");
+				if (flashCounter > flashLength * .66f) {
+					render.color = new Color (0.5f, 0.5f, 0.5f, render.color.a);
+				} else if (flashCounter > flashLength * .33f) {
+					render.color = origColor;
+				} else if (flashCounter > 0f) {
+					render.color = new Color (0.5f, 0.5f, 0.5f, render.color.a);
+				} else {
+					render.color = origColor; // back to normal
+					flashActive = false;
+				}
+				flashCounter -= Time.deltaTime;
+			}
+
+			if (enemyCurrHealth <= 50) {
+				anim.speed = 1.5f;
+			} else if (enemyCurrHealth <= 25) {
+				anim.speed = 2.0f;
+			}
+		}
+
+
 	}
 
 	public void setEnemyHealth(float damage) {
-		Debug.Log ("Amount of Damage taken from enemy health: " + damage);
-		enemyCurrHealth -= damage;
-		//Debug.Log ("player current health: " + playerCurrHealth);
-		float newHealth = enemyCurrHealth / enemyMaxHealth;
-		//Debug.Log ("changing playerhealth bar by factor:" + newHealth);
-		if (newHealth > 0) {
-			enemyBar.transform.localScale = new Vector3 (newHealth, enemyBar.transform.localScale.y, enemyBar.transform.localScale.z);
-		} else {
-			enemyBar.transform.localScale = new Vector3 (0f, enemyBar.transform.localScale.y, enemyBar.transform.localScale.z);
-			anim.SetBool ("Dead", true);
-			dead = true;
+		if (!dead) {
+			Debug.Log ("Amount of Damage taken from enemy health: " + damage);
+			enemyCurrHealth -= damage;
+			flashActive = true;
+			flashCounter = flashLength;
+			//Debug.Log ("player current health: " + playerCurrHealth);
+			float newHealth = enemyCurrHealth / enemyMaxHealth;
+			//Debug.Log ("changing playerhealth bar by factor:" + newHealth);
+			if (newHealth > 0) {
+				enemyBar.transform.localScale = new Vector3 (newHealth, enemyBar.transform.localScale.y, enemyBar.transform.localScale.z);
+			} else {
+				enemyBar.transform.localScale = new Vector3 (0f, enemyBar.transform.localScale.y, enemyBar.transform.localScale.z);
+				anim.SetBool ("Dead", true);
+				dead = true;
+			}
 		}
 	}
 
@@ -69,6 +118,17 @@ public class EnemyController : MonoBehaviour {
 			if (transform.localScale.x > 0 && player.transform.position.x < transform.position.x && player.transform.position.x > transform.position.x - playerRange && shotCounter < 0) {
 				Instantiate (missile, launchPoint.position, launchPoint.rotation);
 				shotCounter = waitBetweenShots; //reset counter
+			}
+		}
+	}
+
+	void DropBomb() {
+		Debug.Log ("DROPPING BOMB");
+		if (!dead) {
+			if (transform.localScale.x > 0 && player.transform.position.x < transform.position.x && player.transform.position.x > transform.position.x - playerRange && bombCounter < 0) {
+				Instantiate (bomb, launchPoint2.position, launchPoint2.rotation);
+				bombCounter = waitBetweenBombs; //reset counter
+				Debug.Log("DROPPED BOMB");
 			}
 		}
 	}

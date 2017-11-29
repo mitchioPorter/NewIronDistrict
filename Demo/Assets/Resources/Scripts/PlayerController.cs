@@ -1,26 +1,28 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 	Animator anim;
 	Rigidbody2D rigidBody;
-	public AudioSource source;
-	public EnemyController enemy;
+	SpriteRenderer render;
+	public SentinelScript senPrefab;
 
 	private bool onGround;
 	private Vector3 velocity;
-
-	private float dist;
-
-	private float leftBorder;
-	private float rightBorder;
 
 	// attack stuff
 	float totalAttackTime = 1.000f;
 	public int attackDamage;
 	float attackTime;
 	bool attacking = false;
+
+
+	public int chargeAmount;
+
+	public AudioSource source;
+	public AudioClip lowHealth;
 	public AudioClip attackSound;
 
 
@@ -29,12 +31,23 @@ public class PlayerController : MonoBehaviour {
 	public float playerMaxHealth = 100f;
 	public float playerCurrHealth = 0f;
 	public bool dead = false;
+	public bool damaged;
+	public bool dying;
+
+	private bool flashActive;
+	public float flashLength;
+	private float flashCounter;
+	private Color origColor;
 
 	// Use this for initialization
 	void Start () {
 		source = GetComponent<AudioSource> ();
 		anim = GetComponent<Animator> ();
 		rigidBody = GetComponent<Rigidbody2D> ();
+		render = GetComponent<SpriteRenderer> ();
+
+		origColor = render.color;
+		flashLength = 0.5f;
 
 		onGround = true;
 		velocity = new Vector3 (.1f, 0f, 0f);
@@ -42,67 +55,88 @@ public class PlayerController : MonoBehaviour {
 		playerCurrHealth = playerMaxHealth;
 		attackDamage = 10;
 
-		// check of player is at screen edge
-		dist = (transform.position - Camera.main.transform.position).z;
-		leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0f,0f,dist)).x;
-		rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1f,0f,dist)).x;
+		senPrefab = FindObjectOfType<SentinelScript> ();
 
 		//InvokeRepeating("decreasingHealth", 1f, 1f);
 	}
 
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("PLAYER'S HEALTH: " + playerCurrHealth);
-		// jump
-		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
-			Debug.Log ("pressed key to jump");
-			rigidBody.AddForce (new Vector2 (0, 75));
-			onGround = false;
-			anim.SetBool ("Jumping", true);
-		}
+		if (!dead) {
+			Debug.Log ("PLAYER'S HEALTH: " + playerCurrHealth);
+
+			// jump
+			if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow)) {
+				Debug.Log ("pressed key to jump");
+				rigidBody.AddForce (new Vector2 (0, 75));
+				onGround = false;
+				anim.SetBool ("Jumping", true);
+			}
 			
-		// attacking
-		if (Input.GetKey (KeyCode.Space)) {
-			source.PlayOneShot (attackSound);
-			anim.SetBool ("IsAttacking", true);
-			attacking = true;
-			enemy.GetComponent<EnemyController>().setEnemyHealth(2);
-			attackTime = Time.time + totalAttackTime; // set to 1 sec -- doesn't have to be accurate need to be less than the actual animation time w/ exit time -- see into using triggers as well
-		}
+			// attacking
+			if (Input.GetKey (KeyCode.Space)) {
+				source.PlayOneShot (attackSound);
+				attacking = true;
+				senPrefab.GetComponent<SentinelScript> ().setEnemyHealth (2);
+				anim.SetBool ("IsAttacking", true);
+				attackTime = Time.time + totalAttackTime; // set to 1 sec -- doesn't have to be accurate need to be less than the actual animation time w/ exit time -- see into using triggers as well
+			}
 			
 
-		if (attacking && Time.time > attackTime) {
-			anim.SetBool ("IsAttacking", false);
-			attacking = false;
-		}	
+			if (attacking && Time.time > attackTime) {
+				anim.SetBool ("IsAttacking", false);
+				attacking = false;
+			}
+
+			// make player flash red when hit by changing RGB values of sprite
+			if (flashActive) {
+				if (flashCounter > flashLength * .66f) {
+					render.color = new Color (render.color.r, 0f, 0f, render.color.a); // red
+				} else if (flashCounter > flashLength * .33f) {
+					render.color = origColor; // normal
+				} else if (flashCounter > 0f) {
+					render.color = new Color (render.color.r, 0f, 0f, render.color.a); // final red
+				} else {
+					render.color = origColor; // back to normal
+					flashActive = false;
+				}
+				flashCounter -= Time.deltaTime;
+			}
+		}
+
+
 	}
 
 	public void setPlayerHealth(float damage) {
-		Debug.Log ("Amount of Damage taken from player health: " + damage);
-		playerCurrHealth -= damage;
-		//Debug.Log ("player current health: " + playerCurrHealth);
-		float newHealth = playerCurrHealth / playerMaxHealth;
-		//Debug.Log ("changing playerhealth bar by factor:" + newHealth);
-		if (newHealth > 0) {
-			healthBar.transform.localScale = new Vector3 (newHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
-		} else {
-			healthBar.transform.localScale = new Vector3 (0f, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
-			anim.SetBool ("Dead", true);
-			dead = true;
+		if (!dead) {
+			Debug.Log ("Amount of Damage taken from player health: " + damage);
+			playerCurrHealth -= damage;
+			flashActive = true;
+			flashCounter = flashLength;
+
+			//Debug.Log ("player current health: " + playerCurrHealth);
+			float newHealth = playerCurrHealth / playerMaxHealth;
+			//Debug.Log ("changing playerhealth bar by factor:" + newHealth);
+			if (newHealth > 0) {
+				healthBar.transform.localScale = new Vector3 (newHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+			} else {
+				healthBar.transform.localScale = new Vector3 (0f, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+				anim.SetBool ("Dead", true);
+				dead = true;
+			}
+
+			//if (playerCurrHealth <= 50) {
+			//	LowHealth ();
+			//}
 		}
 	}
 
-	// function to test health bar in game
-	void decreasingHealth() {
-		Debug.Log ("testing health bar");
-		playerCurrHealth -= 10f;
-		Debug.Log("player current health: " + playerCurrHealth);
-		float newHealth = playerCurrHealth / playerMaxHealth;
-		healthBar.transform.localScale = new Vector3 (newHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+	void LowHealth() {
+		source.PlayOneShot (lowHealth);
 	}
-
+		
 	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.transform.tag == "Ground") {
+		if (coll.transform.tag == "Ground" ) {
 			anim.SetBool("Jumping", false);
 			onGround = true;
 		}
@@ -113,7 +147,17 @@ public class PlayerController : MonoBehaviour {
 		if (other.tag == "Enemy") {
 			Debug.Log ("** PLAYER HIT ATTACKED ENEMY **");
 			// enemy lose health
-			enemy.GetComponent<EnemyController>().setEnemyHealth(attackDamage);
+			//enemy.GetComponent<EnemyController>().setEnemyHealth(attackDamage);
 		}
+	}
+
+
+	// function to test health bar in game
+	void decreasingHealth() {
+		Debug.Log ("testing health bar");
+		playerCurrHealth -= 10f;
+		Debug.Log("player current health: " + playerCurrHealth);
+		float newHealth = playerCurrHealth / playerMaxHealth;
+		healthBar.transform.localScale = new Vector3 (newHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 	}
 }

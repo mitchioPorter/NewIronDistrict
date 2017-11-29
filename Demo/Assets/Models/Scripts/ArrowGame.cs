@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+
+
 public class ArrowGame : MonoBehaviour {
 										
 									//time things, like end time and next create time, and how long a round is
@@ -40,7 +43,7 @@ public class ArrowGame : MonoBehaviour {
 	public GameObject enemyBar;
 	public GameObject HUD;
 	public GameObject backgrounds;
-	public GameObject instructionAccess;
+	//public GameObject instructionAccess;
 	public GameObject Victory;
 	public GameObject Defeat;
 	public GameObject Popup;
@@ -57,12 +60,12 @@ public class ArrowGame : MonoBehaviour {
 
 	private GameObject healthGauge;		//health bar obj
 	private GameObject enemyGauge;
-	private GameObject instructions;
+	//private GameObject instructions;
 
 	//checks if you are in game
 	private bool inGame;
 	private bool gameEnd;
-	bool gameStarted;
+	private bool gameStarted;
 
 
 	// sound effects
@@ -76,9 +79,13 @@ public class ArrowGame : MonoBehaviour {
 	int currentSong = 0;
 	float spawnTime;
 
-
-
 	public int sceneIdx;
+
+	public GameObject instructions;
+	public Button reloadButton1; //win
+	public Button reloadButton2; //lose
+	public Button moveOnButton; //win
+
 	// Use this for initialization
 	void Start () {
 		
@@ -105,7 +112,7 @@ public class ArrowGame : MonoBehaviour {
 		//create the bars for your and enemy health
 		healthGauge = (GameObject)Instantiate (healthBar);
 		enemyGauge = (GameObject)Instantiate (enemyBar);
-		instructions = (GameObject)Instantiate(instructionAccess);
+		//instructions = (GameObject)Instantiate(instructionAccess);
 		RotatingGear = (RotatingRhythmGear)Instantiate (RotatingGear);
 
 		PGB_ = (PGB)Instantiate(PGB_);
@@ -113,8 +120,8 @@ public class ArrowGame : MonoBehaviour {
 
 		source = GetComponent<AudioSource> ();
 
-		instructions.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
-		instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		//instructions.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
+		//instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
 		enemyGauge.transform.position = new Vector3 (enemy.transform.position.x+3, enemy.transform.position.y + 2, 1);
 		healthGauge.transform.position = new Vector3 (player.transform.position.x-3, player.transform.position.y + 2, 1);
 		barBG1 = (GameObject)Instantiate (barBG);
@@ -124,11 +131,13 @@ public class ArrowGame : MonoBehaviour {
 
 		Popup = (GameObject)Instantiate (Popup);
 		Popup.transform.position = new Vector3(0,0,20);
-		instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
-
-		instructions.SetActive (true);
+		//instructions.transform.position = new Vector3 (Screen.width/768f, Screen.height/768f, 0f);
+		//instructions.SetActive (true);
 
 		gameStarted = false;
+
+		Victory.SetActive (false);
+		Defeat.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -137,7 +146,7 @@ public class ArrowGame : MonoBehaviour {
 			
 			if (!gameStarted) {
 				instructions.SetActive(false);
-				instructions.transform.position = new Vector3 (instructions.transform.position.x, instructions.transform.position.y, 20);
+				//instructions.transform.position = new Vector3 (instructions.transform.position.x, instructions.transform.position.y, 20);
 				gameStarted = true;
 				timeLength = 24;
 				timeEnd = Time.time + timeLength;
@@ -150,12 +159,16 @@ public class ArrowGame : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyDown(KeyCode.Return) && gameEnd == true) {
-			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
+//		if (Input.GetKeyDown(KeyCode.Return) && gameEnd == true) {
+//			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
+//		}
+
+		if (gameEnd == true) {
+			reloadButton1.onClick.AddListener (ReloadLevel);
+			reloadButton2.onClick.AddListener (ReloadLevel);
+			moveOnButton.onClick.AddListener (NextScene);
 		}
-
-
-
+			
 
 //if you are still alive
 		if (health > 0) {
@@ -173,7 +186,8 @@ public class ArrowGame : MonoBehaviour {
 
 	//create death display
 
-				Instantiate (Defeat);
+				//Instantiate (Defeat);
+				Defeat.SetActive(true);
 				gameEnd = true;
 
 
@@ -196,11 +210,11 @@ public class ArrowGame : MonoBehaviour {
 				gameEnd = true;
 
 				//Victory
-				Instantiate (Victory);
-
-				if (Input.GetKeyDown(KeyCode.Return)) {
-					SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
-				}
+				//Instantiate (Victory);
+				Victory.SetActive(true);
+				//if (Input.GetKeyDown(KeyCode.Return)) {
+				//	SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
+				//}
 
 				enemy.changeState (66);
 				enemyGauge.transform.localScale = new Vector3 (((float)12.4 * enemyHealth / enemyMaxHealth), .5f, 1f);
@@ -410,5 +424,13 @@ public class ArrowGame : MonoBehaviour {
 		}
 
 
+	}
+
+	void ReloadLevel() {
+		SceneManager.LoadScene (sceneIdx);
+	}
+
+	void NextScene() {
+		SceneManager.LoadScene (sceneIdx + 1);
 	}
 }

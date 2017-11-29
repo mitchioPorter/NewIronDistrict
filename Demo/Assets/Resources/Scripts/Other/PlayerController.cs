@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 	float totalAttackTime = 1.000f;
 	public int attackDamage;
 	float attackTime;
+	float attackStart;
 	bool attacking = false;
 
 
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour {
 
 		playerCurrHealth = playerMaxHealth;
 		attackDamage = 10;
-
+		attackStart = -5;
 		senPrefab = FindObjectOfType<SentinelScript> ();
 
 		//InvokeRepeating("decreasingHealth", 1f, 1f);
@@ -68,18 +69,24 @@ public class PlayerController : MonoBehaviour {
 			// jump
 			if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow) && onGround) {
 				Debug.Log ("pressed key to jump");
-				rigidBody.AddForce (new Vector2 (0, 75));
-				onGround = false;
 				anim.SetBool ("Jumping", true);
+				rigidBody.AddForce (new Vector2 (0, 80));
+				onGround = false;
+
 			}
 			
 			// attacking
-			if (Input.GetKey (KeyCode.Space)) {
+			if (Input.GetKey (KeyCode.Space) && Time.time > attackStart + 1f) {
 				source.PlayOneShot (attackSound);
 				attacking = true;
-				senPrefab.GetComponent<SentinelScript> ().setEnemyHealth (2);
+				if (transform.position.x > 1 && transform.position.y < -1) {
+					senPrefab.GetComponent<SentinelScript> ().setEnemyHealth (2);
+				}
+				anim.SetTrigger ("Attack");
 				anim.SetBool ("IsAttacking", true);
+
 				attackTime = Time.time + totalAttackTime; // set to 1 sec -- doesn't have to be accurate need to be less than the actual animation time w/ exit time -- see into using triggers as well
+				attackStart = Time.time;
 			}
 			
 
@@ -87,6 +94,24 @@ public class PlayerController : MonoBehaviour {
 				anim.SetBool ("IsAttacking", false);
 				attacking = false;
 			}
+
+			if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && transform.position.x < 1.5f)
+			{
+				transform.Translate(velocity);
+				//render.flipX = false;
+
+			}
+			if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && transform.position.x > -7)
+			{
+				transform.Translate(-1 * velocity);
+				//render.flipX = true;
+			}
+			if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
+			{
+				transform.Translate(0f, 0f, 0f);
+
+			}
+
 
 			// make player flash red when hit by changing RGB values of sprite
 			if (flashActive) {

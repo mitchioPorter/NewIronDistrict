@@ -5,10 +5,13 @@ using UnityEngine;
 public class SentinelScript : MonoBehaviour {
 	public GameObject fist;
 	public GameObject sentinel;
+	public GameObject healthBar;
 
 	bool attacking;
 	bool firing;
 	float attackStart;
+	bool hitPlayer;
+
 
 	bool hit;
 	float waitTime;
@@ -17,6 +20,7 @@ public class SentinelScript : MonoBehaviour {
 	Animator fistor;
 	SpriteRenderer fistRndr;
 	Animator sentinor;
+	BoxCollider2D fistBox;
 
 	SpriteRenderer senRender;
 	public PlayerController player;
@@ -45,10 +49,11 @@ public class SentinelScript : MonoBehaviour {
 		fistor = fist.GetComponent<Animator> ();
 		sentinor = sentinel.GetComponent<Animator> ();
 		fistRndr = fist.GetComponent<SpriteRenderer> ();
+		fistBox = fist.GetComponent<BoxCollider2D> ();
 
 		fistRndr.color = new Color(1,1,1,0);
 		attackStart = -5;
-
+		fistDamage = 20;
 		senHealth = maxHealth;
 
 		player = FindObjectOfType<PlayerController> ();
@@ -60,8 +65,10 @@ public class SentinelScript : MonoBehaviour {
 		waitTime = 3f;
 
 		InvokeRepeating ("StartAttack", waitTime, waitTime);
+
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
 		//Debug.Log ("** SENTINEL'S HEALTH **" + senHealth);
@@ -78,7 +85,7 @@ public class SentinelScript : MonoBehaviour {
 			} else if (flashCounter > flashLength * .33f) {
 				senRender.color = origColor;
 			} else if (flashCounter > 0f) {
-				senRender.color = new Color (0.5f, 0.5f, 0.5f, senRender.color.a);
+				senRender.color = new Color (0.7f, 0.5f, 0.5f, senRender.color.a);
 			} else {
 				senRender.color = origColor; // back to normal
 				flashActive = false;
@@ -103,10 +110,17 @@ public class SentinelScript : MonoBehaviour {
 				firing = true;
 				OnTriggerEnter2D (player.GetComponent<Collider2D>());
 				//resets the parameters and hides the fist
+			} else if (Time.time > attackStart+2.4f && Time.time < attackStart + 3f) {
+				if (player.transform.position.x > -1.8f && player.transform.position.y < .5f && !hitPlayer) {
+					player.setPlayerHealth (fistDamage);
+					hitPlayer = true;
+				}
+
 			} else if (Time.time > attackStart + 3.4f) {
 				attacking = false;
 				firing = false;
 				fistRndr.color = new Color(1,1,1,0);
+				hitPlayer = false;
 				//StartCoroutine (Pause ());
 			}
 		}
@@ -118,6 +132,9 @@ public class SentinelScript : MonoBehaviour {
 			attackStart = Time.time;
 		}
 	}
+	/// <summary>
+	/// Breya is hit if x < -1.8 and y < .5
+	/// </summary>
 
 	//triggers the sentinel attack animation(call this whe you need to attack)
 	public void Attack() {
@@ -172,9 +189,15 @@ public class SentinelScript : MonoBehaviour {
 			}
 		}
 			
-		if (senHealth <= 0) {
+		if (senHealth > 0) {
+			healthBar.transform.localScale = new Vector3 (senHealth / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+		}else{
+			healthBar.transform.localScale = new Vector3 (senHealth / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 			sentinor.SetBool ("Dead", true);
 			dead = true;
 		}
 	}
+
+
+
 }

@@ -10,7 +10,7 @@ public class ArrowGame : MonoBehaviour {
 									//time things, like end time and next create time, and how long a round is
 	private float timeEnd;
 	private float nextSpawnTime;
-	public int timeLength;
+	public float timeLength;
 
 
 									//player/enemy health and their max health
@@ -152,7 +152,7 @@ public class ArrowGame : MonoBehaviour {
 				nextSpawnTime =Time.time + (spawnTime);
 				totalCards = 0;
 				correctCards = 0;
-				spawnTime = .3f;
+				spawnTime =  .2608696f;
 				source2.clip = song1;
 				source2.Play ();
 			}
@@ -236,7 +236,9 @@ public class ArrowGame : MonoBehaviour {
 			inGame = true;
 			arrows.Add ((ArrowCard)Instantiate (aCard));			//instantiates the arrow card prefan
 			nextSpawnTime += (spawnTime * Random.Range(1,4) );									// sets the next interval that it spawns
+			//nextSpawnTime += spawnTime*2;
 			totalCards += 1;
+
 			animatedOnce = false;
 		//htis is post all cards created
 		} else {
@@ -258,14 +260,14 @@ public class ArrowGame : MonoBehaviour {
 			if (currentSong == 0) {
 				source2.clip = song1;
 				source2.Play ();
-				spawnTime = .3f;
-				timeLength = 22;
+				spawnTime = .2608696f;
+				timeLength = 22-.5417f;
 
 			}
 			if (currentSong == 1) {
 				source2.clip = song2;
 				source2.Play ();
-				spawnTime = .261f;
+				spawnTime = .3f;
 				timeLength = 17;
 
 			}
@@ -282,7 +284,7 @@ public class ArrowGame : MonoBehaviour {
 				source2.Play ();
 				//spawnTime = .22222f;
 				spawnTime = .272727f;
-				timeLength = 34;
+				timeLength = 32;
 
 			}
 			inGame = true;

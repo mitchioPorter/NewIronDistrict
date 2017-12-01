@@ -268,7 +268,7 @@ public class ArrowGame : MonoBehaviour {
 				source2.clip = song3;
 				source2.Play ();
 				//spawnTime = .22222f;
-				spawnTime = .272727f;
+				spawnTime = .3f;
 				timeLength = 32;
 
 

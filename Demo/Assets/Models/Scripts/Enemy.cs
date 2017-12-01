@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 	public thoughtBubble thought;
 	public bool canMove;
-	Animator animator;
+	public Animator animator;
 	private int state;
 	private Vector3 position;
 	float initiated;

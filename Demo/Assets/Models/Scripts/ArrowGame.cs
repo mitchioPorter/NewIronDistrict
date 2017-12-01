@@ -74,7 +74,7 @@ public class ArrowGame : MonoBehaviour {
 	public AudioClip badArrow;
 
 
-	public AudioClip song1, song2, song3, song4;
+	public AudioClip song1, song2, song3;
 	int currentSong = 0;
 	float spawnTime;
 
@@ -147,12 +147,12 @@ public class ArrowGame : MonoBehaviour {
 				instructions.SetActive(false);
 				//instructions.transform.position = new Vector3 (instructions.transform.position.x, instructions.transform.position.y, 20);
 				gameStarted = true;
-				timeLength = 24;
+				timeLength = 20;
 				timeEnd = Time.time + timeLength;
-				nextSpawnTime =Time.time + (spawnTime);
+				nextSpawnTime = Time.time + (spawnTime);
 				totalCards = 0;
 				correctCards = 0;
-				spawnTime = .3f;
+				spawnTime = .260869f;
 				source2.clip = song1;
 				source2.Play ();
 			}
@@ -229,7 +229,8 @@ public class ArrowGame : MonoBehaviour {
 		if (Time.time <= timeEnd && Time.time >= nextSpawnTime) {		//every round within the time limit it will spawn a arrow card
 			inGame = true;
 			arrows.Add ((ArrowCard)Instantiate (aCard));			//instantiates the arrow card prefan
-			nextSpawnTime += (spawnTime * Random.Range(1,4) );									// sets the next interval that it spawns
+			nextSpawnTime += (spawnTime * 2 );	
+			//nextSpawnTime += (spawnTime * Random.Range(1,4) );									// sets the next interval that it spawns
 			totalCards += 1;
 			animatedOnce = false;
 		//htis is post all cards created
@@ -246,39 +247,34 @@ public class ArrowGame : MonoBehaviour {
 
 		if (inGame == false && health > 0 && enemyHealth > 0 && Time.time > PGB_.shown + delayB4Round && gameStarted == true) {
 			
-			currentSong = (currentSong + 1) % 4;
+			currentSong = (currentSong + 1) % 3;
 
 
 			if (currentSong == 0) {
 				source2.clip = song1;
 				source2.Play ();
-				spawnTime = .3f;
-				timeLength = 22;
+				spawnTime = .260869f;
+				timeLength = 20;
 
 			}
 			if (currentSong == 1) {
 				source2.clip = song2;
 				source2.Play ();
-				spawnTime = .261f;
-				timeLength = 17;
+				spawnTime = .3f;
+				timeLength = 15;
 
 			}
 			if (currentSong == 2) {
 				source2.clip = song3;
 				source2.Play ();
 				//spawnTime = .22222f;
-				spawnTime = .333333f;
-				timeLength = 40;
-
-			}
-			if (currentSong == 3) {
-				source2.clip = song4;
-				source2.Play ();
-				//spawnTime = .22222f;
 				spawnTime = .272727f;
-				timeLength = 34;
+				timeLength = 32;
+
 
 			}
+
+
 			inGame = true;
 			timeEnd = Time.time + timeLength;
 			nextSpawnTime =Time.time + (spawnTime);
@@ -298,19 +294,19 @@ public class ArrowGame : MonoBehaviour {
 								 * ----------------------------
 								*/
 
-			if(Input.GetKeyDown(KeyCode.UpArrow)){						//checks the card and input
-				
-			if (arrows.Count >= 1) {								//if the top of the queue matches input
+		if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)){						//checks the card and input
+					
+				if (arrows.Count >= 1) {								//if the top of the queue matches input
 
-				if (arrows [0].type == 0 && arrows[0].transform.position.x  > -1.8f && arrows[0].transform.position.x  <.2f ) {								//success, else damages you
-					//- 1.27f
-					correctInput();
-				} else if((arrows[0].transform.position.x ) < 1){
-					badInput ();
-				}
+					if (arrows [0].type == 0 && arrows[0].transform.position.x  > -1.8f && arrows[0].transform.position.x  <.2f ) {								//success, else damages you
+						//- 1.27f
+						correctInput();
+					} else if((arrows[0].transform.position.x ) < 1){
+						badInput ();
+					}
 				}
 			}
-			if(Input.GetKeyDown(KeyCode.DownArrow)){
+		if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)){
 				if (arrows.Count >= 1) {
 					if (arrows [0].type == 1 && arrows[0].transform.position.x  > -1.8f && arrows[0].transform.position.x  <.2f ) {
 						correctInput ();
@@ -319,21 +315,21 @@ public class ArrowGame : MonoBehaviour {
 					}
 				}
 			}
-			if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+		if (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
 				if (arrows.Count >= 1) {
 					if (arrows [0].type == 2 && arrows[0].transform.position.x  > -1.8f && arrows[0].transform.position.x  <.2f ) {
 						correctInput ();
 					} else if(arrows[0].transform.position.x < 1) {
-						badInput ();
-					}
+							badInput ();
+							}
 				}
 			}
-			if (Input.GetKeyDown (KeyCode.RightArrow)) {
+		if (Input.GetKeyDown (KeyCode.RightArrow)|| Input.GetKeyDown(KeyCode.D)) {
 				if (arrows.Count >= 1) {
 					if (arrows [0].type == 3 && arrows[0].transform.position.x  > -1.8f && arrows[0].transform.position.x  <.2f ){
 						correctInput ();
 					} else if((arrows[0].transform.position.x ) < 1) {
-						badInput ();	
+							badInput ();	
 							}
 				}
 			}
@@ -360,7 +356,12 @@ public class ArrowGame : MonoBehaviour {
 		arrows.RemoveAt (0);
 		correctCards += 1;
 		RotatingGear.changeColor ("good");
-
+		if (enemyHealth >= 2) {
+			enemyHealth -= 1;
+		}
+		if (correctCards % 15 == 0) {
+			player.animator.SetTrigger("Attack");
+		}
 	}
 
 //what happens when you get it wrong
@@ -370,6 +371,10 @@ public class ArrowGame : MonoBehaviour {
 		Destroy (arrows [0].gameObject);
 		arrows.RemoveAt (0);
 		RotatingGear.changeColor ("bad");
+		enemy.animator.SetTrigger ("Attack");
+		if (health >= 3) {
+			health -= 2;
+		}
 	}
 
 
@@ -390,7 +395,7 @@ public class ArrowGame : MonoBehaviour {
 			PGB_.changeState(1);
 			animatedOnce = true;
 			if (totalCards == correctCards) {
-				enemyHealth -= 35;
+				enemyHealth -= 10;
 
 				//set breya animation to attack
 				player.changeState (1);
@@ -399,18 +404,18 @@ public class ArrowGame : MonoBehaviour {
 
 			} else if ( totalCards / 2 <  correctCards) {
 				PGB_.changeState(2);
-				enemyHealth -= 28;
+				enemyHealth -= 5;
 				//set breya animation to attack
 				player.changeState (1);
 				enemy.changeState (1);
-				health -= 20;
+				health -= 5;
 				delayB4Round = 2.5f;
 				//good
 			} else {
 				//bad
 				PGB_.changeState(3);
 				enemy.changeState (1);
-				health -= 25;
+				health -= 10;
 				delayB4Round = 2.3f;
 
 			}

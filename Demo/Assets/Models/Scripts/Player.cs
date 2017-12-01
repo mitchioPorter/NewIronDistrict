@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     //public GameObject healthBar;
     public int maxHealth;
     public bool canMove;
-    Animator animator;
+    public Animator animator;
     private int state;
     public int wantGear;
     private float lastSlide = 0;
@@ -185,7 +185,6 @@ public class Player : MonoBehaviour
 
     public void changeState(int state_)
     {
-        animator.SetInteger("State", state_);
-        state = state_;
+		animator.SetTrigger ("Attack");
     }
 }

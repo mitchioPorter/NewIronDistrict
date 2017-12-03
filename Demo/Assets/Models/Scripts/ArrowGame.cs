@@ -229,8 +229,9 @@ public class ArrowGame : MonoBehaviour {
 		if (Time.time <= timeEnd && Time.time >= nextSpawnTime) {		//every round within the time limit it will spawn a arrow card
 			inGame = true;
 			arrows.Add ((ArrowCard)Instantiate (aCard));			//instantiates the arrow card prefan
-			nextSpawnTime += (spawnTime * 2 );	
-			//nextSpawnTime += (spawnTime * Random.Range(1,4) );									// sets the next interval that it spawns
+			arrows[arrows.Count-1].velocity = new Vector3 (spawnTime * 12,0,0);
+			//nextSpawnTime += (spawnTime * 2 );	
+			nextSpawnTime += (spawnTime * Random.Range(1,3) );									// sets the next interval that it spawns
 			totalCards += 1;
 			animatedOnce = false;
 		//htis is post all cards created
@@ -255,6 +256,7 @@ public class ArrowGame : MonoBehaviour {
 				source2.Play ();
 				spawnTime = .260869f;
 				timeLength = 20;
+				nextSpawnTime =Time.time + (spawnTime)* 1 ;
 
 			}
 			if (currentSong == 1) {
@@ -262,22 +264,22 @@ public class ArrowGame : MonoBehaviour {
 				source2.Play ();
 				spawnTime = .3f;
 				timeLength = 15;
-
+				nextSpawnTime =Time.time + (spawnTime)* 1 ;
 			}
 			if (currentSong == 2) {
 				source2.clip = song3;
 				source2.Play ();
 				//spawnTime = .22222f;
-				spawnTime = .3f;
+				spawnTime = .272727272727f;
 				timeLength = 32;
-
+				nextSpawnTime =Time.time + (spawnTime)* 2 ;
 
 			}
 
 
 			inGame = true;
 			timeEnd = Time.time + timeLength;
-			nextSpawnTime =Time.time + (spawnTime);
+			nextSpawnTime =Time.time + (spawnTime)* 2 ;
 			totalCards = 0;
 			correctCards = 0;
 		}
@@ -359,7 +361,7 @@ public class ArrowGame : MonoBehaviour {
 		if (enemyHealth >= 2) {
 			enemyHealth -= 1;
 		}
-		if (correctCards % 15 == 0) {
+		if (correctCards % 50 == 0) {
 			player.animator.SetTrigger("Attack");
 		}
 	}

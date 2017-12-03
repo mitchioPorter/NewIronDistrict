@@ -230,8 +230,8 @@ public class ArrowGame : MonoBehaviour {
 			inGame = true;
 			arrows.Add ((ArrowCard)Instantiate (aCard));			//instantiates the arrow card prefan
 			arrows[arrows.Count-1].velocity = new Vector3 (spawnTime * 12,0,0);
-			nextSpawnTime += (spawnTime * 2 );	
-			//nextSpawnTime += (spawnTime * (int)Random.Range(1,3) );									// sets the next interval that it spawns
+			//nextSpawnTime += (spawnTime * 2 );	
+			nextSpawnTime += (spawnTime * (int)Random.Range(1,3) );									// sets the next interval that it spawns
 			totalCards += 1;
 			animatedOnce = false;
 		//htis is post all cards created
@@ -374,7 +374,7 @@ public class ArrowGame : MonoBehaviour {
 		RotatingGear.changeColor ("bad");
 		enemy.animator.SetTrigger ("Attack");
 		if (health >= 3) {
-			health -= 2;
+			health -= 5;
 		}
 	}
 

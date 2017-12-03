@@ -230,8 +230,8 @@ public class ArrowGame : MonoBehaviour {
 			inGame = true;
 			arrows.Add ((ArrowCard)Instantiate (aCard));			//instantiates the arrow card prefan
 			arrows[arrows.Count-1].velocity = new Vector3 (spawnTime * 12,0,0);
-			//nextSpawnTime += (spawnTime * 2 );	
-			nextSpawnTime += (spawnTime * Random.Range(1,3) );									// sets the next interval that it spawns
+			nextSpawnTime += (spawnTime * 2 );	
+			//nextSpawnTime += (spawnTime * (int)Random.Range(1,3) );									// sets the next interval that it spawns
 			totalCards += 1;
 			animatedOnce = false;
 		//htis is post all cards created
@@ -271,7 +271,7 @@ public class ArrowGame : MonoBehaviour {
 				source2.Play ();
 				//spawnTime = .22222f;
 				spawnTime = .272727272727f;
-				timeLength = 32;
+				timeLength = 17;
 				nextSpawnTime =Time.time + (spawnTime)* 2 ;
 
 			}
@@ -279,7 +279,6 @@ public class ArrowGame : MonoBehaviour {
 
 			inGame = true;
 			timeEnd = Time.time + timeLength;
-			nextSpawnTime =Time.time + (spawnTime)* 2 ;
 			totalCards = 0;
 			correctCards = 0;
 		}

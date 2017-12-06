@@ -28,9 +28,6 @@ public class FallingGearGame : MonoBehaviour {
 
 	public GameObject instructions;
 	//public GameObject instructionsClone;
-	public Button reloadButton1; //win
-	public Button reloadButton2; //lose
-	public Button moveOnButton; // win
 
 	// Use this for initialization
 	void Start () {

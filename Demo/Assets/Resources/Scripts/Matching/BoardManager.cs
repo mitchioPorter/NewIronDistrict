@@ -23,6 +23,16 @@ public class BoardManager : MonoBehaviour {
 	//used for when a match is found and board is filling
 	public bool IsShifting { get; set; }
 
+
+	private bool showHint;
+	public bool findHint = false;
+
+	private List<GameObject> hintMove = new List<GameObject> ();
+
+	public const int minMatch = 3;
+
+	public GameObject sparkles;
+
 	void Start () {
 		//source.playOnAwake();
 		instance = GetComponent<BoardManager>();
@@ -68,6 +78,75 @@ public class BoardManager : MonoBehaviour {
 			}
         }
     }
+		
+	public bool ShowHint() {
+		if (findHint) {
+			foreach (var tile in hintMove) {
+				FlashHint ();
+				showHint = true;
+			}
+		} else {
+				showHint = false;
+			}
+		return showHint;
+	}
+
+	public bool FindHit() {
+		int rowCount = tiles.GetLength (0);
+		int colCount = tiles.GetLength (1);
+
+		// search rows
+		for (int row = 0; row < rowCount; row++) {
+			// search for chain of tiles
+			for (int matchStart = 0; matchStart < colCount - 3; ++matchStart) {
+				// add initial tile in chain
+				hintMove.Clear();
+				hintMove.Add (tiles [row, matchStart]);
+
+				for (int nextMatch = matchStart + 1; nextMatch < colCount; ++nextMatch) {
+					if (tiles [row, nextMatch] == hintMove [0]) {
+						hintMove.Add (tiles [row, nextMatch]);
+					} else {
+						break;
+					}
+				}
+
+				if (hintMove.Count >= minMatch) {
+					findHint = true;
+				} else {
+					findHint = false;
+				}
+			}
+		}
+
+		// search columns
+		for (int col = 0; col < colCount; ++col) {
+			for (int matchStart = 0; matchStart < rowCount - 3; ++matchStart) {
+				hintMove.Clear ();
+				hintMove.Add (tiles [matchStart, col]);
+
+				for (int nextMatch = matchStart + 1; nextMatch < rowCount; ++nextMatch) {
+					if (tiles [nextMatch, col] == hintMove [0]) {
+						hintMove.Add (tiles [nextMatch, col]);
+					} else {
+						break;
+					}
+				}
+			}
+
+			if (hintMove.Count >= minMatch) {
+				findHint = true;
+			}
+		}
+
+		hintMove.Clear ();
+		findHint = false;
+		return findHint;
+	}
+
+	private void FlashHint() {
+		Instantiate (sparkles);
+	}
 
 	public IEnumerator FindNullTiles() {
 		
@@ -132,4 +211,6 @@ public class BoardManager : MonoBehaviour {
 
 		return possibleCharacters[Random.Range(0, possibleCharacters.Count)];
 	}
+
+
 }

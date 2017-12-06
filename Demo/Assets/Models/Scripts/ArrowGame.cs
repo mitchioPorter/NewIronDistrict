@@ -81,9 +81,6 @@ public class ArrowGame : MonoBehaviour {
 	public int sceneIdx;
 
 	public GameObject instructions;
-	public Button reloadButton1; //win
-	public Button reloadButton2; //lose
-	public Button moveOnButton; //win
 
 	// Use this for initialization
 	void Start () {

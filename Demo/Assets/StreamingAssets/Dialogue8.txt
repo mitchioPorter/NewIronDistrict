@@ -15,4 +15,4 @@ Sara|"I’ll give you an old map, but after that you’re on your own."|0|R
 Sara|"But be careful, there are many things that call that sewer their home."|0|R
 Breya|"Thank you so much for your help."|1|L
 Sara|"You should rest up before heading out."|0|R
-|"** PRESS ANY KEY TO CONTINUE **"|0|L
+|"Rest up for the night."|0|L

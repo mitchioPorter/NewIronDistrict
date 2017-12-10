@@ -22,6 +22,8 @@ public class FallingGearGame : MonoBehaviour {
 	public GameObject progress;
 	private bool endGame;
 	private bool gameStart;
+	public GameObject gearThing;
+	public GameObject[] gearThingList = new GameObject[10];
 
 	public int sceneIdx;
 	public bool gameStarted;
@@ -31,6 +33,16 @@ public class FallingGearGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		for (int i = 0; i < 10; i++) {
+			gearThingList [i] = Instantiate ((GameObject)gearThing);
+			gearThingList [i].transform.position = new Vector2 (gearThingList [i].transform.position.x + .9f * i, gearThingList [i].transform.position.y);
+
+			if (i % 2 == 1) {
+				gearThingList [i].GetComponent<SpriteRenderer> ().flipX = true;
+				gearThingList [i].transform.rotation = Quaternion.Euler(0, 0, -28.25f);
+			}
+		}
+
 		gameStart = false;
 		player = (Player)Instantiate (player);
 
@@ -85,6 +97,14 @@ public class FallingGearGame : MonoBehaviour {
 		}
 			
 		progress.transform.localScale = new Vector3 ((float)player.Score / 1f, .5f, 1f);
+
+		//score tracker
+		if (player.Score > 0 && !endGame){
+			for (int i = 0; i < player.Score; i++) {
+				gearThingList [i].transform.position = new Vector3 (-6f + .9f * i, gearThingList [i].transform.position.y,-6);
+			}
+		}
+
 
 		//VICTORY
 		if (player.Score == 10 && !endGame){

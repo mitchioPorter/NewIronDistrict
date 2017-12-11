@@ -162,7 +162,7 @@ public class DialogueBox : MonoBehaviour {
 		//Debug.Log ("In SETSPRITEPOSITIONS");
 		if (position == "L") {
 			nameText.transform.position = new Vector3 (nameText.transform.position.x - 30f, nameText.transform.position.y, nameText.transform.position.x);
-			spriteObj.transform.position = new Vector3 (-6,Screen.height/192f,0); // set according to hardware width/height, don't hard code values
+			spriteObj.transform.position = new Vector3 (-6,Screen.height/384f,0); // set according to hardware width/height, don't hard code values
 			L_sprite = spriteObj;
 			L_render = L_sprite.GetComponent<SpriteRenderer>();
 			//Debug.Log("LEFT SPRITE: " + L_sprite);
@@ -174,7 +174,7 @@ public class DialogueBox : MonoBehaviour {
 
 		if (position == "R") {
 			nameText.transform.position = new Vector3 (nameText.transform.position.x + 30f, nameText.transform.position.y, nameText.transform.position.x);
-			spriteObj.transform.position = new Vector3 (5, Screen.height/192f,  0);
+			spriteObj.transform.position = new Vector3 (5, Screen.height/384f,  0);
 			R_sprite = spriteObj;
 			R_render = R_sprite.GetComponent<SpriteRenderer> ();
 			//Debug.Log ("Right SPRITE: " + R_sprite);
@@ -185,7 +185,7 @@ public class DialogueBox : MonoBehaviour {
 		}
 
 		if (position == "C") {
-			spriteObj.transform.position = new Vector3 (0, Screen.height/192f, 0);
+			spriteObj.transform.position = new Vector3 (0, Screen.height/384f, 0);
 			C_sprite = spriteObj;
 			C_render = C_sprite.GetComponent<SpriteRenderer> ();
 			//Debug.Log ("Center SPRITE: " + C_sprite);

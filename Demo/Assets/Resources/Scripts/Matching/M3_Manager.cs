@@ -15,10 +15,6 @@ public class M3_Manager : MonoBehaviour {
 	public GameObject lossObj;
 	public GameObject instructions;
 
-	public Button moveOnButton; // win
-	public Button reloadButton1; //win
-	public Button reloadButton2; // lose
-
 	public int sceneIdx;
 
 	// Use this for initialization

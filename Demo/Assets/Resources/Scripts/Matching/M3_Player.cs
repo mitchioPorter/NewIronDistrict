@@ -30,14 +30,19 @@ public class M3_Player : MonoBehaviour {
 
 	// Audio and Sound Effects;
 	private AudioSource source;
+	private AudioSource source2;
 	public AudioClip powerFill;
 	public AudioClip completeFill;
+	public AudioClip hitSound;
 	public AudioClip playerAttackSound;
 
 	GameObject enemyObj;
 
 	// Use this for initialization
 	void Start () {
+		source = GetComponent<AudioSource> ();
+		source2 = GetComponent<AudioSource> ();
+		source2.volume = 0.25f;
 		instance = GetComponent<M3_Player> ();
 		anim = GetComponent<Animator> ();
 		source = GetComponent<AudioSource> ();
@@ -62,7 +67,7 @@ public class M3_Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (attacking && Time.time > attackTime) {
-			anim.SetBool ("IsAttacking", false);
+			//anim.SetBool ("IsAttacking", false);
 			attacking = false;
 		}
 
@@ -70,6 +75,7 @@ public class M3_Player : MonoBehaviour {
 	}
 
 	public void setPlayerHealth(float damage) {
+		source.PlayOneShot (hitSound);
 		//Debug.Log ("Amount of Damage taken from player health: " + damage);
 		playerCurrHealth -= damage;
 		//Debug.Log ("player current health: " + playerCurrHealth);
@@ -92,22 +98,22 @@ public class M3_Player : MonoBehaviour {
 		
 	public void SetPowerUp(float newAmount) {
 		if (barAmount < 50) {
-			source.volume = 0.25f;
-			source.PlayOneShot (powerFill);
+			source2.PlayOneShot (powerFill);
 			barAmount += newAmount;
 			enemyObj.GetComponent<M3_Enemy> ().setEnemyHealth (weakAtk);
 			float calcAmount = barAmount / totalAmount;
 		} else if (barAmount >= 50) {   // get 5 matches
 			//source.volume = 5f;
 			particles.Play ();
-			source.PlayOneShot (completeFill);
+			source2.PlayOneShot (completeFill);
 		}
 		barAmount = 0;
 	}
 
 	public void Attack() {
 		transform.localPosition = startPos;
-		anim.SetBool("IsAttacking", true);
+		//anim.SetBool("IsAttacking", true);
+		anim.SetTrigger("IsAttacking");
 		source.PlayOneShot (playerAttackSound);
 		attacking = true;
 		enemyObj.GetComponent<M3_Enemy> ().setEnemyHealth (weakAtk);

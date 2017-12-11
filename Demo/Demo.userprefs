@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Scripts\Dialogue\DialogueBox.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\bomb.cs">
     <Files>
-      <File FileName="Assets\Resources\Scripts\Dialogue\DialogueBox.cs" Line="226" Column="1" />
+      <File FileName="Assets\Resources\Scripts\Other\Bomb.cs" Line="10" Column="2" />
+      <File FileName="Assets\bomb.cs" Line="33" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

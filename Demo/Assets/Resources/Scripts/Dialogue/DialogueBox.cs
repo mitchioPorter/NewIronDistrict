@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 
 
 public class DialogueBox : MonoBehaviour {
-	DialogueParser parser;
+	private DialogueParser parser;
 
-	GameObject L_sprite;
-	GameObject R_sprite;
-	GameObject C_sprite;
+	private GameObject L_sprite; // left character sprite
+	private GameObject R_sprite; // right character sprite
+	private GameObject C_sprite; // center character sprite
 
 	SpriteRenderer L_render;
 	SpriteRenderer R_render;
@@ -67,18 +67,16 @@ public class DialogueBox : MonoBehaviour {
 
 		// get character data for first character
 		name = parser.GetName (lineNum);
-		Debug.Log ("First character Name: " + name);
+		//Debug.Log ("First character Name: " + name);
 		pose = parser.GetPose(lineNum);
 		position = parser.GetPosition (lineNum);
 		dialogue = parser.GetContent (lineNum);
-		dialogue = dialogue.Substring(1, dialogue.Length-2);
-
+		//dialogue = dialogue.Substring(1, dialogue.Length-2);
 		DisplayImages ();
 
 		if (!isTyping) {
 			StartCoroutine (TextScroll (dialogue));
 		}
-
 		lineNum++;
 
 		// get character data for second character
@@ -121,7 +119,7 @@ public class DialogueBox : MonoBehaviour {
 			ResetImages();
 			name = parser.GetName(lineNum);
 			dialogue = parser.GetContent(lineNum);
-			dialogue = dialogue.Substring(1, dialogue.Length-2);
+			//dialogue = dialogue.Substring(1, dialogue.Length-2);
 			pose = parser.GetPose(lineNum);
 			position = parser.GetPosition(lineNum);
 			DisplayImages();
@@ -142,9 +140,9 @@ public class DialogueBox : MonoBehaviour {
 		//Debug.Log ("In Reset images");
 		if (name != "") {
 			GameObject character = GameObject.Find (name);
-			Debug.Log ("Character speaking now: " + character);
+			//Debug.Log ("Character speaking now: " + character);
 			SpriteRenderer currSprite = character.GetComponent<SpriteRenderer> ();
-			Debug.Log ("Current sprite: " + currSprite);
+			//Debug.Log ("Current sprite: " + currSprite);
 		}
 	}
 
@@ -169,11 +167,9 @@ public class DialogueBox : MonoBehaviour {
 			L_render = L_sprite.GetComponent<SpriteRenderer>();
 			//Debug.Log("LEFT SPRITE: " + L_sprite);
 			leftTalking = true;
-			//L_render.color = origColor;
 			//Debug.Log("Is Left character talking? " + leftTalking);
 		} else if (L_sprite != null) {
 			leftTalking = false;
-			//L_render.color = fadeColor;
 		}
 
 		if (position == "R") {
@@ -182,33 +178,30 @@ public class DialogueBox : MonoBehaviour {
 			R_sprite = spriteObj;
 			R_render = R_sprite.GetComponent<SpriteRenderer> ();
 			//Debug.Log ("Right SPRITE: " + R_sprite);
-
 			rightTalking = true;
-			//R_render.color = origColor;
 			//Debug.Log ("Is Right character talking? " + rightTalking);
 		} else if (R_sprite != null) {
 			rightTalking = false;
-			//R_render.color = fadeColor;
 		}
 
 		if (position == "C") {
 			spriteObj.transform.position = new Vector3 (0, Screen.height/192f, 0);
 			C_sprite = spriteObj;
-			C_render = R_sprite.GetComponent<SpriteRenderer> ();
+			C_render = C_sprite.GetComponent<SpriteRenderer> ();
 			//Debug.Log ("Center SPRITE: " + C_sprite);
 			centerTalking = true;
 			//Debug.Log ("Is Center character talking? " + centerTalking);
-			//C_render.color = origColor;
 		} else if (C_sprite != null) {
 			centerTalking = false;
-			//C_render.color = fadeColor;
 		}
 
 		if (L_sprite != null && R_sprite != null && C_sprite == null) {
 			if (leftTalking) {
+				Debug.Log ("left sprite ok");
 				R_render.color = fadeColor;
 				L_render.color = origColor;
 			} else if (!leftTalking && rightTalking) {
+				Debug.Log ("right sprite ok");
 				R_render.color = origColor;
 				L_render.color = fadeColor;
 			}
@@ -216,19 +209,29 @@ public class DialogueBox : MonoBehaviour {
 
 		if (L_sprite != null && R_sprite != null && C_sprite != null) {
 			if (leftTalking) {
+				Debug.Log ("left sprite ok 2");
 				R_render.color = fadeColor;
 				C_render.color = fadeColor;
 				L_render.color = origColor;
 			} else if (rightTalking) {
+				Debug.Log ("right sprite ok 2");
 				R_render.color = origColor;
 				C_render.color = fadeColor;
 				L_render.color = fadeColor;
 			} else if (centerTalking) {
-				R_render.color = fadeColor;
+				Debug.Log ("center sprite ok 2");
 				L_render.color = fadeColor;
+				R_render.color = fadeColor;
 				C_render.color = origColor;
 			}
 		}
+	}
+
+	void SetText() {
+		Text nText = nameText.GetComponent<Text> ();
+		Text diaText = dText.GetComponent<Text> ();
+		nText.text = name;
+		diaText.text = dialogue;
 	}
 
 	private IEnumerator TextScroll (string lineOfText) {
@@ -245,12 +248,5 @@ public class DialogueBox : MonoBehaviour {
 		dialogue = lineOfText;
 		isTyping = false;
 		cancelTyping = false;
-	}
-
-	void SetText() {
-		Text nText = nameText.GetComponent<Text> ();
-		Text diaText = dText.GetComponent<Text> ();
-		nText.text = name;
-		diaText.text = dialogue;
 	}
 }

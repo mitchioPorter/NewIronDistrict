@@ -33,10 +33,17 @@ public class Tile : MonoBehaviour {
 	public bool gameEnd;
 	public bool gameStarted;
 
+	private int numSwap;
+
 	//GameObject timerObj;
 	//public float time;
 	//private bool timeUp;
 	private int sceneIdx;
+
+	// variables for checking & getting instructions to pop
+	private int showOnce;
+	private bool displayText;
+	public GUIText instructionsText;
 
 	void Awake() {
 		render = GetComponent<SpriteRenderer>();
@@ -59,18 +66,20 @@ public class Tile : MonoBehaviour {
 		//Debug.Log (playerObj);
 		//Debug.Log (enemyObj);
 
+		numSwap = 0;
+		showOnce = 1;
+		displayText = true;
+
 //		instructions = GameObject.FindGameObjectWithTag ("Instructions");
 //		winObj = GameObject.FindGameObjectWithTag ("winObj");
 //		lossObj = GameObject.FindGameObjectWithTag ("lossObj");
-
-
-
-		//reloadButton1 = GameObject.FindGameObjectWithTag ("reloadButton1").GetComponent<Button>();
-		//reloadButton2 = GameObject.FindGameObjectWithTag ("reloadButton2").GetComponent<Button>();
-		//moveOnButton = GameObject.FindGameObjectWithTag ("moveOnButton").GetComponent<Button> ();
 	}
 
 	void Update () {
+		if (numSwap >= 2) {
+			enemyObj.GetComponent<M3_Enemy> ().AttackPlayer ();
+			numSwap = 0; //reset
+		}
 //		if (!gameStarted) {
 //			if (Input.anyKey) {
 //				instructions.SetActive (false);
@@ -88,12 +97,6 @@ public class Tile : MonoBehaviour {
 //			// else display lose screen
 //			lossObj.SetActive(true);
 //		} 
-//
-//		if (gameEnd) {
-//			moveOnButton.onClick.AddListener (LoadNextScene);
-//			reloadButton1.onClick.AddListener (ReloadLevel);
-//			reloadButton2.onClick.AddListener (ReloadLevel);
-//		}
 	}
 
 	private void Select() {
@@ -152,7 +155,7 @@ public class Tile : MonoBehaviour {
 		source.PlayOneShot (swapSound);
 
 		if (!matchFound) {
-			enemyObj.GetComponent<M3_Enemy> ().AttackPlayer ();
+			numSwap += 1;
 		}
 	}
 
@@ -188,19 +191,59 @@ public class Tile : MonoBehaviour {
 		return matchingTiles;
 	}
 
+//	private void ClearMatch(Vector2[] paths) {
+//		List<GameObject> matchingTiles = new List<GameObject>();
+//		for (int i = 0; i < paths.Length; i++) { 
+//			matchingTiles.AddRange(FindMatch(paths[i])); 
+//		}
+//		if (matchingTiles.Count >= 2) {
+//			for (int i = 0; i < matchingTiles.Count; i++) {
+//				matchingTiles[i].GetComponent<SpriteRenderer>().sprite = null;
+//			}
+//			matchFound = true;
+//			playerObj.GetComponent<M3_Player> ().Attack ();
+//		}
+//		//if (matchFound == true) {
+//		//	playerObj.GetComponent<M3_Player> ().Attack ();
+//		//}
+//	}
+
+
 	private void ClearMatch(Vector2[] paths) {
 		List<GameObject> matchingTiles = new List<GameObject>();
+		//List<> matchingTiles = new List<>();
 		for (int i = 0; i < paths.Length; i++) { 
 			matchingTiles.AddRange(FindMatch(paths[i])); 
 		}
 		if (matchingTiles.Count >= 2) {
+			bool goodMatch = false;
+
 			for (int i = 0; i < matchingTiles.Count; i++) {
-				matchingTiles[i].GetComponent<SpriteRenderer>().sprite = null;
+				if (matchingTiles [i].GetComponent<SpriteRenderer> ().sprite == BoardManager.instance.tileSprites [0] || matchingTiles [i].GetComponent<SpriteRenderer> ().sprite == BoardManager.instance.tileSprites [1]) {
+					goodMatch = true;
+				} else {
+					goodMatch = false;
+				}
 			}
-			matchFound = true;
-		}
-		if (matchFound == true) {
-			playerObj.GetComponent<M3_Player> ().Attack ();
+
+			if (goodMatch) {
+				Tile[] allTiles = FindObjectsOfType<Tile>();
+				for (int j = 0;  j < allTiles.Length; j++) {
+					if (allTiles[j].transform.position.x == matchingTiles[0].transform.position.x && allTiles[j].transform.position.x == matchingTiles[1].transform.position.x) {
+						matchingTiles.Add(allTiles[j].gameObject);
+					} else if (allTiles[j].transform.position.y == matchingTiles[0].transform.position.y && allTiles[j].transform.position.y == matchingTiles[1].transform.position.y) {
+						matchingTiles.Add(allTiles[j].gameObject);
+					} else {
+						continue;
+					}
+				}
+			}
+
+			for (int i = 0; i < matchingTiles.Count; i++) {
+				matchFound = true;
+				matchingTiles[i].GetComponent<SpriteRenderer>().sprite = null;
+				playerObj.GetComponent<M3_Player> ().Attack ();
+			}
 		}
 	}
 

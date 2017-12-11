@@ -163,12 +163,6 @@ MonoBehaviour:
   swapSound: {fileID: 8300000, guid: 03aa09522745ddc4fa23a5fe46484274, type: 3}
   selectSound: {fileID: 8300000, guid: 567376b80e0350040a86dbd342b02319, type: 3}
   clearSound: {fileID: 8300000, guid: 4b4043ea4a208e44f9ceb6db860a42ea, type: 3}
-  winObj: {fileID: 0}
-  lossObj: {fileID: 0}
-  instructions: {fileID: 0}
-  moveOnButton: {fileID: 0}
-  reloadButton1: {fileID: 0}
-  reloadButton2: {fileID: 0}
   multiplier: 0
   canAttack: 0
   enemyAttacking: 0
@@ -176,6 +170,7 @@ MonoBehaviour:
   loss: 0
   gameEnd: 0
   gameStarted: 0
+  instructionsText: {fileID: 0}
 --- !u!212 &212869389382350426
 SpriteRenderer:
   m_ObjectHideFlags: 1

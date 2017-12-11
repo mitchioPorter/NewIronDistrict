@@ -14,10 +14,6 @@ public class Manager : MonoBehaviour {
 	public GameObject win;
 	public GameObject loss;
 
-	public Button moveOnButton;
-	public Button reloadButton1;
-	public Button reloadButton2;
-
 	public int chargeAmount;
 	//public GameObject specialAtkBG;
 

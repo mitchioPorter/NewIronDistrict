@@ -10,9 +10,7 @@ TagManager:
   - Instructions
   - lossObj
   - winObj
-  - reloadButton1
-  - reloadButton2
-  - moveOnButton
+  - Tile
   layers:
   - Default
   - TransparentFX

@@ -6,12 +6,12 @@ public class SentinelScript : MonoBehaviour {
 	public GameObject fist;
 	public GameObject sentinel;
 	public GameObject healthBar;
+	public GameObject bomb;
 
 	bool attacking;
 	bool firing;
 	float attackStart;
 	bool hitPlayer;
-
 
 	bool hit;
 	float waitTime;
@@ -21,6 +21,14 @@ public class SentinelScript : MonoBehaviour {
 	SpriteRenderer fistRndr;
 	Animator sentinor;
 	BoxCollider2D fistBox;
+
+	Animator bombor;
+	public Transform launchPoint;
+	float bombStart;
+	private float bombCounter;
+	public float waitBetweenBombs;
+	//bool droppingBomb;
+	//public float playerRange;
 
 	SpriteRenderer senRender;
 	public PlayerController player;
@@ -32,7 +40,7 @@ public class SentinelScript : MonoBehaviour {
 
 	// effect for damage done to sentinel
 	private bool flashActive;
-	public float flashLength;
+	private float flashLength;
 	private float flashCounter;
 	private Color origColor;
 
@@ -50,6 +58,7 @@ public class SentinelScript : MonoBehaviour {
 		sentinor = sentinel.GetComponent<Animator> ();
 		fistRndr = fist.GetComponent<SpriteRenderer> ();
 		fistBox = fist.GetComponent<BoxCollider2D> ();
+		bombor = bomb.GetComponent<Animator> ();
 
 		fistRndr.color = new Color(1,1,1,0);
 		attackStart = -5;
@@ -59,6 +68,10 @@ public class SentinelScript : MonoBehaviour {
 		player = FindObjectOfType<PlayerController> ();
 		senRender = sentinel.GetComponent<SpriteRenderer> ();
 
+
+
+		bombCounter = waitBetweenBombs;
+		//bombStart = bomb.GetComponent<bomb> ();
 		flashLength = 0.5f;
 		origColor = senRender.color;
 
@@ -71,57 +84,51 @@ public class SentinelScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		//Debug.Log ("** SENTINEL'S HEALTH **" + senHealth);
+		if (!dead) {
+			//Debug.Log ("** SENTINEL'S HEALTH **" + senHealth);
+			//DropBomb ();
+			bombCounter -= Time.deltaTime;
 
-		//if (fistor.GetCurrentAnimatorStateInfo(0).IsName("fist")) {
-		//	StartCoroutine(Pause());
-		//}
 
-		// make player flash when hit by changing RGB values of sprite
-		if (flashActive) {
-			Debug.Log ("SENTINEL SPRITE CHANGING");
-			if (flashCounter > flashLength * .66f) {
-				senRender.color = new Color (0.5f, 0.5f, 0.5f, senRender.color.a);
-			} else if (flashCounter > flashLength * .33f) {
-				senRender.color = origColor;
-			} else if (flashCounter > 0f) {
-				senRender.color = new Color (0.7f, 0.5f, 0.5f, senRender.color.a);
-			} else {
-				senRender.color = origColor; // back to normal
-				flashActive = false;
-			}
-			flashCounter -= Time.deltaTime;
-		}
-
-		//plays animation on any key press
-		//if (Input.anyKeyDown && !attacking && Time.time > attackStart + 4.5) {
-		//	Attack ();
-		//	attackStart = Time.time;
-		//}
-			
-
-		//checks if mid animation
-		if (attacking) {
-			Debug.Log ("Preparing Fist");
-			//show fists and activates its aniamtion
-			if (Time.time > attackStart + 2.25f && !firing) {
-				fistor.SetTrigger ("Fire!");
-				fistRndr.color = new Color (1, 1, 1,1);
-				firing = true;
-				OnTriggerEnter2D (player.GetComponent<Collider2D>());
-				//resets the parameters and hides the fist
-			} else if (Time.time > attackStart+2.4f && Time.time < attackStart + 3f) {
-				if (player.transform.position.x > -1.8f && player.transform.position.y < .5f && !hitPlayer) {
-					player.setPlayerHealth (fistDamage);
-					hitPlayer = true;
+			// make player flash when hit by changing RGB values of sprite
+			if (flashActive) {
+				Debug.Log ("SENTINEL SPRITE CHANGING");
+				if (flashCounter > flashLength * .66f) {
+					senRender.color = new Color (0.5f, 0.5f, 0.5f, senRender.color.a);
+				} else if (flashCounter > flashLength * .33f) {
+					senRender.color = origColor;
+				} else if (flashCounter > 0f) {
+					senRender.color = new Color (0.7f, 0.5f, 0.5f, senRender.color.a);
+				} else {
+					senRender.color = origColor; // back to normal
+					flashActive = false;
 				}
+				flashCounter -= Time.deltaTime;
+			}
 
-			} else if (Time.time > attackStart + 3.4f) {
-				attacking = false;
-				firing = false;
-				fistRndr.color = new Color(1,1,1,0);
-				hitPlayer = false;
-				//StartCoroutine (Pause ());
+			//checks if mid animation
+			if (attacking) {
+				Debug.Log ("Preparing Fist");
+				//show fists and activates its aniamtion
+				if (Time.time > attackStart + 2.25f && !firing) {
+					fistor.SetTrigger ("Fire!");
+					fistRndr.color = new Color (1, 1, 1, 1);
+					firing = true;
+					OnTriggerEnter2D (player.GetComponent<Collider2D> ());
+					//resets the parameters and hides the fist
+				} else if (Time.time > attackStart + 2.4f && Time.time < attackStart + 3f) {
+					if (player.transform.position.x > -1.8f && player.transform.position.y < .5f && !hitPlayer) {
+						player.setPlayerHealth (fistDamage);
+						hitPlayer = true;
+					}
+
+				} else if (Time.time > attackStart + 3.4f) {
+					attacking = false;
+					firing = false;
+					fistRndr.color = new Color (1, 1, 1, 0);
+					hitPlayer = false;
+					//StartCoroutine (Pause ());
+				}
 			}
 		}
 	}
@@ -135,6 +142,7 @@ public class SentinelScript : MonoBehaviour {
 	/// <summary>
 	/// Breya is hit if x < -1.8 and y < .5
 	/// </summary>
+	/// 
 
 	//triggers the sentinel attack animation(call this whe you need to attack)
 	public void Attack() {
@@ -144,6 +152,15 @@ public class SentinelScript : MonoBehaviour {
 		attacking = true;
 	}
 
+	public void DropBomb() {
+//		if (!attacking && !droppingBomb) {
+//			if (transform.localScale.x > 0 && player.transform.position.x < transform.position.x && player.transform.position.x > transform.position.x - playerRange && bombCounter < 0) {
+//				Instantiate (bomb, launchPoint.position, launchPoint.rotation);
+//				bombCounter = waitBetweenBombs; //reset counter
+//				Debug.Log ("DROPPED BOMB");
+//			}
+//		}
+	}
 //	public void Pause() {
 //		Debug.Log ("SENTINEL HAS PAUSED");
 //		sentinor.SetTrigger ("Pause!");
@@ -197,7 +214,4 @@ public class SentinelScript : MonoBehaviour {
 			dead = true;
 		}
 	}
-
-
-
 }

@@ -75,6 +75,10 @@
      <Compile Include="Assets\Resources\Scripts\Dialogue\NextLine.cs" />
      <Compile Include="Assets\Resources\Scripts\Dialogue\ScaleImage.cs" />
      <Compile Include="Assets\Resources\Scripts\Match3\Board.cs" />
+     <Compile Include="Assets\Resources\Scripts\Match3\ClearTile.cs" />
+     <Compile Include="Assets\Resources\Scripts\Match3\MoveableTile.cs" />
+     <Compile Include="Assets\Resources\Scripts\Match3\TileColor.cs" />
+     <Compile Include="Assets\Resources\Scripts\Match3\TilePiece.cs" />
      <Compile Include="Assets\Resources\Scripts\Matching\BoardManager.cs" />
      <Compile Include="Assets\Resources\Scripts\Matching\M3_Enemy.cs" />
      <Compile Include="Assets\Resources\Scripts\Matching\M3_Manager.cs" />
@@ -85,6 +89,7 @@
      <Compile Include="Assets\Resources\Scripts\Other\Credits.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\EnemyController.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\Instructions.cs" />
+     <Compile Include="Assets\Resources\Scripts\Other\LoadSceneScript.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\Manager.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\Missile.cs" />
      <Compile Include="Assets\Resources\Scripts\Other\PlayerController.cs" />

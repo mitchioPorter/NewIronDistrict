@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour {
-	public Camera camera;
 	public PlayerController player;
 	public SentinelScript senPrefab;
 
@@ -13,12 +12,16 @@ public class Manager : MonoBehaviour {
 	public GameObject instructions;
 	public GameObject win;
 	public GameObject loss;
+	public Button closeBtn;
+
+	public bool gameStarted;
 
 	public int chargeAmount;
 	//public GameObject specialAtkBG;
 
 	// Use this for initialization
 	void Start () {
+		gameStarted = false;
 
 		win.SetActive (false);
 		loss.SetActive (false);
@@ -34,11 +37,11 @@ public class Manager : MonoBehaviour {
 		//	SpecialAttack ();
 		//}
 
+		closeBtn.onClick.AddListener (CloseInstructions);
+
 		chargeAmount = 0;
 
-		if (Input.anyKey) {
-			instructions.SetActive (false);
-		}
+
 
 		if (senPrefab.GetComponent<SentinelScript> ().dead) {
 			win.SetActive (true);
@@ -47,6 +50,11 @@ public class Manager : MonoBehaviour {
 		if (player.GetComponent<PlayerController> ().dead) {
 			loss.SetActive (true);
 		}
+	}
+
+	void CloseInstructions() {
+		instructions.SetActive (false);
+		gameStarted = true;
 	}
 
 //	void SpecialAttack() {

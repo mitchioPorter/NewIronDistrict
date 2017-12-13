@@ -29,6 +29,7 @@ public class FallingGearGame : MonoBehaviour {
 	public bool gameStarted;
 
 	public GameObject instructions;
+	public Button closeBtn;
 	//public GameObject instructionsClone;
 
 	// Use this for initialization
@@ -89,12 +90,13 @@ public class FallingGearGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.anyKeyDown && !gameStart) {
-			gameStart = true;
-			//Destroy (instructionsClone);
-			instructions.SetActive(false);
-			nextSpawnTime = Time.time;
-		}
+		closeBtn.onClick.AddListener (CloseInstructions);
+//		if (Input.anyKeyDown && !gameStart) {
+//			gameStart = true;
+//			//Destroy (instructionsClone);
+//			instructions.SetActive(false);
+//			nextSpawnTime = Time.time;
+//		}
 			
 		progress.transform.localScale = new Vector3 ((float)player.Score / 1f, .5f, 1f);
 
@@ -122,12 +124,15 @@ public class FallingGearGame : MonoBehaviour {
 			Destroy (healthBar);
 
 		}
-		thought.type = player.wantGear;
-		thought.changeState (thought.type);
 
-		health = player.health;
-		healthBar.transform.localScale = new Vector3 (.2f,(float)3 * health / maxHealth,  1f);
-		healthBar.transform.position = new Vector3 (player.transform.position.x - (3 - 3 *health / maxHealth)*.5f, player.transform.position.y +2, 1);
+		if (!endGame) {
+			thought.type = player.wantGear;
+			thought.changeState (thought.type);
+
+			health = player.health;
+			healthBar.transform.localScale = new Vector3 (.2f, (float)3 * health / maxHealth, 1f);
+			healthBar.transform.position = new Vector3 (player.transform.position.x - (3 - 3 * health / maxHealth) * .5f, player.transform.position.y + 2, 1);
+		}
 
 
 	
@@ -145,5 +150,11 @@ public class FallingGearGame : MonoBehaviour {
 
 	void NextScene() {
 		SceneManager.LoadScene (sceneIdx + 1);
+	}
+
+	void CloseInstructions() {
+		instructions.SetActive(false);
+		gameStart = true;
+		nextSpawnTime = Time.time;
 	}
 }

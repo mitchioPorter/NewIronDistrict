@@ -81,6 +81,7 @@ public class ArrowGame : MonoBehaviour {
 	public int sceneIdx;
 
 	public GameObject instructions;
+	public Button closeBtn;
 
 	// Use this for initialization
 	void Start () {
@@ -138,22 +139,23 @@ public class ArrowGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.anyKeyDown) {
-			
-			if (!gameStarted) {
-				instructions.SetActive(false);
-				//instructions.transform.position = new Vector3 (instructions.transform.position.x, instructions.transform.position.y, 20);
-				gameStarted = true;
-				timeLength = 20;
-				timeEnd = Time.time + timeLength;
-				nextSpawnTime = Time.time + (spawnTime);
-				totalCards = 0;
-				correctCards = 0;
-				spawnTime = .260869f;
-				source2.clip = song1;
-				source2.Play ();
-			}
-		}
+		closeBtn.onClick.AddListener (CloseInstructions);;
+//		if (Input.anyKeyDown) {
+//			
+//			if (!gameStarted) {
+//				instructions.SetActive(false);
+//				//instructions.transform.position = new Vector3 (instructions.transform.position.x, instructions.transform.position.y, 20);
+//				gameStarted = true;
+//				timeLength = 20;
+//				timeEnd = Time.time + timeLength;
+//				nextSpawnTime = Time.time + (spawnTime);
+//				totalCards = 0;
+//				correctCards = 0;
+//				spawnTime = .260869f;
+//				source2.clip = song1;
+//				source2.Play ();
+//			}
+//		}
 
 //		if (Input.GetKeyDown(KeyCode.Return) && gameEnd == true) {
 //			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
@@ -428,5 +430,19 @@ public class ArrowGame : MonoBehaviour {
 
 	void NextScene() {
 		SceneManager.LoadScene (sceneIdx + 1);
+	}
+
+	void CloseInstructions() {
+		instructions.SetActive(false);
+		//instructions.transform.position = new Vector3 (instructions.transform.position.x, instructions.transform.position.y, 20);
+		gameStarted = true;
+		timeLength = 20;
+		timeEnd = Time.time + timeLength;
+		nextSpawnTime = Time.time + (spawnTime);
+		totalCards = 0;
+		correctCards = 0;
+		spawnTime = .260869f;
+		source2.clip = song1;
+		source2.Play ();
 	}
 }

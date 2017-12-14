@@ -33,6 +33,7 @@ public class SentinelScript : MonoBehaviour {
 
 	private float bombCounter;
 	public float waitBetweenBombs;
+
 	//bool droppingBomb;
 	//public float playerRange;
 
@@ -55,7 +56,7 @@ public class SentinelScript : MonoBehaviour {
 
 	public Manager manager;
 	public bool gameStarted;
-
+	int which;
 	// Use this for initialization
 	void Start () {
 		gameStarted = false;
@@ -83,7 +84,7 @@ public class SentinelScript : MonoBehaviour {
 		flashLength = 0.5f;
 		origColor = senRender.color;
 
-		waitTime = 3f;
+		waitTime = 2f;
 
 		InvokeRepeating ("StartAttack", waitTime, waitTime);
 
@@ -92,7 +93,7 @@ public class SentinelScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		gameStarted = manager.GetComponent<Manager> ().gameStarted;
+		gameStarted = manager.gameStarted;
 		if (!dead) {
 			//Debug.Log ("** SENTINEL'S HEALTH **" + senHealth);
 
@@ -117,18 +118,31 @@ public class SentinelScript : MonoBehaviour {
 			if (gameStarted) {
 				//checks if mid animation
 				if (attacking) {
+
+					//creates a variable that radomb=ly chooses between fist and bomb
+					//>50 == bomb
+
 					//Debug.Log ("Preparing Fist");
+
 					//show fists and activates its aniamtion
 					if (Time.time > attackStart + 2.25f && !firing) {
-						fistor.SetTrigger ("Fire!");
-						fistRndr.color = new Color (1, 1, 1, 1);
-						firing = true;
-						OnTriggerEnter2D (player.GetComponent<Collider2D> ());
+						if (which <= 40) {
+							fistor.SetTrigger ("Fire!");
+							fistRndr.color = new Color (1, 1, 1, 1);
+							firing = true;
+							//OnTriggerEnter2D (player.GetComponent<Collider2D> ());
+						} else {
+							//OnTriggerEnter2D (player.GetComponent<Collider2D> ());
+							Instantiate (bomb);
+							firing = true;
+						}
 						//resets the parameters and hides the fist
-					} else if (Time.time > attackStart + 2.4f && Time.time < attackStart + 3f) {
-						if (player.transform.position.x > -1.8f && player.transform.position.y < .5f && !hitPlayer) {
-							player.setPlayerHealth (fistDamage);
-							hitPlayer = true;
+					} else if (Time.time > attackStart + 2.4f && Time.time < attackStart + 2.7f) {
+						if (which <= 40) {
+							if (player.transform.position.x > -1.8f && player.transform.position.y < .5f && !hitPlayer) {
+								player.setPlayerHealth (fistDamage);
+								hitPlayer = true;
+							}
 						}
 
 					} else if (Time.time > attackStart + 3.4f) {
@@ -151,9 +165,12 @@ public class SentinelScript : MonoBehaviour {
 	}
 
 	public void StartAttack() {
-		if (!attacking && Time.time > attackStart + 4.5) {
-			Attack ();
-			attackStart = Time.time;
+		if(gameStarted){
+			if (!attacking && Time.time > attackStart + 4.5) {
+				Attack ();
+				attackStart = Time.time;
+			}
+
 		}
 	}
 	/// <summary>
@@ -164,9 +181,12 @@ public class SentinelScript : MonoBehaviour {
 	//triggers the sentinel attack animation(call this whe you need to attack)
 	public void Attack() {
 		//Debug.Log ("ATTACKING");
-		attackStart = Time.time;
-		sentinor.SetTrigger ("Attack!");
-		attacking = true;
+		if (!dead) {
+			attackStart = Time.time;
+			sentinor.SetTrigger ("Attack!");
+			attacking = true;
+			which = Random.Range (0, 100);
+		}
 	}
 
 //	public void DropBomb() {
@@ -199,9 +219,9 @@ public class SentinelScript : MonoBehaviour {
 			flashCounter = flashLength;
 
 			if (senHealth <= 50) {
-				waitTime = 2f;
-			} else if (senHealth <= 25) {
 				waitTime = 1f;
+			} else if (senHealth <= 25) {
+				waitTime = .5f;
 			}
 		}
 			
@@ -211,6 +231,10 @@ public class SentinelScript : MonoBehaviour {
 			healthBar.transform.localScale = new Vector3 (senHealth / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 			sentinor.SetBool ("Dead", true);
 			dead = true;
+
+
+			//remove this later
+			Destroy((GameObject)sentinel);
 		}
 	}
 }

@@ -22,6 +22,7 @@ public class bomb : MonoBehaviour {
 	public float rotationSpeed;
 	public AudioClip explode;
 	public AudioSource source;
+	bool soundPlaying;
 
 	// Use this for initialization
 	void Start () {
@@ -61,7 +62,7 @@ public class bomb : MonoBehaviour {
 		}
 
 		//once it blinks too fast, it initiates explosion
-		if (timer <= .05f && GetComponent<Animator> ().GetInteger("State") != 1) {
+		if (timer <= .1f && GetComponent<Animator> ().GetInteger("State") != 1) {
 
 			timeStart = Time.time;
 			sprtrndr.color = Color.white;
@@ -71,6 +72,14 @@ public class bomb : MonoBehaviour {
 		//after 1 second after the explosion start it destroys the bomb
 		if (GetComponent<Animator> ().GetInteger ("State") == 1 && Time.time - timeStart > 1) {
 			Destroy (gameObject);
+
+
+		}
+		if (GetComponent<Animator> ().GetInteger ("State") == 1 && Time.time - timeStart > .2) {
+			if (!soundPlaying) {
+				source.PlayOneShot (explode);
+				soundPlaying = true;
+			}
 		}
 	}
 
@@ -81,8 +90,13 @@ public class bomb : MonoBehaviour {
 			Debug.Log ("** BOMB HIT PLAYER **");
 			// player lose health
 			player.GetComponent<PlayerController> ().setPlayerHealth (damage);
+			Physics2D.IgnoreCollision (GetComponent<Collider2D> (), player.GetComponent<Collider2D> ());
+			bombRB.velocity = new Vector2(0,0);
 			//after player is hit, go ahead and start exloding animation
+
 			GetComponent<Animator>().SetTrigger("Explode!");
+			GetComponent<Animator> ().SetInteger ("State", 1);
+			timeStart = Time.time;
 			//Destroy (gameObject);
 			}
 		}

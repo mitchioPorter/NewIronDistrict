@@ -14,7 +14,7 @@ public class Manager : MonoBehaviour {
 	public GameObject loss;
 	public Button closeBtn;
 
-	public bool gameStarted;
+	public bool gameStarted = false;
 
 	public int chargeAmount;
 	//public GameObject specialAtkBG;

@@ -1,13 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Scripts\Other\PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Scripts\Match3\Board.cs">
     <Files>
-      <File FileName="Assets\Resources\Scripts\Other\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Sentinel\SentinelScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Scripts\Match3\Board.cs" Line="1" Column="1" />
-      <File FileName="Assets\Models\Scripts\thoughtBubble.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Scripts\Buttons\MenuButtons.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Scripts\Match3\ClearTile.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Scripts\Matching\M3_Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Scripts\Matching\M3_Manager.cs" Line="36" Column="5" />
+      <File FileName="Assets\Resources\Scripts\Match3\Board.cs" Line="460" Column="31" />
+      <File FileName="Assets\Resources\Scripts\Match3\TilePiece.cs" Line="65" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

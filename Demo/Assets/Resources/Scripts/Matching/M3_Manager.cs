@@ -10,10 +10,12 @@ public class M3_Manager : MonoBehaviour {
 
 	public bool instructionsClosed;
 	public bool gameStarted;
+	public bool gameOver;
 
 	// UI
 	public GameObject winObj;
 	public GameObject lossObj;
+	public GameObject lossObj2;
 	public GameObject instructions;
 	public Button closeButton;
 
@@ -25,15 +27,20 @@ public class M3_Manager : MonoBehaviour {
 
 		winObj.SetActive (false);
 		lossObj.SetActive (false);
+		lossObj2.SetActive (false);
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (gameStarted);
+		//Debug.Log (gameStarted);
 		closeButton.onClick.AddListener (CloseInstructions);
 		if (instructionsClosed) {
 			gameStarted = true;
+		}
+
+		if (gameOver) {
+			lossObj2.SetActive (true);
 		}
 
 		if (enemy.GetComponent<M3_Enemy> ().dead) {

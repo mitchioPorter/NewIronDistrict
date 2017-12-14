@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Board : MonoBehaviour {
+	public M3_Manager manager;
+
+
 	public int xDim;
 	public int yDim;
 	public float fillTime;
 
-	private bool inverse;
-	public M3_Manager manager;
+	bool inverse;
+
+	bool gameOver;
 	public bool gameStarted;
 
 	private TilePiece selectedTile;
@@ -27,9 +31,8 @@ public class Board : MonoBehaviour {
 		Normal,
 	};
 
-	[System.Serializable]
+	[System.Serializable] // makes custom struct editable in inspector
 	public struct TilePrefab {
-		//public TileColor tColor; // tile color
 		public TileType type;
 		public GameObject prefab; // actual gameobject
 	};
@@ -41,12 +44,14 @@ public class Board : MonoBehaviour {
 	public AudioClip selectSound;
 	public AudioClip clearSound;
 
+	private static Color selectedColor = new Color(.5f, .5f, .5f, 1.0f);
+
 	GameObject playerObj;
 	GameObject enemyObj;
-	//public PGB pgb;
+	public GameObject perfect;
+	public GameObject good;
 
 	void Awake() {
-		
 		inverse = false;
 		gameStarted = false;
 		// has keys of tile color and value of gameobject
@@ -81,7 +86,7 @@ public class Board : MonoBehaviour {
 
 //		Destroy (tiles [randX, randY].gameObject); // destroy normal tile first
 //		SpawnNewTile (randX, randY, TileType.Bad); // put in obstacle tile
-
+//
 //		Destroy (tiles [randX2, randY2].gameObject);
 //		SpawnNewTile (randX2, randY2, TileType.Bad);
 //
@@ -90,23 +95,19 @@ public class Board : MonoBehaviour {
 //
 //		Destroy (tiles [randX4, randY4].gameObject);
 //		SpawnNewTile (randX4, randY4, TileType.Bad);
-
-			//StartCoroutine (Fill ());
 	}
 
 	void Start() {
 		source = GetComponent<AudioSource> ();
 		playerObj = GameObject.FindGameObjectWithTag ("Player");
 		enemyObj = GameObject.FindGameObjectWithTag("Enemy");
-
-
-		//pgb = (PGB)Instantiate(pgb);
-		//pgb.gameObject.SetActive (false);
+		perfect.SetActive (false);
+		good.SetActive (false);
 	}
 
 	void Update() {
 		gameStarted = manager.GetComponent<M3_Manager> ().gameStarted;
-		Debug.Log ("Has game Started? " + gameStarted);
+		//Debug.Log ("Has game Started? " + gameStarted);
 
 		if (gameStarted) {
 			StartCoroutine (Fill ());
@@ -118,7 +119,7 @@ public class Board : MonoBehaviour {
 		bool needToRefill = true;
 		while (needToRefill) {
 			yield return new WaitForSeconds (fillTime);
-			while (FillStep ()) {
+			while (FillEach ()) {
 				inverse = !inverse;
 				yield return new WaitForSeconds (fillTime);
 			}
@@ -126,7 +127,7 @@ public class Board : MonoBehaviour {
 		}
 	}
 
-	public bool FillStep() { // fills in piece by piece (incrementally)
+	public bool FillEach() { // fills in piece by piece (incrementally)
 		bool movedTile = false;
 
 		for (int y = yDim-2; y >= 0; y--) { //loop through from bottom (ignore bottommost row) to top, column to row to see what can be moved down
@@ -140,7 +141,9 @@ public class Board : MonoBehaviour {
 				TilePiece tile = tiles [x, y];
 
 				if (tile.IsMovable ()) {
+
 					TilePiece tileBelow = tiles [x, y + 1];
+
 					if (tileBelow.Type == TileType.Empty) { // found empty piece, fill in
 						Destroy (tileBelow.gameObject);
 						tile.Movable.Move (x, y + 1, fillTime);
@@ -156,6 +159,7 @@ public class Board : MonoBehaviour {
 								}
 
 								if (diagX >= 0 && diagX < xDim) {
+
 									TilePiece diagonalTile = tiles [diagX, y + 1];
 
 									if (diagonalTile.Type == TileType.Empty) {
@@ -189,6 +193,7 @@ public class Board : MonoBehaviour {
 		}
 
 		for (int x = 0; x < xDim; x++) {
+
 			TilePiece tileBelow = tiles [x, 0];
 
 			if (tileBelow.Type == TileType.Empty) {
@@ -207,7 +212,7 @@ public class Board : MonoBehaviour {
 	}
 		
 	public Vector2 GetPosition(int x, int y) {
-		return new Vector2 (transform.position.x - xDim / 2.0f + x, transform.position.y + yDim / 2.0f - y);
+		return new Vector2 (transform.position.x - xDim /5.0f + x, transform.position.y + yDim /4.0f - y);
 	}
 
 	public TilePiece SpawnNewTile (int x, int y, TileType type) {
@@ -226,8 +231,31 @@ public class Board : MonoBehaviour {
 		return (tile1.X == tile2.X && (int)Mathf.Abs(tile1.Y - tile2.Y) == 1) 
 			|| (tile1.Y == tile2.Y && (int)Mathf.Abs(tile1.X - tile2.X) == 1); // same x pos but diff of 1 in y position or same y pos but diff of 1 in x
 	}
+
+
+	public void Select(TilePiece tile) {
+		Debug.Log ("** TILE SELECTED **");
+		selectedTile = tile;
+		selectedTile.gameObject.GetComponent<SpriteRenderer> ().color = selectedColor;
+		//source.PlayOneShot (selectSound);
+	}
+
+	public void SwitchTile(TilePiece tile) {
+		Debug.Log ("** SECOND TILE SELECTED **");
+		selectedTile2 = tile;
+		source.PlayOneShot (selectSound);
+	}
+
+	public void DoSwap() {
+		Debug.Log ("** CHECKING IF ADJACENT **");
+		if (GetAdjacents (selectedTile, selectedTile2)) {
+			Debug.Log ("** GETTING READY TO SWAP TILES **");
+			SwapTiles (selectedTile, selectedTile2);
+		}
+	}
 		
 	public void SwapTiles(TilePiece tile1, TilePiece tile2) {
+
 		Debug.Log ("** SWAPPING TILES **");
 		// check if movable first
 		if (tile1.IsMovable () && tile2.IsMovable ()) {
@@ -245,30 +273,10 @@ public class Board : MonoBehaviour {
 
 				ClearAllMatches ();
 				StartCoroutine (Fill ());
-
 			} else {
 				tiles [tile1.X, tile1.Y] = tile1;
 				tiles [tile2.X, tile2.Y] = tile2;
 			}
-		}
-	}
-
-	public void Select(TilePiece tile) {
-		Debug.Log ("** TILE SELECTED **");
-		selectedTile = tile;
-		//selectedTile.GetComponent<SpriteRenderer> ().color = selectedColor;
-	}
-
-	public void SwitchTile(TilePiece tile) {
-		Debug.Log ("** SECOND TILE SELECTED **");
-		selectedTile2 = tile;
-	}
-
-	public void DoSwap() {
-		Debug.Log ("** CHECKING IF ADJACENT **");
-		if (GetAdjacents (selectedTile, selectedTile2)) {
-			Debug.Log ("** GETTING READY TO SWAP TILES **");
-			SwapTiles (selectedTile, selectedTile2);
 		}
 	}
 
@@ -298,7 +306,7 @@ public class Board : MonoBehaviour {
 					if (tiles [x, posY].IsColored () && tiles [x, posY].SpriteColor.CType == color) {
 						horizontalTiles.Add (tiles [x, posY]);
 					} else {
-						break; // no more tiles found
+						break; // no more tiles found for match
 					}
 				}
 			}
@@ -309,14 +317,14 @@ public class Board : MonoBehaviour {
 				}
 			}
 
-			// comparing vertical AND horizontal match
+			// comparing horizontal AND vertical match
 			if (horizontalTiles.Count >= 3) {
 				for (int i = 0; i < horizontalTiles.Count; i++) {
-					for (int j = 0; j <= 1; j++) {
+					for (int dir = 0; dir <= 1; dir++) {
 						for (int yOffset = 1; yOffset < yDim; yOffset++) {
 							int y;
 
-							if (j == 0) { //up
+							if (dir == 0) { //up
 								y = posY - yOffset;
 							} else {
 								y = posY + yOffset;
@@ -338,8 +346,6 @@ public class Board : MonoBehaviour {
 						verticalTiles.Clear();
 					} else {
 						for (int j = 0; j < verticalTiles.Count; j++) {
-							//pgb.gameObject.SetActive (true);
-							//pgb.changeState(1);
 							matchingTiles.Add(verticalTiles[j]);
 						}
 
@@ -362,9 +368,9 @@ public class Board : MonoBehaviour {
 				for (int yOffset = 1; yOffset < yDim; yOffset++) {
 					int y;
 					if (dir == 0) { // up
-						y = posX - yOffset;
+						y = posY - yOffset;
 					} else { // down
-						y = posX + yOffset;
+						y = posY + yOffset;
 					}
 
 					if (y < 0 || y >= yDim) {
@@ -388,11 +394,11 @@ public class Board : MonoBehaviour {
 			// comparing vertical AND horizontal match
 			if (verticalTiles.Count >= 3) {
 				for (int i = 0; i < verticalTiles.Count; i++) {
-					for (int j = 0; j <= 1; j++) {
+					for (int dir = 0; dir <= 1; dir++) {
 						for (int xOffset = 1; xOffset < xDim; xOffset++) {
 							int x;
 
-							if (j == 0) { //up
+							if (dir == 0) { //up
 								x = posX - xOffset;
 							} else {
 								x = posX + xOffset;
@@ -414,8 +420,6 @@ public class Board : MonoBehaviour {
 						horizontalTiles.Clear();
 					} else {
 						for (int j = 0; j < horizontalTiles.Count; j++) {
-							//pgb.gameObject.SetActive (true);
-							//pgb.changeState(1);
 							matchingTiles.Add(horizontalTiles[j]);
 						}
 
@@ -437,14 +441,24 @@ public class Board : MonoBehaviour {
 		for (int y = 0; y < yDim; y++) {
 			for (int x = 0; x < xDim; x++) {
 				if (tiles [x, y].IsClearable ()) {
-					Debug.Log ("get matched tiles to clear from board");
+					//Debug.Log ("get matched tiles to clear from board");
 					List<TilePiece> matchedTiles = GetMatch (tiles [x, y], x, y);
-
+					//Debug.Log("check match to be cleared: " + matchedTiles);
 					if (matchedTiles != null) {
 						for (int i = 0; i < matchedTiles.Count; i++) {
 							if (ClearTile (matchedTiles [i].X, matchedTiles [i].Y)) {
-								Debug.Log ("clearing tiles");
+								//Debug.Log ("clearing tiles");
 								refillBoard = true;
+							}
+
+							if (matchedTiles.Count >= 3) {
+								Instantiate (good);
+								//good.SetActive (true);
+							}
+
+							if (matchedTiles.Count >= 5) {
+								Instantiate (perfect);
+								//perfect.SetActive (true);
 							}
 						}
 					}
@@ -459,7 +473,7 @@ public class Board : MonoBehaviour {
 			tiles [x, y].ClearedTile.Clear ();
 			source.PlayOneShot (clearSound);
 			SpawnNewTile (x, y, TileType.Empty);
-			Debug.Log ("tiles cleared !!");
+			//Debug.Log ("tiles cleared !!");
 			return true;
 		}
 		return false;

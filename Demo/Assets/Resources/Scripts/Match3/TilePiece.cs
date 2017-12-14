@@ -6,7 +6,6 @@ public class TilePiece : MonoBehaviour {
 	private int x;
 	private int y;
 
-	private static Color selectedColor = new Color(.5f, .5f, .5f, 1.0f);
 	public int X {
 		get { return x; }
 		set {
@@ -65,7 +64,7 @@ public class TilePiece : MonoBehaviour {
 
 	void OnMouseEnter() {
 		board.Select (this); // "this" references gameobject script is on
-		//spriteColor.GetComponent<SpriteRenderer>().color = selectedColor;
+
 	}
 
 	void OnMouseDown() {

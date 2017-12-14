@@ -94,11 +94,11 @@
      <Compile Include="Assets\Resources\Scripts\Other\Video.cs" />
      <Compile Include="Assets\Sentinel\bomb.cs" />
      <Compile Include="Assets\Sentinel\SentinelScript.cs" />
-     <None Include="Assets\StreamingAssets\Dialogue10.txt" />
-     <None Include="Assets\StreamingAssets\Dialogue3.txt" />
-     <None Include="Assets\StreamingAssets\Dialogue6.txt" />
-     <None Include="Assets\StreamingAssets\Dialogue1.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue12.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue4.txt" />
      <None Include="Assets\StreamingAssets\Dialogue8.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue1.txt" />
+     <None Include="Assets\StreamingAssets\Dialogue10.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

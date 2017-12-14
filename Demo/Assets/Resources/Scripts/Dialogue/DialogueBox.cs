@@ -140,7 +140,7 @@ public class DialogueBox : MonoBehaviour {
 		//Debug.Log ("In Reset images");
 		if (name != "") {
 			GameObject character = GameObject.Find (name);
-			//Debug.Log ("Character speaking now: " + character);
+			Debug.Log ("Character speaking now: " + character);
 			SpriteRenderer currSprite = character.GetComponent<SpriteRenderer> ();
 			//Debug.Log ("Current sprite: " + currSprite);
 		}

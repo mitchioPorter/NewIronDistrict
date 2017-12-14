@@ -34,7 +34,7 @@ public class SentinelScript : MonoBehaviour {
 	private float bombCounter;
 	public float waitBetweenBombs;
 	//bool droppingBomb;
-	public float playerRange;
+	//public float playerRange;
 
 	public float maxHealth = 100f;
 	public float senHealth = 0f;
@@ -137,12 +137,14 @@ public class SentinelScript : MonoBehaviour {
 						fistRndr.color = new Color (1, 1, 1, 0);
 						hitPlayer = false;
 						//StartCoroutine (Pause ());
-					} else {
-						if (Time.time < attackStart + 2.25f && !firing) {
-							DropBomb ();
-							bombCounter -= Time.deltaTime;
-						}
-					}
+					} 
+
+//					else {
+//						if (Time.time < attackStart + 2.25f && !firing) {
+//							DropBomb ();
+//							bombCounter -= Time.deltaTime;
+//						}
+//					}
 				}
 			}
 		}
@@ -167,32 +169,14 @@ public class SentinelScript : MonoBehaviour {
 		attacking = true;
 	}
 
-	public void DropBomb() {
-		if (!attacking) {
-			if (transform.localScale.x > 0 && player.transform.position.x < transform.position.x && player.transform.position.x > transform.position.x - playerRange && bombCounter < 0) {
-				//Instantiate (bomb, launchPoint.position, launchPoint.rotation);
-				bombCounter = waitBetweenBombs; //reset counter
-				Debug.Log ("DROPPED BOMB");
-			}
-		}
-	}
-//	public void Pause() {
-//		Debug.Log ("SENTINEL HAS PAUSED");
-//		sentinor.SetTrigger ("Pause!");
-//	}
-
-//	IEnumerator Pause() {
-//		//paused = true;
-//		firing = false;
-//		attacking = false;
-//		Debug.Log ("SENTINEL HAS PAUSED");
-//		sentinor.SetTrigger ("Pause!");
-//		yield return new WaitForSeconds (4);
-//
-//		firing = true;
-//		attacking = true;
-//		yield break;
-//
+//	public void DropBomb() {
+//		if (!attacking) {
+//			if (transform.localScale.x > 0 && player.transform.position.x < transform.position.x && player.transform.position.x > transform.position.x - playerRange && bombCounter < 0) {
+//				//Instantiate (bomb, launchPoint.position, launchPoint.rotation);
+//				bombCounter = waitBetweenBombs; //reset counter
+//				Debug.Log ("DROPPED BOMB");
+//			}
+//		}
 //	}
 
 	void OnTriggerEnter2D(Collider2D other) {

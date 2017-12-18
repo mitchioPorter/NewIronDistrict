@@ -161,7 +161,7 @@ public class DialogueBox : MonoBehaviour {
 	void SetSpritePositions (GameObject spriteObj) {
 		//Debug.Log ("In SETSPRITEPOSITIONS");
 		if (position == "L") {
-			nameText.transform.position = new Vector3 (nameText.transform.position.x - 90f, nameText.transform.position.y, nameText.transform.position.x);
+			nameText.transform.position = new Vector3 (nameText.transform.position.x - 75f, nameText.transform.position.y, nameText.transform.position.x);
 			spriteObj.transform.position = new Vector3 (-6,Screen.height/384f,0); // set according to hardware width/height, don't hard code values
 			L_sprite = spriteObj;
 			L_render = L_sprite.GetComponent<SpriteRenderer>();
@@ -173,7 +173,7 @@ public class DialogueBox : MonoBehaviour {
 		}
 
 		if (position == "R") {
-			nameText.transform.position = new Vector3 (nameText.transform.position.x + 90f, nameText.transform.position.y, nameText.transform.position.x);
+			nameText.transform.position = new Vector3 (nameText.transform.position.x + 75f, nameText.transform.position.y, nameText.transform.position.x);
 			spriteObj.transform.position = new Vector3 (5, Screen.height/384f,  0);
 			R_sprite = spriteObj;
 			R_render = R_sprite.GetComponent<SpriteRenderer> ();

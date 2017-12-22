@@ -27,19 +27,19 @@ EditorBuildSettings:
     path: Assets/Scenes/MatchGame_v3.unity
     guid: 850e226c1e2ff4a418bc118192c0fa4e
   - enabled: 1
-    path: Assets/Scenes/SecondCutscene.unity
+    path: Assets/Scenes/Cutscene1.unity
     guid: b5f617130d76fa741b458afd9fe24fe6
   - enabled: 1
     path: Assets/Scenes/DialogueScene3.unity
     guid: 405f8ea7234af2b408394b087f7eaa98
   - enabled: 1
-    path: Assets/Scenes/ThirdCutscene.unity
+    path: Assets/Scenes/Cutscene2.unity
     guid: 211bfb503711aa541a5aa37a86c84c29
   - enabled: 1
     path: Assets/Scenes/DialogueScene4.unity
     guid: f670e39dc33366e44b7640db2ba5a5f0
   - enabled: 1
-    path: Assets/Scenes/FourthCutScene.unity
+    path: Assets/Scenes/Cutscene3.unity
     guid: fd15ee5a42be05a4cb50fa268f0b552c
   - enabled: 1
     path: Assets/Scenes/DialogueScene5.unity
@@ -51,7 +51,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ArrowGame.unity
     guid: 8afd5454d071646149f8f729b419a205
   - enabled: 1
-    path: Assets/Scenes/FifthCutscene.unity
+    path: Assets/Scenes/Cutscene4.unity
     guid: cef01e41d77f08b4fa20b431177136f9
   - enabled: 1
     path: Assets/Scenes/LoadScene4.unity
@@ -59,6 +59,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SentinelGame.unity
     guid: 95afa052d11b7f542979820cb2a5687b
+  - enabled: 1
+    path: Assets/Scenes/Cutscene5.unity
+    guid: 7639666ed2dea2b42adc25912dfa7b29
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: d022752b4fedc19479fb3d611841617a

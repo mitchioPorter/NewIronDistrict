@@ -24,7 +24,7 @@ public class MenuButtons : MonoBehaviour {
 	}
 
 	public void LoadCredits() {
-		SceneManager.LoadScene (18);
+		SceneManager.LoadScene (19);
 	}
 
 	public void ExitGame () {

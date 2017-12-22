@@ -29,7 +29,6 @@ public class SentinelScript : MonoBehaviour {
 
 
 	Animator bombAnim;
-	public Transform launchPoint;
 
 	private float bombCounter;
 	public float waitBetweenBombs;
